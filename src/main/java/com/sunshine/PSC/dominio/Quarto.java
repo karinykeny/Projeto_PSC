@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.valter.projetoPsc.dominio.enums.StatusQuarto;
+import com.sunshine.PSC.dominio.enums.StatusQuarto;
 
 @Entity
 public class Quarto implements Serializable {
@@ -31,6 +31,9 @@ public class Quarto implements Serializable {
 
 	}
 
+	
+	
+	
 	public Quarto(Integer id, Integer qtdPessoas, String tipoDeCama, StatusQuarto status) {
 		super();
 		this.id = id;
