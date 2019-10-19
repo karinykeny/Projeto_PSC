@@ -10,7 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Cliente implements Serializable {
@@ -19,9 +23,14 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NonNull
+	@Size (min = 3, max = 50)
 	private String nome;
+	@CPF
 	private String cpf;
+	@Email
 	private String email;
+	@NonNull
 	private String senha;
 	@OneToMany(mappedBy = "cliente")
 	private List<Reserva> reservas = new ArrayList<>();

@@ -8,8 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Funcionario implements Serializable {
@@ -18,9 +22,14 @@ public class Funcionario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NonNull
+	@Size (min = 3, max = 50)
 	private String nome;
+	@CPF
 	private String cpf;
+	@Email
 	private String email;
+	@NonNull
 	private String senha;
 	private String telefone;
 	@OneToMany(mappedBy = "funcionario")
