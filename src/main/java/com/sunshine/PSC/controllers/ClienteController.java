@@ -14,7 +14,7 @@ import com.sunshine.PSC.dominio.Cliente;
 public class ClienteController {
 
 	@Autowired
-	private ClienteDao cli;
+	private ClienteDao dao;
 
 	@GetMapping("/cadastrar")
 	public String cadastar() {
@@ -28,7 +28,7 @@ public class ClienteController {
 	
 	@PostMapping("/salvar")
 	public String salvar(Cliente cliente){
-		cli.save(cliente);
+		dao.save(cliente);
 		return "/quarto/confirmacao";
 	}
 	
