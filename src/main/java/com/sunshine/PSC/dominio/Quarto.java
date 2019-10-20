@@ -35,9 +35,10 @@ public class Quarto implements Serializable {
 	
 	
 	
-	public Quarto(Integer id, Integer qtdPessoas, String tipoDeCama, StatusQuarto status) {
+	public Quarto(String nomeQuarto, Integer qtdPessoas, String tipoDeCama, StatusQuarto status) {
 		super();
-		this.id = id;
+		
+		this.nomeQuarto = nomeQuarto;
 		this.qtdPessoas = qtdPessoas;
 		this.tipoDeCama = tipoDeCama;
 		this.status = (status == null) ? null : status.getCod();
