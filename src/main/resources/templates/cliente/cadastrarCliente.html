@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 <title>Hotel Sunshine</title>
@@ -17,15 +18,15 @@
 	<h1>Bem vindo ao site do Hotel Sunshine</h1>
 	<h2>Formulário do Cliente</h2>
 	<br />
-
-	<form action="Script_do_Formulario.php" method="post">
+	<th:block th:include="mensagemValidacao"></th:block>
+	<form action="/clientes/cadastrar" method="post" th:object="${cliente}">
 		<!-- DADOS PESSOAIS-->
 		<fieldset>
 			<legend>Dados Pessoais</legend>
 			<table cellspacing="10">
 				<tr>
 					<td><label for="nome">Nome: </label></td>
-					<td align="char"><input type="text" name="email"></td>
+					<td align="char"><input type="text" name="nome"></td>
 				</tr>
 				<tr>
 					<td><label>CPF:</label></td>
@@ -49,15 +50,14 @@
 					<td><label for="pass">Senha: </label></td>
 					<td align="left"><input type="password" name="pass"></td>
 				</tr>
-				<tr>
-					<td><label for="passconfirm">Confirme a senha: </label></td>
-					<td align="left"><input type="password" name="passconfirm">
-					</td>
-				</tr>
 			</table>
 		</fieldset>
 		<br /> <input type="submit"> <input type="reset"
 			value="Limpar">
+		<button>
+			<a href="/" url="/home">Voltar</a>
+		</button>
+
 	</form>
 
 </body>

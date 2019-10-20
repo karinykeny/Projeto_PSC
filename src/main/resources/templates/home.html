@@ -1,13 +1,48 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="ISO-8859-1">
 <title>Quartos</title>
+<link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
 	<h1>Hotel Sunshine</h1>
 	<p>O melhor sistema web do mundo para gerir seu Hotel</p>
-	
+
+	<div class="layout-main">
+
+		<aside>
+			<nav class="sidebar sidebar-open">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a class="nav-link " href="/"> <i
+							class="oi oi-home"></i> <span>Home</span>
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Clientes</span></li>
+					<li class="nav-item"><a class="nav-link"
+						href="clientes/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/clientes/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span>
+					</a></li>
+				</ul>
+			</nav>
+		</aside>
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+	</script>
 </body>
 </html>
