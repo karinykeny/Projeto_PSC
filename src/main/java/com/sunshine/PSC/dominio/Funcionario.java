@@ -26,7 +26,7 @@ public class Funcionario implements Serializable {
 	@Size (min = 3, max = 50)
 	private String nome;
 	@CPF
-	private String cpf;
+	private String cpf ;
 	@Email
 	private String email;
 	@NonNull
