@@ -20,6 +20,7 @@ public class Quarto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String nomeQuarto;
 	private Integer qtdPessoas;
 	private String tipoDeCama;
 	private Integer status;
@@ -49,6 +50,22 @@ public class Quarto implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+
+	public String getNomeQuarto() {
+		return nomeQuarto;
+	}
+
+
+
+
+	public void setNomeQuarto(String nomeQuarto) {
+		this.nomeQuarto = nomeQuarto;
+	}
+
+
+
 
 	public Integer getQtdPessoas() {
 		return qtdPessoas;
