@@ -35,6 +35,8 @@ public class PscApplication implements CommandLineRunner{
 	
 	quartoDao.saveAll(Arrays.asList(q1,q2,q3));
 	
+	
+	
 	}
 	
 }
