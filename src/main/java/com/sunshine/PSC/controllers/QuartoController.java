@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,8 +29,15 @@ public class QuartoController {
 	@RequestMapping(value="/Quarto/create", method=RequestMethod.POST)
 	public String create(Quarto quarto) {
 	
-		dao.create(quarto);
+		dao.save(quarto);
 		return "quarto/confirmacao";
 	}
+	@RequestMapping(value="/Quarto/listar", method=RequestMethod.GET)
+	public String listar(ModelMap model) {
+				
+		model.addAttribute("quartos", dao.findAll());
+		return "quarto/index";	
+	}
+	
 	
 }
