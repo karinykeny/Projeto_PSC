@@ -1,36 +1,57 @@
 package com.sunshine.PSC.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sunshine.PSC.dao.ClienteDao;
 import com.sunshine.PSC.dominio.Cliente;
+import com.sunshine.PSC.service.ClienteService;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
-	private ClienteDao dao;
+	private ClienteService service;
 
 	@GetMapping("/cadastrar")
 	public String cadastar() {
 		return "/cliente/cadastrarCliente";
 	}
-	
+
 	@GetMapping("/listar")
-	public String listar() {
+	public String listar(ModelMap model) {
+		model.addAttribute("clientes", service.findAll());
 		return "/cliente/listarClientes";
 	}
-	
-	@PostMapping("/salvar")
-	public String salvar(Cliente cliente){
-		dao.save(cliente);
-		return "/quarto/confirmacao";
+
+	@GetMapping("/buscarid")
+	public Cliente findById(int Id) throws ObjectNotFoundException {
+		return service.findById(Id);
 	}
 	
+	@GetMapping("/login")
+	public String logar() {
+		return "/cliente/loginCliente";
+	}
 
+	@PostMapping("/salvar")
+	public String salvar(Cliente cliente) {
+		service.save(cliente);
+		return "/cliente/loginCliente";
+	}
+	
+	@RequestMapping("/deletarCliente")
+	public ResponseEntity<Cliente> deletarCliente(Integer id) throws ObjectNotFoundException{
+		service.deleteCliente(id);
+		return ResponseEntity.noContent().build();
+
+	}
+	
 }
