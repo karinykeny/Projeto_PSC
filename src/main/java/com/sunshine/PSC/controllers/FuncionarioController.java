@@ -16,47 +16,34 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public class FuncionarioController {
-
-	
-}
-
-/*package com.sunshine.PSC.controllers;
-
-
-//====[IMPORTS RESUMIDOS]======
-
-
 
 @Controller
-public class QuartoController {
+public class FuncionarioController {
 
 	@Autowired
-	private QuartoService service;
+	private FuncionarioService service;
 	
-	//@RequestMapping("quarto/form")
-	@RequestMapping(value="quarto/form", method=RequestMethod.GET)
+	@RequestMapping(value="funcionario/form")
 	public String form() {
-		return "quarto/form";
+		return "funcionario/form";
 	}
-	//@RequestMapping("quarto/create")
-	@RequestMapping(value="/Quarto/create", method=RequestMethod.POST)
-	public String create(Quarto quarto) {
 	
-		service.save(quarto);
-		return "quarto/confirmacao";
+	@RequestMapping(value="/Funcionario/create", method=RequestMethod.POST)
+	public String create(Funcionario funcionario) {
+		service.save(funcionario);
+		return "funcionario/confirmacao";
 	}
-	@RequestMapping(value="/Quarto/listar", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/Funcionario/listar", method=RequestMethod.GET)
 	public String findAll(ModelMap model) {
-				
-		model.addAttribute("quartos", service.findAll());
-		return "quarto/index";	
-	}
-	@RequestMapping(value="/Quarto/buscarid", method=RequestMethod.GET)
-	public Quarto findById(int Id) throws ObjectNotFoundException {
+		model.addAttribute("funcionarios", service.findAll());
+		return "funcionario/index";	}
+	
+	@RequestMapping(value="/Funcionario/buscarid", method=RequestMethod.GET)
+	public Funcionario findById(int Id) throws ObjectNotFoundException {
 		
 		return service.findById(Id);
-	}
+	}	
+	
+	
 }
-
- */

@@ -7,7 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.sunshine.PSC.dao.FuncionarioDao;
 import com.sunshine.PSC.dao.QuartoDao;
+import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.dominio.enums.StatusQuarto;
 
@@ -20,6 +22,9 @@ public class PscApplication implements CommandLineRunner{
 	@Autowired
 	private QuartoDao quartoDao;
 	
+	@Autowired
+	private FuncionarioDao funcionarioDao;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(PscApplication.class, args);
 	
@@ -31,9 +36,10 @@ public class PscApplication implements CommandLineRunner{
 	Quarto q1 = new Quarto("Quarto 101", 1,"Solteiro", StatusQuarto.disponivel);
 	Quarto q2 = new Quarto("Quarto 202", 1,"Casal", StatusQuarto.disponivel);
 	Quarto q3 = new Quarto("Quarto 303", 1,"Misto", StatusQuarto.disponivel);
-	
+	Funcionario f1 = new Funcionario(001,"Jose","70200331485","Jose@hotelsunshine.com","5550123","81987957105");
 	
 	quartoDao.saveAll(Arrays.asList(q1,q2,q3));
+	funcionarioDao.saveAll(Arrays.asList(f1));
 	
 	
 	
