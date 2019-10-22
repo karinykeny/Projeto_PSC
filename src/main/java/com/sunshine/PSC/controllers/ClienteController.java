@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.service.ClienteService;
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 
 @Controller
 @RequestMapping("/clientes")
@@ -35,7 +34,7 @@ public class ClienteController {
 	public Cliente findById(int Id) throws ObjectNotFoundException {
 		return service.findById(Id);
 	}
-	
+
 	@GetMapping("/login")
 	public String logar() {
 		return "/cliente/loginCliente";
@@ -46,12 +45,12 @@ public class ClienteController {
 		service.save(cliente);
 		return "/cliente/loginCliente";
 	}
-	
+
 	@RequestMapping("/deletarCliente")
-	public ResponseEntity<Cliente> deletarCliente(Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Cliente> deletarCliente(Integer id) throws ObjectNotFoundException {
 		service.deleteCliente(id);
 		return ResponseEntity.noContent().build();
 
 	}
-	
+
 }

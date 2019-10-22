@@ -34,7 +34,7 @@ public class Quarto implements Serializable {
 
 	public Quarto(String nomeQuarto, Integer qtdPessoas, String tipoDeCama, StatusQuarto status) {
 		super();
-		
+
 		this.nomeQuarto = nomeQuarto;
 		this.qtdPessoas = qtdPessoas;
 		this.tipoDeCama = tipoDeCama;
