@@ -38,4 +38,9 @@ public class QuartoService {
 		return dao.save(quarto);
 	}
 
+	public void deleteQuarto(Quarto quarto) throws ObjectNotFoundException {
+		findById(quarto.getId());
+		dao.delete(quarto);
+	}
+
 }
