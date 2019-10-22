@@ -20,12 +20,6 @@ public class QuartoController {
 	@Autowired
 	private QuartoService service;
 
-	// @RequestMapping("quarto/form")
-	@RequestMapping(value = "quarto/form", method = RequestMethod.GET)
-
-	public String form() {
-		return "quarto/form";
-	}
 
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
@@ -55,7 +49,7 @@ public class QuartoController {
 	@GetMapping("/preupdate/{id}")
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("quarto", service.findById(id));
-
+		
 		return "quarto/cadastrarQuartos";
 	}
 
