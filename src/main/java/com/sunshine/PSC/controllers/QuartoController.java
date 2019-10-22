@@ -68,7 +68,7 @@ public class QuartoController {
 		service.updateQuarto(quarto);
 		return "redirect:/quarto/listarQuartos";
 	}
-	@GetMapping("/deletar")
+	@GetMapping("/deletar/{id}")
 	public String deletarQuarto(Quarto quarto) throws ObjectNotFoundException {
 		findById(quarto.getId());
 		service.deleteQuarto(quarto);
