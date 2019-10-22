@@ -28,43 +28,28 @@ public class QuartoController {
 		return "quarto/form";
 	}
 
-	// @RequestMapping("quarto/create")
-	@RequestMapping(value = "/Quarto/create", method = RequestMethod.POST)
-
-	// @RequestMapping("quarto/form")
-	// @RequestMapping(value="quarto/form", method=RequestMethod.GET)
+	
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
+		
 		return "quarto/cadastrarQuartos";
 	}
 
 	// @RequestMapping("quarto/create")
 	@PostMapping("/create")
 	public String create(Quarto quarto) {
-
 		service.save(quarto);
 		return "quarto/confirmacao";
 	}
 
-	@RequestMapping(value = "/Quarto/listar", method = RequestMethod.GET)
 
 	@GetMapping("/listarQuartos")
-
 	public String findAll(ModelMap model) {
-
 		model.addAttribute("quartos", service.findAll());
-
-		return "quarto/index";
+		return "quarto/listarQuartos";
 	}
 
-	/*
-	 * @RequestMapping(value="/Quarto/buscarid",method=RequestMethod.GET)
-	 * 
-	 * }
-	 */
-
 	@GetMapping("/buscarid")
-
 	public Quarto findById(int Id) throws ObjectNotFoundException {
 
 		return service.findById(Id);
@@ -90,11 +75,5 @@ public class QuartoController {
 		service.deleteQuarto(quarto);
 		return "quarto/confirmacao";
 	}
-	/*
-	 * @RequestMapping(value = "/{id}", method = RequestMethod.PUT) public
-	 * ResponseEntity<Void> update(@RequestBody Cliente obj, @PathVariable Integer
-	 * id) { obj.setId(id); obj = service.updateCliente(obj); return
-	 * ResponseEntity.noContent().build();
-	 */
-
+	
 }
