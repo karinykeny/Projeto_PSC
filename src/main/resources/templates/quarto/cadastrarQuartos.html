@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<title>Hotel Sunshine</title>
+<meta name="description"
+	content="Aprenda a criar um site completo que usa formulários em HTML">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h1>Bem vindo ao site do Hotel Sunshine</h1>
+	<h2>Formulário do Quarto</h2>
+	<br />
+	<form th:action="${quarto.id} == null ? @{/quarto/create} : @{/quarto/editar}"
+	 th:object="${quarto}" method="post">
+		
+		<fieldset>
+			<legend>Dados</legend>
+			<div id="cadastro">
+			<label> Nome do quarto </label>
+			<input id="nomequarto" type="text" th:field="*{nomeQuarto}">
+			<!-- <input type="text" name="nomeQuarto" >  -->
+		</div>	
+	    	<label> quantidade de pessoas </label>
+			<input id="qtdpessoas" type="text" th:field="*{qtdPessoas}">
+		 <div>	
+			<label> Tipo de cama </label>
+			 <input type="text" th:field="*{tipodeCama}" >
+		</div> 
+	 		<input type="radio" name="quarto.status"  value="1"> Disponível<br>
+ 	 		 <input type="radio" name="quarto.status" value="2"> Indisponível
+		<input type="hidden" id="Id" th:field="*{Id}">
+		<button type="submit">Cadastrar</button>	
+		
+		</fieldset>
+	
+	</form>
+
+</body>
+</html>

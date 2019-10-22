@@ -32,9 +32,6 @@ public class Quarto implements Serializable {
 
 	}
 
-	
-	
-	
 	public Quarto(String nomeQuarto, Integer qtdPessoas, String tipoDeCama, StatusQuarto status) {
 		super();
 		
@@ -51,22 +48,14 @@ public class Quarto implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 
 	public String getNomeQuarto() {
 		return nomeQuarto;
 	}
 
-
-
-
 	public void setNomeQuarto(String nomeQuarto) {
 		this.nomeQuarto = nomeQuarto;
 	}
-
-
-
 
 	public Integer getQtdPessoas() {
 		return qtdPessoas;
