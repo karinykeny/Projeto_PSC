@@ -28,16 +28,19 @@ public class FuncionarioController {
 		return "funcionario/form";
 	}
 	
+	
 	@RequestMapping(value="/Funcionario/create", method=RequestMethod.POST)
 	public String create(Funcionario funcionario) {
 		service.save(funcionario);
 		return "funcionario/confirmacao";
 	}
 	
+	
 	@RequestMapping(value="/Funcionario/listar", method=RequestMethod.GET)
 	public String findAll(ModelMap model) {
 		model.addAttribute("funcionarios", service.findAll());
 		return "funcionario/index";	}
+	
 	
 	@RequestMapping(value="/Funcionario/buscarid", method=RequestMethod.GET)
 	public Funcionario findById(int Id) throws ObjectNotFoundException {
