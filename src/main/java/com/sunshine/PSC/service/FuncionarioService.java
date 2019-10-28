@@ -23,6 +23,11 @@ public class FuncionarioService {
 		return dao.save(funcionario);
 	}
 	
+	public void delete(int idParam) {
+		dao.deleteById(idParam);
+	}
+	
+	
 	public List<Funcionario> findAll() {
 		return dao.findAll();
 	}
@@ -38,6 +43,11 @@ public Funcionario findById(int Id) throws ObjectNotFoundException{
 public Funcionario updateFuncionario(Funcionario funcionario) throws ObjectNotFoundException {
 	findById(funcionario.getId());
 	return dao.save(funcionario);
+}
+
+public void delete1(int idParam) {
+	// TODO Auto-generated method stub
+	
 }
 
 	

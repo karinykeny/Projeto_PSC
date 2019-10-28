@@ -23,15 +23,37 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService service;
 	
-	@RequestMapping(value="funcionario/form")
-	public String form() {
-		return "funcionario/form";
+// ================= CHAMAR TELAS ==================	
+	@RequestMapping(value="funcionario/cadastrar")
+	public String formcadastrar() {
+		return "funcionario/cadastrar";
 	}
 	
+	@RequestMapping(value="funcionario/deletar")
+	public String formdeletar() {
+		return "funcionario/deletar";
+	}
+	
+	@RequestMapping(value="funcionario/atualizar")
+	public String formatualizar() {
+		return "funcionario/atualizar";
+	}
+// ====================== METODOS ======================
 	
 	@RequestMapping(value="/Funcionario/create", method=RequestMethod.POST)
 	public String create(Funcionario funcionario) {
 		service.save(funcionario);
+		return "funcionario/confirmacao";
+	}
+	
+	@RequestMapping(value="/Funcionario/delete", method=RequestMethod.DELETE)
+	public void delete(int idParam) {
+		service.delete(idParam);
+	}
+	
+	@RequestMapping(value="/Funcionario/update", method=RequestMethod.POST)
+	public String update(Funcionario funcionario) throws ObjectNotFoundException {
+		service.updateFuncionario(funcionario);
 		return "funcionario/confirmacao";
 	}
 	
