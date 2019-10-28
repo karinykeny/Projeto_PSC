@@ -14,26 +14,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.lang.NonNull;
 
 @Entity
-@Table( name = "CLIENTES")
+@Table(name = "CLIENTES")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(nullable = false, unique = true)
 	private String nome;
-	@CPF
+	 @CPF(message = "CPF inválido! não use ")
 	private String cpf;
-	@Email
+	 @Email(message = "E-mail inválido!")
 	private String email;
-	@NonNull
 	private String senha;
 	@OneToMany(mappedBy = "cliente")
 	private List<Reserva> reservas = new ArrayList<>();
