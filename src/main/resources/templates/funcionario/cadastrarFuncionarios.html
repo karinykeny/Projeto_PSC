@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<title>Hotel Sunshine</title>
+<meta name="description"
+	content="Aprenda a criar um site completo que usa formulários em HTML">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h1>Bem vindo ao site do Hotel Sunshine</h1>
+	<h2>Formulário do Funcionario</h2>
+	<br />
+	<form th:action="${funcionario.id} == null ? @{/funcionario/create} : @{/funcionario/editar}"
+	 th:object="${funcionario}" method="post">
+		
+		<fieldset>
+			<legend>Dados</legend>
+			<div id="cadastro">
+			<label> Nome do Funcionario </label>
+			<input id="nomefuncionario" type="text" th:field="*{nome}">
+			<!-- <input type="text" name="nomeQuarto" >  -->
+		</div>	
+	    	<label> CPF </label>
+			<input id="cpffuncionario" type="text" th:field="*{cpf}">
+		 <div>	
+			<label> Email </label>
+			 <input type="text" th:field="*{email}" >
+		</div> 
+		<label> Senha </label>
+		<input type="text" th:field="*{senha}">
+		<div>
+		<label> Telefone </label>
+		<input type="text" th:field="*{telefone}">
+		
+		</div>
+	 	<input type="hidden" id="Id" th:field="*{Id}">
+		<button type="submit">Cadastrar</button>	
+		
+		</fieldset>
+	
+	</form>
+
+</body>
+</html>

@@ -13,7 +13,6 @@ import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.service.QuartoService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 
-
 @Controller
 @RequestMapping("/quarto")
 public class QuartoController {
@@ -22,10 +21,9 @@ public class QuartoController {
 	private QuartoService service;
 
 
-	
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
-		
+
 		return "quarto/cadastrarQuartos";
 	}
 
@@ -35,7 +33,6 @@ public class QuartoController {
 		service.save(quarto);
 		return "quarto/confirmacao";
 	}
-
 
 	@GetMapping("/listarQuartos")
 	public String findAll(ModelMap model) {
@@ -69,5 +66,5 @@ public class QuartoController {
 		service.deleteQuarto(quarto);
 		return "quarto/confirmacao";
 	}
-	
+
 }
