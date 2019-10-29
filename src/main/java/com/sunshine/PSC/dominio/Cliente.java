@@ -2,6 +2,7 @@ package com.sunshine.PSC.dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,10 +17,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "CLIENTES")
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,9 +46,9 @@ public class Cliente implements Serializable {
 
 	}
 
-	public Cliente(Integer id, String nome, String cpf, String email, String senha) {
+	public Cliente(String nome, String cpf, String email, String senha) {
 		super();
-		this.id = id;
+	
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -130,6 +133,48 @@ public class Cliente implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		return true;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		
+		return this.cpf;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+	
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+	
 		return true;
 	}
 

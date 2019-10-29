@@ -7,5 +7,6 @@ import com.sunshine.PSC.dominio.Cliente;
 
 @Repository
 public interface ClienteDao extends JpaRepository<Cliente, Integer>{
-
+	
+	Cliente findByCpf(String cpf);
 }

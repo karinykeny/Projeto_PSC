@@ -16,7 +16,10 @@
 
 <body>
 	<h1>Bem vindo ao site do Hotel Sunshine</h1>
+
+	
 	<h2>Formulário do Quarto</h2>
+	
 	<br />
 	<form th:action="${quarto.id} == null ? @{/quarto/create} : @{/quarto/editar}"
 	 th:object="${quarto}" method="post">
@@ -42,6 +45,7 @@
 		</fieldset>
 	
 	</form>
-
+		
+		
 </body>
 </html>
