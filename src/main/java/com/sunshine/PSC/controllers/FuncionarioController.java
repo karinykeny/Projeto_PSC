@@ -29,9 +29,11 @@ public class FuncionarioController {
 	private FuncionarioService service;
 	
 // ================= CHAMAR TELAS ==================	
-	@RequestMapping(value="funcionario/cadastrar")
-	public String formcadastrar() {
-		return "funcionario/cadastrar";
+	
+	@GetMapping("/cadastrarFuncionarios")
+	public String form(Funcionario funcionario) {
+
+		return "funcionario/cadastrarFuncionarios";
 	}
 	
 	@RequestMapping(value="funcionario/deletar")
@@ -43,6 +45,7 @@ public class FuncionarioController {
 	public String formatualizar() {
 		return "funcionario/atualizar";
 	}
+	
 // ====================== METODOS ======================
 	
 	@PostMapping(value="/create")
@@ -54,7 +57,9 @@ public class FuncionarioController {
 	@GetMapping(value="/listarFuncionarios")
 	public String findAll(ModelMap model) {
 		model.addAttribute("funcionarios", service.findAll());
-		return "funcionar/listarFuncionarios";	}
+		return "funcionario/listarFuncionarios";	}
+	
+	
 	
 	@GetMapping("/buscarid")
 	public Funcionario findById(int Id) throws ObjectNotFoundException {
@@ -66,7 +71,7 @@ public class FuncionarioController {
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("funcionario", service.findById(id));
 		
-		return "quarto/cadastrarQuartos";
+		return "funcionario/cadastrarFuncionarios";
 	}
 	
 	@GetMapping("/deletar/{id}")

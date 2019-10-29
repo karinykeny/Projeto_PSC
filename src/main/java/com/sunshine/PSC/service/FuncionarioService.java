@@ -46,6 +46,5 @@ public Funcionario updateFuncionario(Funcionario funcionario) throws ObjectNotFo
 }
 
 
-
 	
 }
