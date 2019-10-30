@@ -36,10 +36,10 @@ public class PscApplication implements CommandLineRunner {
 		Quarto q2 = new Quarto("Quarto 202", 2, "Casal", StatusQuarto.disponivel);
 		Quarto q3 = new Quarto("Quarto 303", 4, "Misto", StatusQuarto.disponivel);
 		
-		Cliente c1 = new Cliente("Adalberto", "057.665.234-03", "Adalberto@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
-
+		Cliente c1 = new Cliente("Adalberto", "70200331485", "Adalberto@teste.com", "123456");
+		Cliente c2 = new Cliente("Eduardo", "62857037015", "edu@hotmail.com", "123");
 		quartoDao.saveAll(Arrays.asList(q1, q2, q3));
-		clienteDao.save(c1);
+		clienteDao.saveAll(Arrays.asList(c1,c2));
 
 	}
 
