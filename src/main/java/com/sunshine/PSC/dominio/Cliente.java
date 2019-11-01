@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -41,6 +43,15 @@ public class Cliente implements Serializable, UserDetails {
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id_fk")
 	private Funcionario funcionario;
+
+	@ManyToMany
+	@JoinTable( 
+	        name = "clientes_funcoes", 
+	        joinColumns = @JoinColumn(
+	          name = "cliente_id", referencedColumnName = "cpf"), 
+	        inverseJoinColumns = @JoinColumn(
+	          name = "funcao_id", referencedColumnName = "Descricao"))
+	private List<Funcao> funcoes;
 
 	public Cliente() {
 
@@ -109,6 +120,14 @@ public class Cliente implements Serializable, UserDetails {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+	
+	public List<Funcao> getFuncoes() {
+		return funcoes;
+	}
+
+	public void setFuncoes(List<Funcao> funcoes) {
+		this.funcoes = funcoes;
 	}
 
 	@Override
