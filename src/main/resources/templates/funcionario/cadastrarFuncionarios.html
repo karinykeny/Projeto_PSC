@@ -16,36 +16,37 @@
 
 <body>
 	<h1>Bem vindo ao site do Hotel Sunshine</h1>
-
-	
-	<h2>Formulário do Quarto</h2>
-	
+	<h2>Formulário do Funcionario</h2>
 	<br />
-	<form th:action="${quarto.id} == null ? @{/quarto/create} : @{/quarto/editar}"
-	 th:object="${quarto}" method="post">
+	<form th:action="${funcionario.id} == null ? @{/funcionario/create} : @{/funcionario/editar}"
+	 th:object="${funcionario}" method="post">
 		
 		<fieldset>
 			<legend>Dados</legend>
 			<div id="cadastro">
-			<label> Nome do quarto </label>
-			<input id="nomequarto" type="text" th:field="*{nomeQuarto}">
+			<label> Nome do Funcionario </label>
+			<input id="nomefuncionario" type="text" th:field="*{nome}">
 			<!-- <input type="text" name="nomeQuarto" >  -->
 		</div>	
-	    	<label> quantidade de pessoas </label>
-			<input id="qtdpessoas" type="text" th:field="*{qtdPessoas}">
+	    	<label> CPF </label>
+			<input id="cpffuncionario" type="text" th:field="*{cpf}">
 		 <div>	
-			<label> Tipo de cama </label>
-			 <input type="text" th:field="*{tipodeCama}" >
+			<label> Email </label>
+			 <input type="text" th:field="*{email}" >
 		</div> 
-	 		 <input type="radio" name="quarto.status"  value="1"> Disponível<br>
- 	 		 <input type="radio" name="quarto.status" value="2"> Indisponível
-		<input type="hidden" id="Id" th:field="*{Id}">
+		<label> Senha </label>
+		<input type="text" th:field="*{senha}">
+		<div>
+		<label> Telefone </label>
+		<input type="text" th:field="*{telefone}">
+		
+		</div>
+	 	<input type="hidden" id="Id" th:field="*{Id}">
 		<button type="submit">Cadastrar</button>	
 		
 		</fieldset>
 	
 	</form>
-		
-		
+
 </body>
 </html>

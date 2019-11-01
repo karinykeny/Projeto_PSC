@@ -25,7 +25,7 @@ public class ClienteController {
 
 	@GetMapping("/cadastrar")
 	public String cadastar() {
-		return "/cliente/cadastrarCliente";
+		return "/cliente/cadastrarCliente"; 
 	}
 
 	@GetMapping("/listar")
