@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Reservas</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style/styleCss.css" />
+</head>
+<body>
+	<button>
+		<a href="/" url="/home">Home</a>
+	</button>
+	<button></button>
+	<br />
+	<br />
+	<table>
+		<tr>
+			<td>Numero de pessoas</td>
+			<td>Data de entrada</td>
+			<td>Data de saida</td>
+			<td>valor da diaria</td>
+			<td>valor total da reserva</td>
+			<td></td>
+		</tr>
+		<tr th:each="r : ${reservas}">
+			<td th:text="${r.nPessoas}"></td>
+			<td th:text="${r.dataEntrada}"></td>
+			<td th:text="${r.dataSaida}"></td>
+			<td th:text="${r.precoDiaria}"></td>
+			<td th:text="${r.total}"></td>
+			<!--  <td th:text="${q.tipoDeCama}"></td>-->
+
+			<td><a th:href="@{preupdate/{Id} (Id=${r.id})}"> <span
+					title="Editar">editar</span>
+			</a></td>
+			<td><a th:href="@{deletar/{Id} (Id=${r.id})} " method="POST">
+					<span title="Deletar">deletar</span>
+			</a></td>
+		</tr>
+
+	</table>
+
+</body>
+
+
+</html>

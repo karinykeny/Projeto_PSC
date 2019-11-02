@@ -10,8 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.sunshine.PSC.dao.ClienteDao;
 import com.sunshine.PSC.dao.QuartoDao;
+import com.sunshine.PSC.dao.ReservaDao;
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Quarto;
+import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.dominio.enums.StatusQuarto;
 
 @SpringBootApplication
@@ -21,6 +23,8 @@ public class PscApplication implements CommandLineRunner {
 	private QuartoDao quartoDao;
 	@Autowired
 	private ClienteDao clienteDao;
+	@Autowired
+	private ReservaDao rdao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PscApplication.class, args);
@@ -35,11 +39,17 @@ public class PscApplication implements CommandLineRunner {
 		Quarto q1 = new Quarto("Quarto 101", 1, "Solteiro", StatusQuarto.disponivel);
 		Quarto q2 = new Quarto("Quarto 202", 2, "Casal", StatusQuarto.disponivel);
 		Quarto q3 = new Quarto("Quarto 303", 4, "Misto", StatusQuarto.disponivel);
-		
-		//Cliente c1 = new Cliente("Adalberto", "410.211.230-80", "Adalberto@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
-		Cliente c1 = new Cliente("Ricardo", "702.003.314-85", "Adalberto@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+
+		// Cliente c1 = new Cliente("Adalberto", "410.211.230-80",
+		// "Adalberto@teste.com",
+		// "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+		Cliente c1 = new Cliente("Ricardo", "702.003.314-85", "Adalberto@teste.com",
+				"$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
 		quartoDao.saveAll(Arrays.asList(q1, q2, q3));
 		clienteDao.save(c1);
+
+		Reserva r1 = new Reserva(null, 6, null, null, null, null);
+		rdao.save(r1);
 
 	}
 
