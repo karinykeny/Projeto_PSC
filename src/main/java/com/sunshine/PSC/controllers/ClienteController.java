@@ -2,6 +2,7 @@ package com.sunshine.PSC.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class ClienteController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("clientes", service.findAll());
+		
 		return "/cliente/listarClientes";
 	}
 
@@ -42,8 +44,12 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public String salvar(Cliente cliente) {
+		String senha = new BCryptPasswordEncoder().encode(cliente.getSenha());
+		cliente.setSenha(senha); 
 		service.save(cliente);
-		return "/cliente/loginCliente";
+		ModelMap model = new ModelMap();
+		model.addAttribute("clientes",service.findAll());
+		return "/cliente/listarClientes";
 	}
 
 	@RequestMapping("/deletarCliente")
