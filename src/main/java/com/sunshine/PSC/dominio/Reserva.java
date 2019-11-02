@@ -49,8 +49,8 @@ public class Reserva implements Serializable {
 		this.nPessoas = nPessoas;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.setPrecoDiaria(precoDiaria);
-		this.setTotal(total);
+		this.precoDiaria = precoDiaria;
+		this.total = precoDiaria;
 	}
 
 	public Integer getId() {
