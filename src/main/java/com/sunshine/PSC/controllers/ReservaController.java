@@ -65,7 +65,10 @@ public class ReservaController {
 	@GetMapping("/deletar/{id}")
 	public String deletarReserva(Reserva reserva) throws ObjectNotFoundException {
 		findById(reserva.getId());
-		service.deleteReserva(reserva);
+		if (!service.reservaTemCliente(reserva.getId())) {
+			service.deleteReserva(reserva);
+		}
+
 		return "reserva/confirmacao";
 	}
 
