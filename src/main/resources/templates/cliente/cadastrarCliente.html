@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Hotel Sunshine</title>
-<meta name="description"
-	content="Aprenda a criar um site completo que usa formulários em HTML">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico" />
+<!-- Bootstrap core CSS -->
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}" />
 </head>
 
 <body>
@@ -55,8 +57,18 @@
 		<button>
 			<a href="/" url="/home">Voltar</a>
 		</button>
-
 	</form>
+	
+	<script>
+   $(document).ready(function(){
+        $("#ler-pagina").click(function(){
+              
+            $(function(){
+                $("#conteudo-pagina-lida").load("pagina-lida.html"); 
+            });
+        })
+   });
+   </script>
 
 </body>
 </html>
