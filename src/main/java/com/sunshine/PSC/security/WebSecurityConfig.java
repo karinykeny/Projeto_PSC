@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 		.anyRequest().authenticated() //para todas as demais requisições precisará de Autenticação
 		.and().formLogin().permitAll()// para que a pessoa acesse o formulário de login do spring security e assim ter acesso... 
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		http.headers().frameOptions().disable();
 	}
 	
 	@Override

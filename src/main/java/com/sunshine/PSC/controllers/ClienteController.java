@@ -2,10 +2,15 @@ package com.sunshine.PSC.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sunshine.PSC.dominio.Cliente;
@@ -27,11 +32,12 @@ public class ClienteController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("clientes", service.findAll());
+		
 		return "/cliente/listarClientes";
 	}
 
-	@GetMapping("/buscarid")
-	public Cliente findById(int Id) throws ObjectNotFoundException {
+	@GetMapping("/buscarid/{id}")
+	public Cliente findById(Integer Id) throws ObjectNotFoundException {
 		return service.findById(Id);
 	}
 
@@ -42,15 +48,27 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public String salvar(Cliente cliente) {
+		String senha = new BCryptPasswordEncoder().encode(cliente.getSenha());
+		cliente.setSenha(senha); 
 		service.save(cliente);
-		return "/cliente/loginCliente";
+		ModelMap model = new ModelMap();
+		model.addAttribute("clientes",service.findAll());
+		return "/cliente/listarClientes";
 	}
 
-	@RequestMapping("/deletarCliente")
-	public ResponseEntity<Cliente> deletarCliente(Integer id) throws ObjectNotFoundException {
+	@DeleteMapping("/{id}")
+	//public ResponseEntity<Cliente> deletarCliente(@PathVariable("id") Integer id) throws ObjectNotFoundException {
+	public String deletarCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente) throws ObjectNotFoundException{
 		service.deleteCliente(id);
-		return ResponseEntity.noContent().build();
+		return "Cliente deletado";
+		//return ResponseEntity.noContent().build();
 
+	}
+	
+	@PutMapping("/updateCliente/{id}")
+	public String updateCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente) {
+        service.updateCliente(cliente);
+		return "Cliente atualizado com sucesso";
 	}
 
 }
