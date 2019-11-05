@@ -18,10 +18,10 @@ public class Funcao implements GrantedAuthority  {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String Descricao;
 	
 	@ManyToMany(mappedBy="funcoes")
@@ -31,6 +31,15 @@ public class Funcao implements GrantedAuthority  {
 	@ManyToMany
 	private List<Funcionario> funcionarios;
 */
+	
+	public Funcao(){
+	
+	
+	}
+	public Funcao (String descricao) {
+		this.Descricao = descricao;
+	}
+	
 	public String getDescricao() {
 		return Descricao;
 	}
@@ -54,5 +63,7 @@ public class Funcao implements GrantedAuthority  {
 		
 		return this.Descricao;
 	}
+	
+	
 
 }
