@@ -43,4 +43,11 @@ public class ReservaService {
 		dao.delete(reserva);
 	}
 
+	public boolean reservaTemCliente(Integer id) {
+		if (findById(id).getCliente() == null) {
+			return false;
+		}
+		return true;
+	}
+
 }
