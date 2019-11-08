@@ -17,35 +17,36 @@
 	th:href="@{/css/bootstrap.css}" />
 </head>
 <body>
-
-	<div>
-		<button type="button" class="btn btn-secondary">
-			<a href="/" url="/home">Home</a>
-		</button>
-		<button type="button" class="btn btn-secondary">
-			<a href="/clientes/cadastrar" url="/clientes/cadastrar">Cadastrar
-				Cliente</a>
-		</button>
-		<br /> <br />
+	<div class="container">
 		<div>
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th>Id</th>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>E-mail</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="cli : ${clientes}">
-						<td><span th:text="${cli.id}"></span></td>
-						<td><span th:text="${cli.nome}"></span></td>
-						<td><span th:text="${cli.cpf}"></span></td>
-						<td><span th:text="${cli.email}"></span></td>
-					</tr>
-				</tbody>
-			</table>
+			<button type="button" class="btn btn-secondary">
+				<a href="/" url="/home">Home</a>
+			</button>
+			<button type="button" class="btn btn-secondary">
+				<a href="/clientes/cadastrar" url="/clientes/cadastrar">Cadastrar
+					Cliente</a>
+			</button>
+			<br /> <br />
+			<div>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th>Id</th>
+							<th>Nome</th>
+							<th>CPF</th>
+							<th>E-mail</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cli : ${clientes}">
+							<td><span th:text="${cli.id}"></span></td>
+							<td><span th:text="${cli.nome}"></span></td>
+							<td><span th:text="${cli.cpf}"></span></td>
+							<td><span th:text="${cli.email}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 </body>
 
 </html>
