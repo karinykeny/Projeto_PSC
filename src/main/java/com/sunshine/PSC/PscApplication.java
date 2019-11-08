@@ -52,9 +52,9 @@ public class PscApplication implements CommandLineRunner {
 		quartoDao.saveAll(Arrays.asList(q1, q2, q3));
 		clienteDao.save(c1);
 		
-		Cliente c2 = new Cliente("Kariny", "367.902.000-70", "karinykeny@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+	/*	Cliente c2 = new Cliente("Kariny", "367.902.000-70", "karinykeny@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
 		quartoDao.saveAll(Arrays.asList(q1, q2, q3));
-		clienteDao.save(c2);
+		clienteDao.save(c2);*/
 
 		Reserva r1 = new Reserva(null, 6, null, null, null, null);
 		rdao.save(r1);

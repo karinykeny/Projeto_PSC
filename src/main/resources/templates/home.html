@@ -1,80 +1,17 @@
-
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{index}">
 <head>
-<meta charset="ISO-8859-1">
-
-
-<title>Quartos</title>
-<link href="css/style.css" rel="stylesheet" />
+<meta charset="UTF-8">
 </head>
 <body>
-	<h1>Hotel Sunshine</h1>
-	<p>O melhor sistema web do mundo para gerir seu Hotel</p>
-
-	<div class="layout-main">
-
-		<aside>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="oi oi-home"></i> <span>Home</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Clientes</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="clientes/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/clientes/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span>
-					</a></li>
-
-					<li class="nav-item"><span class="nav-link active">Quartos</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/quarto/cadastrarQuartos"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/quarto/listarQuartos"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar</span>
-					</a></li>
-
-					<li class="nav-item"><span class="nav-link active">Funcionarios</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/funcionario/cadastrarFuncionarios"> <i
-							class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/funcionario/listarFuncionarios"> <i
-							class="oi oi-spreadsheet"></i> <span>Listar</span>
-					</a></li>
-					<li class="nav-item"><span class="nav-link active">Reservas</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/reserva/cadastrarReservas"> <i class="oi oi-plus"></i>
-							<span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/reserva/listarReservas"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar</span>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link" href="clientes/login">
-							<i class="oi oi-spreadsheet"></i> <span>Login</span>
-					</a></li>
-				</ul>
-			</nav>
-		</aside>
-	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
-		$(document).ready(function() {
-			$(".navbar-toggle").click(function() {
-				$(".sidebar").toggleClass("sidebar-open");
-			})
-		});
-	</script>
+	<section class="layout-content" layout:fragment="corpo">
+		<!--  <h1>Hotel Sunshine</h1>
+	<p>O melhor sistema web do mundo para gerir seu Hotel</p> -->
+		</br>
+		<div class="container" align="center" style="height: 100vh;">
+			<h1>Home</h1>
+			<p class="lead">Bem vindo ao site do Hotel Sunshine</p>
+		</div>
+	</section>
 </body>
 </html>
