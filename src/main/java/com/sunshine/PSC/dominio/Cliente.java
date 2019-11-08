@@ -33,7 +33,7 @@ public class Cliente implements Serializable, UserDetails {
 	private Integer id;
 	@Column(nullable = false, unique = true)
 	private String nome;
-	@CPF(message = "CPF inválido! não use ")
+	//@CPF(message = "CPF inválido! não use ")
 	private String cpf;
 	@Email(message = "E-mail inválido!")
 	private String email;
@@ -48,7 +48,7 @@ public class Cliente implements Serializable, UserDetails {
 	@JoinTable( 
 	        name = "clientes_funcoes", 
 	        joinColumns = @JoinColumn(
-	          name = "cliente_id", referencedColumnName = "cpf"), 
+	          name = "cliente_id", referencedColumnName = "id"), 
 	        inverseJoinColumns = @JoinColumn(
 	          name = "funcao_id", referencedColumnName = "Descricao"))
 	private List<Funcao> funcoes;
@@ -158,7 +158,7 @@ public class Cliente implements Serializable, UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return (Collection<? extends GrantedAuthority>) this.funcoes;
 	}
 
 	@Override

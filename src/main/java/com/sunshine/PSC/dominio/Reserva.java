@@ -28,7 +28,7 @@ public class Reserva implements Serializable {
 	private Date dataSaida;
 	private Double precoDiaria;
 	private Double total;
-
+	
 	@ManyToMany
 	@JoinTable(name = "RESERVA_QUARTOS", joinColumns = @JoinColumn(name = "reserva_id"), inverseJoinColumns = @JoinColumn(name = "quarto_id"))
 	private List<Quarto> quartos = new ArrayList<>();
