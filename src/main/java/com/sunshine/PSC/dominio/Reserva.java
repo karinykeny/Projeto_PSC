@@ -32,7 +32,7 @@ public class Reserva implements Serializable {
 //	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate dataSaida;
 	private Double precoDiaria;
-	private Double total;
+	private Double total; 
 	
 	public String getDataEntradaTemp() {
 		return dataEntradaTemp;
