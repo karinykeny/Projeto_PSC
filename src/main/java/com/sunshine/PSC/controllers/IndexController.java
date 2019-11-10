@@ -33,5 +33,10 @@ public class IndexController {
 	      return "/login";
 
 		}
+	@GetMapping("/informacoesHotel")
+	public String informacoesHotel() {	
+	      return "/informacoesHotel";
+
+		}
 }
 
