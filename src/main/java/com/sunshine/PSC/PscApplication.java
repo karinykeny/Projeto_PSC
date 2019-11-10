@@ -28,8 +28,8 @@ public class PscApplication implements CommandLineRunner {
 	@Autowired
 	private ReservaDao rdao;
 	
-	@Autowired
-	private FuncaoDao funcaoDao;
+	/*@Autowired
+	private FuncaoDao funcaoDao;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(PscApplication.class, args);
@@ -42,11 +42,11 @@ public class PscApplication implements CommandLineRunner {
 		Quarto q2 = new Quarto("Quarto 202", 2, "Casal", StatusQuarto.disponivel);
 		Quarto q3 = new Quarto("Quarto 303", 4, "Misto", StatusQuarto.disponivel);
 
-		// Cliente c1 = new Cliente("Adalberto", "410.211.230-80",
-		// "Adalberto@teste.com",
-		// "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
-		Cliente c1 = new Cliente("Ricardo", "702.003.314-85", "Ricardo@teste.com",
-				"$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+		 Cliente c1 = new Cliente("Adalberto", "410.211.230-80",
+		 "Adalberto@teste.com",
+		 "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+		//Cliente c1 = new Cliente("Ricardo", "702.003.314-85", "Ricardo@teste.com",
+				//"$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
 		
 		
 		quartoDao.saveAll(Arrays.asList(q1, q2, q3));
@@ -55,22 +55,22 @@ public class PscApplication implements CommandLineRunner {
 		Reserva r1 = new Reserva(null, 6, null, null, null, null);
 		rdao.save(r1);
 		
-		Funcao fun1 = new Funcao();
+		/*Funcao fun1 = new Funcao();
 		fun1.setDescricao("ROLE_ADMIN");
 		Funcao fun2 = new Funcao();
-		fun2.setDescricao("ROLE_USER");
+		fun2.setDescricao("ROLE_USER");*/
 		
 		
 		
 		
 		
-		funcaoDao.saveAll(Arrays.asList(fun1, fun2));
+
 		
-		Cliente c2 = new Cliente("Heitor", "058.966.204-03", "heitor@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
-		clienteDao.save(c2);
+		//Cliente c2 = new Cliente("Heitor", "058.966.204-03", "heitor@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
+		//clienteDao.save(c2);
 		
-		Cliente cli = clienteDao.findByCpf("058.966.204-03");
-		System.out.println(cli.getNome() + "NOME DO CLIENTE");
+		//Cliente cli = clienteDao.findByCpf("058.966.204-03");
+		//System.out.println(cli.getNome() + "NOME DO CLIENTE");
 	}
 
 }

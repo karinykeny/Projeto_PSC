@@ -11,6 +11,27 @@ public class IndexController {
 	      return "/home";
 
 		}
+	@GetMapping("/contato")
+	public String contato() {	
+	      return "/contato";
+
+		}
 	
+	@GetMapping("/promocoes")
+	public String promocoes() {	
+	      return "/promocoes";
+
+		}
+	
+	@GetMapping("/acomodacoes")
+	public String acomodacoes() {	
+	      return "/acomodacoes";
+
+		}
+	@GetMapping("/login")
+	public String login() {	
+	      return "/login";
+
+		}
 }
 

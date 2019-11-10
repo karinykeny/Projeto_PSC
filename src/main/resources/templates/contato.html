@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container" align="center" style="height: 100vh;">
+			<br />
+			<h1>Fale conosco!</h1>
+			<div>
+				Dúvidas, críticas e sugestões. Esse é o lugar! <br /> <br />
+				<form id="contato" action="/?formContato" method="post">
+
+					<input type="hidden" id="id" name="id" value="" />
+					<div class="form-group">
+						<label for="nome">Nome:*</label> <input type="text" id="nome"
+							placeholder="Digite seu nome..." name="nome" value="" /> <small
+							id="ajudaNome" class="form-text text-muted"> Nome deve
+							ter entre 2 e 50 caracteres. </small>
+					</div>
+					<div class="form-group">
+						<label for="email">E-mail:*</label> <input type="text" id="email"
+							placeholder="Digite seu e-mail..." name="email" value="" /> <small
+							id="ajudaEmail" class="form-text text-muted"> Exemplo:
+							meunome@provedor.com.br </small>
+					</div>
+					<div class="form-group">
+						<label for="assunto">Assunto:*</label> <input type="text"
+							id="assunto" placeholder="Dê um breve título a sua mensagem..."
+							name="assunto" value="" /> <small id="ajudaAssunto"
+							class="form-text text-muted"> O Assunto deve ter entre 2
+							e 50 caracteres. </small>
+					</div>
+					<div class="form-group">
+						<label for="mensagem">Mensagem:*</label>
+						<textarea id="mensagem" rows="3" placeholder="Mensagem..."
+							name="mensagem"></textarea>
+						<small id="ajudaMensagem" class="form-text text-muted"> A
+							mensagem deve ter entre 2 e 500 caracteres. </small>
+					</div>
+					<div class="form-group float-right">
+						<a href="/"><input type="button" class="btn btn-dark"
+							value="Voltar" /></a> <input type="reset" class="btn btn-dark"
+							value="Limpar" /> <input type="submit" class="btn btn-dark"
+							value="Enviar" />
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

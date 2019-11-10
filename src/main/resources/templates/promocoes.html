@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container" align="justify" style="height: 100vh;">
+			<br />
+			<div class="card" style="width: 18rem;">
+				<img class="card-img-top" src="@{/img/Standard.png}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Apartamento Standard</h5>
+					<p class="card-text">136 unidades distribuídas do 2º ao 16º
+						piso, com configuração de acomodação casal, twin e mais 45
+						unidades para acomodação tripla.</p>
+					<a href="#" class="btn btn-primary" align="center">Saiba mais</a>
+				</div>
+			</div>
+		</div>
+		<div class="container" align="right" style="height: 100vh;">
+			<div class="card" style="width: 18rem;">
+				<img class="card-img-top" th:src="@{/img/Luxo Gold.png}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Suítes Luxo Gold</h5>
+					<p class="card-text">Com vista parcial da praia de Boa Viagem
+						as unidades de apartamento Luxo estão distribuídas do 2º ao 15º
+						piso. Acomodam dois adultos, sendo a terceira pessoa acomodada em
+						cama extra.</p>
+					<a href="#" class="btn btn-primary" align="center">Saiba mais</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
