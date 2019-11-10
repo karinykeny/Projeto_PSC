@@ -2,60 +2,55 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+      #mapa {
+        height:400px;
+        width:400px;
+      }
+    </style>
 </head>
 <body>
-	<footer class="footer navbar-fixed-bottom" style="background-color:lightgrey" id="myFooter" th:fragment="rodape">
+	<footer class="footer navbar-fixed-bottom"
+		style="background-color: lightgrey" id="myFooter" th:fragment="rodape">
 		<div class="container">
-		<br/>
-            <div class="row">
-                <div class="col-sm-3">
-                    <h5>Inicio</h5>
-                    <ul>
-                        <li><a href="https://programadorviking.com.br/">Home</a></li>
-                        <li><a href="https://bit.ly/front-end-curso-completo-promocao-01">Cursos</a></li>
-                        <li><a href="https://programadorviking.com.br/">Downloads</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Sobre nós</h5>
-                    <ul>
-                        <li><a href="https://programadorviking.com.br/">Informações da Empresa</a></li>
-                        <li><a href="https://programadorviking.com.br/">Contato</a></li>
-                        <li><a href="https://programadorviking.com.br/">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Suporte</h5>
-                    <ul>
-                        <li><a href="https://programadorviking.com.br/">FAQ</a></li>
-                        <li><a href="https://programadorviking.com.br/">Telefones</a></li>
-                        <li><a href="https://programadorviking.com.br/">Chat</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 info">
-                    <h5>Endereço/ Contato</h5>
-                    <p>
-                    Estr. da Batalha, 1200 <br/>
-                    Jardim Jordão - PE, 54315-570<br/>
-                    Telefone: (81) 3339-0998<br/>
-                    hotelsunshine@unibratec.edu.br
-                    </p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="second-bar">
-           <div class="container">
-                <div class="social-icons">
-                    <a href="https://programadorviking.com.br/" class="twitter"><i class="fa fa-twitter"></i></a>
-                    <a href="https://programadorviking.com.br/" class="facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="https://programadorviking.com.br/" class="instagram"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-        © 2019. Hotel Sunshine . Direitos reservados.
-        </div>
-    </footer>
+			<br />
+			<div class="row">
+				<div class="col-sm-3">
+					<h5>Inicio</h5>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="/acomodacoes">Acomodações</a></li>
+						<li><a href="/promocoes">Promoções</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<h5>Sobre nós</h5>
+					<ul>
+						<li><a href="https://programadorviking.com.br/">Informações
+								do Hotel</a></li>
+						<li><a href="/contato">Contato</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<h5>Encontre-nos</h5>
+					<ul>
+						<li><a href="https://goo.gl/maps/LPjFuVwR8ZrwKddF7">Mapa do Hotel</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3 info">
+					<h5>Endereço/ Contato</h5>
+					<p>
+						Estr. da Batalha, 1200 <br /> Jardim Jordão - PE, 54315-570<br />
+						Telefone: (81) 3339-0998<br /> hotelsunshine@unibratec.edu.br
+					</p>
+
+				</div>
+			</div>
+		</div>
+			<div class="container">
+				© 2019. Hotel Sunshine . Direitos reservados. <img alt=""
+					th:src="@{/img/redes.png}">
+			</div>
+	</footer>
 </body>
 </html>
