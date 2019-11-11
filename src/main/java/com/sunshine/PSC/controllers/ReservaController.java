@@ -1,5 +1,11 @@
 package com.sunshine.PSC.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,10 +37,18 @@ public class ReservaController {
 
 	// @RequestMapping("reserva/create")
 	@PostMapping("/create")
-	public String create(Reserva reserva) {
+	public String create(Reserva reserva) throws ParseException {
+		String DTE = reserva.getDataEntradaTemp();
+		String DTS = reserva.getDataSaidaTemp();
+		
+		LocalDate date1 = LocalDate.parse(DTE);
+		LocalDate date2 = LocalDate.parse(DTS);
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
 		service.save(reserva);
 		return "reserva/confirmacao";
 	}
+	
 
 	@GetMapping("/listarReservas")
 	public String findAll(ModelMap model) {
