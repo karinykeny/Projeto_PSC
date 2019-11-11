@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout}">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="../../favicon.ico" />
-
-<title>Navbar Template for Bootstrap</title>
-
-<!-- Bootstrap core CSS -->
-<link href="../../static/css/bootstrap.css" rel="stylesheet"
-	th:href="@{/css/bootstrap.css}" />
+<meta charset="UTF-8">
 </head>
 <body>
-	<div class="container">
-		<div>
-			<button type="button" class="btn btn-secondary">
-				<a href="/" url="/home">Home</a>
-			</button>
-			<button type="button" class="btn btn-secondary">
-				<a href="/clientes/cadastrar" url="/clientes/cadastrar">Cadastrar
-					Cliente</a>
-			</button>
-			<br /> <br />
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" style="height: 100vh;">
+			<form>
+				<div class="row" style="margin:10px;">
+					<div class="colcol-sm-5">
+						<input  type="text" class="form-control " placeholder="Pesquisar"> &nbsp;
+					</div>
+					&nbsp;&nbsp;
+					<div class="colcol-sm-3">
+						<button type="submit" class="btn btn-warning" >Pesquisar</button>
+					</div>
+					&nbsp;&nbsp;
+					<div class="colcol-sm-3">
+						<a href="clientes/cadastrar" class="btn btn-warning">Cadastrar Cliente</a>
+					</div>
+					</div>
+			</form>
 			<div>
 				<table class="table">
 					<thead class="thead-dark">
@@ -47,6 +42,8 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+	</section>
 </body>
 
 </html>
