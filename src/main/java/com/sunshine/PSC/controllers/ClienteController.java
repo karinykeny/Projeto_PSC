@@ -3,7 +3,6 @@ package com.sunshine.PSC.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,13 +28,13 @@ public class ClienteController {
 
 	@GetMapping("/cadastrar")
 	public String cadastar() {
-		return "/cliente/cadastrarCliente"; 
+		return "/cliente/cadastrarCliente";
 	}
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("clientes", service.findAll());
-		
+
 		return "/cliente/listarClientes";
 	}
 
@@ -52,25 +51,27 @@ public class ClienteController {
 	@PostMapping("/salvar")
 	public String salvar(Cliente cliente) {
 		String senha = new BCryptPasswordEncoder().encode(cliente.getSenha());
-		cliente.setSenha(senha); 
+		cliente.setSenha(senha);
 		service.save(cliente);
 		ModelMap model = new ModelMap();
-		model.addAttribute("clientes",service.findAll());
+		model.addAttribute("clientes", service.findAll());
 		return "/cliente/listarClientes";
 	}
 
 	@DeleteMapping("/{id}")
-	//public ResponseEntity<Cliente> deletarCliente(@PathVariable("id") Integer id) throws ObjectNotFoundException {
-	public String deletarCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente) throws ObjectNotFoundException{
+	// public ResponseEntity<Cliente> deletarCliente(@PathVariable("id") Integer id)
+	// throws ObjectNotFoundException {
+	public String deletarCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente)
+			throws ObjectNotFoundException {
 		service.deleteCliente(id);
 		return "Cliente deletado";
-		//return ResponseEntity.noContent().build();
+		// return ResponseEntity.noContent().build();
 
 	}
-	
+
 	@PutMapping("/updateCliente/{id}")
 	public String updateCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente) {
-        service.updateCliente(cliente);
+		service.updateCliente(cliente);
 		return "Cliente atualizado com sucesso";
 	}
 

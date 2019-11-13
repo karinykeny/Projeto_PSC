@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" align="center" style="height: 10vh;">
+			<h3>Acomodações Promocionais</h3>
+			<p>São 10 apartamentos projetados para melhor servi-lo, seja a
+				negócios ou a lazer.</p>
+		</div>
+		<br />
+		<br />
+		<div class="container" style="height: 90vh;">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="card">
+						<img class="card-img-top" th:src="@{/img/Standard.png}"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Apartamento Standard - Diárias de R$200,00</h5>
+							<p class="card-text">136 unidades distribuídas do 2º ao 16º
+								piso, com configuração de acomodação casal, twin e mais 45
+								unidades para acomodação tripla.</p>
+							<a href="#" class="btn btn-warning" align="center">Saiba mais</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="card">
+						<img class="card-img-top" th:src="@{/img/Luxo Gold.png}"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Suítes Luxo Gold - Diárias de R$500,00</h5>
+							<p class="card-text">Com vista parcial da praia de Boa Viagem
+								as unidades de apartamento Luxo estão distribuídas do 2º ao 15º
+								piso. Acomodam dois adultos.</p>
+							<a href="#" class="btn btn-warning" align="center">Saiba mais</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</section>
+</body>
+</html>

@@ -1,62 +1,238 @@
+
 <!DOCTYPE html>
-
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="~{layout}">
 <head>
-<title>Hotel Sunshine</title>
-<meta name="description"
-	content="Aprenda a criar um site completo que usa formulários em HTML">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
+<meta charset="UTF-8">
 </head>
-
 <body>
-	<h1>Bem vindo ao site do Hotel Sunshine</h1>
-	<h2>Formulário do Cliente</h2>
-	<br />
-	<form action="/clientes/salvar" method="post">
-		<!-- DADOS PESSOAIS-->
-		<fieldset>
-			<legend>Dados Pessoais</legend>
-			<table cellspacing="10">
-				<tr>
-					<td><label for="nome">Nome: </label></td>
-					<td align="char"><input type="text" name="nome" required></td>
-				</tr>
-				<tr>
-					<td><label>CPF:</label></td>
-					<td align="left"><input type="text" name="cpf" size="11"
-						maxlength="11" required> </td>
-				</tr>
-			</table>
-		</fieldset>
-		<br />
+	<section class="layout-content" layout:fragment="corpo">
+		</br>
+		<div class="container" align="center" style="height: 135vh; width: 50rem; background-color:rgb(243, 239, 188)">
+		<br/>
+			<h2>Formulário do Cliente</h2>
+			<p>Bem vindo ao site do Hotel Sunshine</p>
+			<form action="/clientes/salvar" method="post">
+					<div class="form-row col-md-6">
+						<label for="name">Nome</label> <input type="text"
+							class="form-control" id="name" placeholder="Nome Completo"
+							required>
+						<div class="invalid-feedback">Por favor, informe um nome
+							válido.</div>
+					</div>
+					</br>
+					<div class="form-row col-md-6">
+						<label for="cpf">CPF</label> <input type="text"
+							class="form-control" id="cpf" placeholder="000.000.000-00"
+							size="11" maxlength="11" required>
+						<div class="invalid-feedback">Por favor, informe um CPF
+							válido.</div>
+					</div>
+					</br>
+					<div class="form-row col-md-6">
+						<label for="email">Endereço de email</label> <input type="email"
+							class="form-control" id="email" aria-describedby="emailHelp"
+							placeholder="Seu email" required>
+						<div class="invalid-feedback">Por favor, informe um email
+							válido.</div>
+						<small id="emailHelp" class="form-text text-muted">Nunca
+							vamos compartilhar seu email, com ninguém.</small>
+					</div>
+					</br>
+					<div class="form-row col-md-6">
+						<label for="senha">Senha</label> <input type="password" id="senha"
+							class="form-control" aria-describedby="passwordHelpInline"
+							maxlength="20" size="20" required>
+						<div class="invalid-feedback">Por favor, informe uma senha
+							válida.</div>
+						<small id="passwordHelpInline" class="text-muted"> Deve
+							ter entre 8 e 20 caracteres. </small>
+					</div>
+					</br>
+					<div class="form-row col-md-6">
+						<label for="termo">Termos e Condições</label>
+						<textarea class="form-control" id="termo" rows="6"  style="font-size: 11px"> Âmbito de aplicação					
+Os termos e condições constantes do presente documento aplicarão à relação entre o visitante (doravante denominado “Cliente”) e o hotel MOOV desde o momento em que a reserva é solicitada e até ao momento em que termina o período de alojamento no hotel. 
+No que os Termos e Condições forem omissos aplicará a legislação Brasileira em vigor.
 
-		<!-- DADOS DE LOGIN -->
-		<fieldset>
-			<legend>Dados de login</legend>
-			<table cellspacing="10">
-				<tr>
-					<td><label for="email">E-mail: </label></td>
-					<td align="left"><input type="text" name="email" required></td>
-				</tr>
-				<tr>
-					<td><label for="pass">Senha: </label></td>
-					<td align="left"><input type="text" name="senha" maxlength="6" size="6" required></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br /> 
-		<button type="submit">Cadastrar</button>
-		<input type="reset" value="Limpar">
-		<button>
-			<a href="/" url="/home">Voltar</a>
-		</button>
+Celebração do Contrato
+Ao solicitar a reserva de um quarto o Cliente faz uma proposta de alojamento ao MOOV. Se houver disponibilidade de quartos o MOOV fornecerá ao Cliente um código de reserva.
+O Cliente fica informado de que as reservas de quartos em hotéis MOOV feitas através de terceiros (operadores turísticos ou em portais de reserva de quartos na internet) determinam a emissão de um código de reserva diferente do emitido diretamente pelo MOOV, sendo no entanto igualmente válido.
+As solicitações de reservas de quartos feitas diretamente ao MOOV ou por intermédio de terceiros não são vinculativas nem obrigam o MOOV a celebrar contrato com o Cliente. O MOOV terá sempre o direito de se recusar a celebrar contrato e disponibilizar quarto a seu exclusivo critério.
+O MOOV apenas garante ao Cliente a disponibilização de um quarto da categoria reservada e não a disponibilização de um quarto de hotel específico.
+ 
+III. Tipologias de Reservas e respetivo cancelamento
 
-	</form>
+Nos hotéis MOOV o Cliente poderá fazer dois tipos de reservas, reservas “simples” e reservas “garantidas”.
+Reserva simples consiste na reserva de um quarto num hotel MOOV sem que para tanto seja feito previamente pelo Cliente qualquer pagamento ou fornecido um meio de pagamento.
+Reserva garantida consiste na reserva de um quarto num hotel MOOV acompanhada do fornecimento, por parte do Cliente, dos dados válidos e completos de um cartão de crédito, ou na reserva acompanhada do envio de comprovante de transferência bancária da totalidade do preço do alojamento reservado.
+A Reserva simples pode ser livremente cancelada pelo Cliente, sem quaisquer custos, até às 19 horas do dia da reserva.
+A Reserva simples caducará automaticamente caso o Cliente não compareça no hotel até às 19 horas do dia da reserva, podendo, nesse caso, o MOOV disponibilizar de imediato o quarto reservado a outro qualquer Cliente sem que o Cliente que efetuou a reserva possa reclamar qualquer compensação do MOOV seja a que título for.
+A Reserva garantida poderá ser livremente cancelada pelo Cliente até às 19 horas do dia da reserva, sem que quaisquer custos sejam cobrados, sem prejuízo das condições específicas para períodos de feiras e eventos especiais previstas na seção XVIII.
+Caso a Reserva Garantida seja cancelada nos termos do número anterior e o Cliente tiver já procedido ao pagamento do preço – nos termos do disposto na parte final do número 3 da presente cláusula – o MOOV restituirá os valores pagos.
+Caso o pedido de cancelamento da Reserva Garantida seja feito após as 19 horas será cobrado ao Cliente o preço devido pelo quarto naquele dia, ficando a reserva sem efeito no dia seguinte, o mesmo se aplicando se o Cliente não comparecer no dia da Reserva sem que tenha, antecipadamente cancelado a reserva feita.
+ 
+Chegada e Partida
+O MOOV disponibilizará ao Cliente um quarto da categoria reservada a partir da data de chegada ou, caso o Cliente não tenha feito reserva e contrate o alojamento na recepção do hotel, em função da categoria pretendida e de acordo com a disponibilidade do hotel, em princípio a partir das 14 horas e, o mais tardar, a partir das 17 horas do dia de entrada no hotel.
+Na chegada ao hotel o Cliente deverá proceder de imediato ao pagamento do preço devido pelo quarto, número de noites de estadia e serviços adicionais.
+Contra o pagamento integral do preço o MOOV fornecerá ao Cliente um código de acesso ao quarto que se manterá válido durante o período de estadia contratado.
+Na data da partida o Cliente terá que deixar o quarto desocupado de pessoas e bens e sem quaisquer danos até às 12 horas.
+Caso o quarto não seja deixado até às 12 horas do dia da partida, será imediatamente cobrada uma compensação correspondente ao preço de uma estadia de uma noite no hotel, tendo apenas direito a utilizar o quarto nesse período caso o hotel tenha disponibilidade de quartos, caso contrário terá que pagar a compensação e abandonar o quarto o mais brevemente possível.
+ 
+Animais
+É expressamente proibido alojar animais nos hotéis MOOV Brasil.
+A introdução por parte do Cliente de animais no hotel permitirá ao MOOV rescindir imediatamente o contrato com o Cliente e obrigá-lo a sair do hotel sem que lhe sejam restituídos os valores entretanto pagos pela disponibilização do quarto no período de estadia contratado.
+ 
+Termos de utilização
+Somente as pessoas indicadas na reserva de alojamento terão direito a usar o quarto de hotel.
+Os clientes devem tratar o quarto de hotel com cuidado e consideração.
+O Cliente deve tratar os outros clientes do hotel com consideração e respeitar as regras do hotel afixadas no mesmo, se for o caso, que também fazem parte do contrato de alojamento.
+O Cliente não tem permissão para cozinhar os alimentos trazidos, seja no quarto de hotel ou em qualquer outra parte das instalações do hotel.
+Crianças menores de 14 anos de idade devem ser supervisionadas por um Cliente adulto em todos os momentos durante a sua estadia no hotel.
+É recomendado ao cliente a não manter fora do cofre do seu quarto ou em seu veículo qualquer dinheiro, jóias ou outros objetos de valor.
+O MOOV disponibiliza aos clientes um cofre em cada quarto do hotel no qual poderão ser guardados objetos de valor.
+O MOOV não assume qualquer responsabilidade em caso de furto, perda ou deterioração de dinheiro, jóias ou objetos de valor considerável caso tais eventos tenham lugar no quarto de hotel ou no interior dos veículos no local de estacionamento.
+ 
+VII. O acesso ao quarto de hotel pelo MOOV
 
+O MOOV e o seu pessoal terão o direito de entrar no quarto do hotel, durante a estadia do Cliente, a fim de realizar trabalhos de limpeza, reparações e similares.
+
+VIII. Preço da estadia e outros preços
+
+O preço da estadia a pagar pelo Cliente constitui a contrapartida pela disponibilização da utilização do quarto de hotel, no período que medeia entre a chegada e a partida.
+O preço total da estadia será cobrado por noite, independentemente de o Cliente realmente ter feito uso do quarto ou tenha apenas passado a noite.
+As taxas aplicáveis são os preços acordados ou o preço indicado na tabela MOOV de preços em vigor na data da celebração do contrato. O MOOV terá o direito de aumentar ou reduzir os preços caso decorra um período de mais de quatro meses entre a data da reserva por parte do Cliente e da data de chegada ou se algum imposto, contribuições dos visitantes ou outros encargos sejam alterados ou introduzidos.
+As taxas e os montantes indicados nos termos e no contrato de alojamento são todos acrescidos de ISS, salvo disposição expressa em contrário.
+ 
+
+Termos de pagamento
+Valor da estadia e preços de serviços adicionais devem obrigatoriamente ser pagos antecipadamente, no momento em que o cliente chega ao hotel, independentemente da data de vencimento.
+Caso a duração da estadia do cliente não esteja especificada, o preço da estadia e preços de serviços adicionais para cada noite deverão ser pagos antecipadamente até às 12 horas.
+No caso de estadias sem data de partida especificada, o não pagamento do preço de estadia e serviços adicionais nos termos constantes do número anterior determina a imediata rescisão do contrato e obriga, de imediato, o cliente a desocupar o quarto e a entrega-lo ao MOOV livre de pessoas e bens e em boas condições de conservação.
+Taxas por serviços adicionais, na acepção do n º 1 serão, por exemplo, encargos relativos ao estacionamento, os preços de café da manhã, e outros encargos que não estão expressamente citados no contrato de alojamento, que fazem parte do valor da estadia.
+O MOOV aceita pagamento em Reais, transferências, CE Maestro, Visa Electron, e os cartões de crédito: Visa e MasterCard. Outros modos de pagamento só serão permitidos em casos excepcionais, com o consentimento pontualmente prestado pelo MOOV.
+ 
+Reclamações relativas a defeitos de material
+O Cliente deve inspecionar o quarto do hotel logo na chegada e reportar de imediato os defeitos eventualmente encontrados na recepção do hotel.
+Quaisquer defeitos que venham a surgir durante a estadia devem ser comunicados na recepção do hotel assim que o cliente tome conhecimento.
+Verificando-se que efetivamente existe um defeito no quarto do Cliente, o MOOV tem o direito de optar entre a sua reparação e realojar o Cliente em quarto que tenha pelo menos a mesma categoria contratada com o Cliente.
+Para os efeitos supra mencionados serão apenas considerados defeitos sérios e susceptíveis de colocarem em causa o nível de serviço e qualidade MOOV, não sendo o MOOV obrigado a tomar quaisquer providências caso se trate de queixas irrelevantes, irrazoáveis ou que se prendam com detalhes que não colidam com o nível mínimo de serviço contratado.
+Caso o MOOV não tenha meios de proceder à reparação do defeito relevante ou de substituir o quarto do Cliente por outro de categoria equivalente ou superior, este poderá, apenas, rescindir o contrato e receber o preço pago pelo quarto, nada mais podendo exigir do MOOV seja a que titulo for.
+ 
+Responsabilidade por parte do MOOV
+O MOOV apenas será responsável por danos ou perdas do Cliente quando tais fatos resultarem da atuação culposa do MOOV.
+O MOOV não assume qualquer responsabilidade por perda de dados fornecidos pelo Cliente em caso de transmissão electrônica de dados de pagamento sendo apenas responsável perante este caso exista atuação culposa.
+O MOOV não assume qualquer responsabilidade por danos ou acidentes ocorridos no interior do quarto ou de qualquer parte do hotel salvo se tais acidentes tiverem como origem atuação culposa do MOOV.
+O MOOV não será considerado responsável perante o Cliente em caso de atraso na disponibilização do quarto com tanto haja motivo válido para a não disponibilização antecipada do quarto.
+Para os efeitos do número anterior serão considerados motivos válidos que tornem impossível ou mais difícil a disponibilização do quarto como sejam, nomeadamente, greves, bloqueios, catástrofes naturais, acidentes no próprio quarto ou no hotel.
+Em caso de atraso na disponibilização do quarto para além das 19 horas do dia da reserva, o Cliente pode livremente rescindir o contrato sem que tenha direito de exigir qualquer compensação do MOOV seja a que título for.
+O MOOV não assume qualquer responsabilidade por atos praticados por qualquer trabalhador do hotel, salvo se este estiver no seu período normal de trabalho, devidamente identificado e uniformizado como trabalhador da empresa.
+O MOOV não assume qualquer responsabilidade nem poderá em qualquer caso ser responsabilizado por não cumprimento de obrigações irrelevantes.
+O MOOV não poderá em qualquer caso ser responsabilizado por ato ou omissão de outro qualquer Cliente, mesmo que este seja susceptível de causar danos ou prejuízos a outro Cliente do hotel. Todos e quaisquer danos causados a terceiros por Clientes do hotel serão da exclusiva responsabilidade destes e completamente estranhos ao MOOV.
+O MOOV não assume responsabilidade perante o Cliente por quaisquer lucros cessantes ou prejuízos indiretos mesmo que resultantes de falta de cumprimento de obrigação principal.
+ 
+XII. Dever de notificação
+
+No caso de furto ou de danos de propriedade ou, em caso de incêndio, os danos causados pela água ou outros danos ao quarto do hotel, o Cliente deverá informar imediatamente os funcionários do hotel e fazer de tudo para ajudar na resolução do roubo ou a reparação do dano.
+
+XIV. Término do contrato de alojamento
+
+O MOOV tem o direito de rescindir o contrato de alojamento caso o Cliente não pague integral e antecipadamente o preço no momento em que este é devido ou não providencie a garantia exigida.
+O Cliente poderá notificar a rescisão do contrato de alojamento durante a sua estadia em qualquer altura até às 19 horas, para ter efeitos a partir de 12 horas no dia seguinte.
+Qualquer parte contratante pode rescindir o contrato de alojamento sumariamente por justa causa.
+O MOOV terá o direito de rescindir imediatamente o contrato de alojamento por justa causa se o Cliente tiver algum comportamento que afete a boa convivência, sossego ou higiene do hotel, nomeadamente se durante a sua estadia no hotel, o Cliente estiver sob a influência de drogas ou álcool, usar do quarto de hotel para práticas de prostituição, atuar ofensivamente para os funcionários do hotel ou para outros clientes do hotel, perturbar a paz de outros clientes do hotel, ou, no passado, tenha feito reservas falsas mal intencionadas e/ou danificado ou destruído o hotel ou suas instalações.
+ 
+Proteção de dados
+O Cliente é informado de que os seus dados pessoais serão armazenados e processados pelo MOOV e disponibilizados às empresas associadas do MOOV e selecionados prestadores de serviços, em conformidade com a Lei, para efeitos de execução do contrato, para os serviços para com o Cliente e para as suas campanhas de publicidade próprias.
+O Cliente confere ao MOOV o direito de utilizar empresas associadas e selecionados prestadores de serviços para realizar o processamento de dados e o direito de transmitir esses dados pessoais ao abrigo desta seção para as empresas que lhes permitam armazenar e processar.
+O Cliente tem o direito de se opor a qualquer momento para o uso de dados pessoais para fins publicitários, devendo para tanto dar conta dessa sua intenção por escrito ao MOOV.
+Salvo legislação em contrário, os dados pessoais do Cliente devem ser excluídos quando o contrato de alojamento terminar e os períodos de retenção legal tiverem expirado.
+Detalhes completos de política de proteção de dados podem ser obtidos a partir de Hotel MOOV Curitiba. Avenida Sete de Setembro, 5732. Curitiba- Paraná.
+ 
+XVI. Disposições gerais
+
+Os Termos e Condições regulam na íntegra a estadia do Cliente no hotel e a utilização do quarto por parte deste.
+Nenhum acordo verbal foi alcançado ao longo do contrato de alojamento todas e quaisquer alterações ao contratado entre as partes terá necessariamente que constar de documento escrito e assinado por ambas, salvo se se tratar de declaração unilateral devendo nesse caso constar de documento escrito assinado pelo emitente.
+O MOOV terá o direito de ter terceiros a exercer o cumprimento das suas obrigações ao abrigo e no âmbito do contrato de alojamento.
+A nulidade de uma ou mais das disposições anteriores não prejudica a validade das disposições restantes. A disposição inválida será substituída pela disposição válida, o mais aproximado das intenções comerciais e legais das partes ou caso tal não seja possível pela legislação brasileira em vigor.
+ 
+XVII. Condições especiais aplicáveis reservas de grupo
+
+O termo “grupo”, entende-se como a reserva de pelo menos 10 quartos por um conjunto de pessoas que viajam ou se alojam em conjunto. O “grupo” fica vinculado, para além das obrigações gerais, ao cumprimento específico das obrigações constantes da presente cláusula.
+O grupo deverá nomear um porta-voz ao MOOV (“líder”).
+O “Líder” deverá entregar ao MOOV, antes da chegada ao hotel, uma lista completa contendo a identificação detalhada, residência e contato de celular de cada um dos membros do grupo.
+Ao fazer uma reserva o líder receberá uma confirmação de reserva a partir do MOOV, contendo os detalhes da reserva realizada juntamente com os dados sobre check-in e de dados para assegurar a reserva e de quaisquer outras condições de pagamento.
+As reservas de grupo são sempre automaticamente reservas garantidas, conforme definidas na cláusula III.3.
+O grupo deve pagar o montante total dos encargos da estadia por transferência bancária para a conta bancária do MOOV indicada na confirmação da reserva ou notificada pelo MOOV para o líder sobre a conclusão da reserva. O grupo reembolsará o MOOV por quaisquer encargos tidos devido a transferências externas na íntegra, o mais tardar à chegada ao hotel.
+A estadia do grupo, incluindo taxas de serviços complementares, na acepção dos números 1 e 4 da cláusula IX deverão ser pagos antecipadamente, sendo 50% do pagamento devido um mês antes e os restantes 50% quinze dias antes da data de entrada do grupo no hotel, em ambos os casos, independentemente da data de vencimento.
+O grupo pode cancelar a Reserva sem quaisquer encargos com a antecedência de 15 dias sobre a data de entrada no hotel, devendo o MOOV, nesse caso, restituir ao grupo todas as quantias entretanto pagas.
+Caso o cancelamento seja feito com pelo menos 7 dias de antecedência será cobrado o preço de uma noite de estadia em cada um dos quartos reservados e se o cancelamento for feito com menos de 7 dias de antecedência o MOOV cobrará ao grupo o valor global da estadia reservada.
+O MOOV reservará quartos de hotel da categoria acordada ou com as facilidades acordadas para o grupo na data de chegada de acordo com a disponibilidade, em geral a partir das 14 horas, mas em qualquer caso, o mais tardar até 17 horas.
+O MOOV terá o direito de exigir um depósito ao líder de 50% por grupo na data da chegada do grupo ao hotel que guardará a título de caução.
+O grupo deverá receber fatura relativa à estadia, que será entregue ao líder.
+ 
+XVIII. Condições especiais aplicáveis às datas de feiras e eventos especiais
+
+O MOOV deve informar o Cliente quanto às datas de feiras e eventos especiais em qualquer momento do pedido e em qualquer caso, o mais tardar na data da reserva ou à entrada. A informação seguinte aplica-se às datas de feiras e eventos especiais, não obstante, ou além, das disposições anteriores:
+Reservas garantidas somente serão aceites para estadias prolongadas. Reservas de apenas uma noite não serão permitidas.
+As condições de pagamento XVII na cláusula 7 aplicam-se com as necessárias alterações.
+A Cláusula XVII.8 aplica-se com as necessárias adaptações aos cancelamentos e alterações na duração das estadias, categorias de quarto ou o número de quartos.
+</textarea>
+					</div>
+					<div class="form-group">
+						<div class="form-check">
+							<input class="form-check-input is-invalid" type="checkbox"
+								value="" id="invalidCheck3" required> <label
+								class="form-check-label" for="invalidCheck3"> Concordo
+								com os termos e condições </label>
+							<div class="invalid-feedback">Você deve concordar, antes de
+								continuar.</div>
+						</div>
+					</div>
+					</br>
+					<button class="btn btn-success" type="button" href="/cliente"
+						url="/cliente">Enviar</button>
+					<button type="reset" class="btn btn-success" href="/" url="/home">Limpar</button>
+				
+				<br/>
+			</form>
+			</div>
+			<br/>
+		<script>
+			// Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+			(function() {
+				'use strict';
+				window
+						.addEventListener(
+								'load',
+								function() {
+									// Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+									var forms = document
+											.getElementsByClassName('needs-validation');
+									// Faz um loop neles e evita o envio
+									var validation = Array.prototype.filter
+											.call(
+													forms,
+													function(form) {
+														form
+																.addEventListener(
+																		'submit',
+																		function(
+																				event) {
+																			if (form
+																					.checkValidity() === false) {
+																				event
+																						.preventDefault();
+																				event
+																						.stopPropagation();
+																			}
+																			form.classList
+																					.add('was-validated');
+																		},
+																		false);
+													});
+								}, false);
+			})();
+		</script>
+	</section>
 </body>
 </html>
