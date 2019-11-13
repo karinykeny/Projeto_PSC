@@ -39,11 +39,18 @@
 		<div>
 		<label> Telefone </label>
 		<input type="text" th:field="*{telefone}">
-		
 		</div>
+		<div>
+	<select id="Pais" th:field="*{nome}">
+    <option value="">Selecione o Funcionario</option>
+    <option th:each="f : ${funcionarios}" th:text="${f.nome}" selected="selected"></option>
+    </select>
+		</div>
+
 	 	<input type="hidden" id="Id" th:field="*{Id}">
 		<button type="submit">Cadastrar</button>	
 		
+ 
 		</fieldset>
 	
 	</form>

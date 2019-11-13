@@ -40,11 +40,13 @@ public class ReservaController {
 	public String create(Reserva reserva) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
-		
 		LocalDate date1 = LocalDate.parse(DTE);
 		LocalDate date2 = LocalDate.parse(DTS);
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
+	
+		
+		
 		service.save(reserva);
 		return "reserva/confirmacao";
 	}
