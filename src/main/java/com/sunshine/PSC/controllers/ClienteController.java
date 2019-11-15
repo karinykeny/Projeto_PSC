@@ -34,6 +34,11 @@ public class ClienteController {
 
 		return "/cliente/listarClientes";
 	}
+	
+	@GetMapping("/area")
+	public String area() {
+		return "/cliente/areaCliente";
+	}
 
 	@GetMapping("/buscarid/{id}")
 	public Cliente findById(Integer Id) throws ObjectNotFoundException {
@@ -52,7 +57,7 @@ public class ClienteController {
 		service.save(cliente);
 		ModelMap model = new ModelMap();
 		model.addAttribute("clientes", service.findAll());
-		return "/cliente/listarClientes";
+		return "/cliente/areaCliente";
 	}
 
 	@DeleteMapping("/{id}")
