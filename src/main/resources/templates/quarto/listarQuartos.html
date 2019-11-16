@@ -1,59 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="~{layout}">
 <head>
-<title>Quartos</title>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" />
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet"
-	href="materialize/css/materialize.min.css" media="screen,projection" />
-
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="style/styleCss.css" />
+<meta charset="UTF-8">
 </head>
 <body>
-	<button>
-		<a href="/" url="/home">Home</a>
-	</button>
-	<button>
-
-	</button>
-	<br/>
-	<br/>
-	<table>
-		<tr>
-			<td>Nome do Quarto</td>
-			<td>Capacidade</td>
-			<td>Tipo de cama</td>
-			<td>Status</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr th:each="q : ${quartos}" >
-			<td th:text="${q.nomeQuarto}"></td>
-			<td th:text="${q.qtdPessoas}"></td>
-			<td th:text="${q.tipodeCama}"></td>
-			<td th:text="${q.status}"></td>
-			<!--  <td th:text="${q.tipoDeCama}"></td>-->
-			
-			<td>	
-				<a th:href="@{preupdate/{Id} (Id=${q.id})}">
-					<span title="Editar">editar</span>
-				</a>
-			</td>	
-			<td>
-				<a th:href="@{deletar/{Id} (Id=${q.id})} " method="POST">
-					<span title="Deletar">deletar</span>
-				</a>
-			</td>
-		</tr>
-		
-	</table>
-
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" style="height: 100vh;">
+			<form>
+				<div class="row" style="margin:10px;">
+					<div class="colcol-sm-5">
+						<input  type="text" class="form-control " placeholder="Pesquisar"> &nbsp;
+					</div>
+					&nbsp;&nbsp;
+					<div class="colcol-sm-3">
+						<button type="submit" class="btn btn-warning" >Pesquisar</button>
+					</div>
+					&nbsp;&nbsp;
+					<div class="colcol-sm-3">
+						<a href="/quarto/cadastrarQuartos" class="btn btn-warning">Cadastrar Quarto</a>
+					</div>
+					</div>
+			</form>
+			<div>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th>Quarto</th>
+							<th>Quantidade de pessoas</th>
+							<th>Tipo de cama</th>
+							<th>status</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="q : ${quartos}">
+							<td><span th:text="${q.nomeQuarto}"></span></td>
+							<td><span th:text="${q.qtdPessoas}"></span></td>
+							<td><span th:text="${q.tipodeCama}"></span></td>
+							<td><span th:text="${q.status}"></span></td>
+						
+						  	<td>	
+								<a th:href="@{preupdate/{Id} (Id=${q.id})}">
+								<span title="Editar">editar</span>
+								</a>
+							</td>	
+							<td>
+								<a th:href="@{deletar/{Id} (Id=${q.id})} " method="POST">
+								<span title="Deletar">deletar</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
 </body>
-
 
 </html>
