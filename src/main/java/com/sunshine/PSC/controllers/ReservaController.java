@@ -85,5 +85,11 @@ public class ReservaController {
 
 		return "reserva/confirmacao";
 	}
+	
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("reserva", service.findAll());
+		return "/adm/listReservas";
+	}
 
 }

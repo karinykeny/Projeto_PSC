@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layoutAdm}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br/>
+		<div class="container" align="center" style="height: 135vh; width: 50rem; background-color:rgb(243, 239, 188)">
+		<br/>
+			<h2>Formulário do Cliente</h2>
+			<form th:action="@{/clientes/seve}" th:object="${cliente}" method="POST">
+					<div class="form-row col-md-6">
+						<label for="name">Nome</label> <input type="text" th:field="*{nome}"
+							class="form-control" id="nome" placeholder="Nome Completo">
+						<div class="invalid-feedback">Por favor, informe um nome
+							válido.</div>
+					</div>
+					<br/>
+					<div class="form-row col-md-6">
+						<label for="cpf">CPF</label> <input type="text" th:field="*{cpf}"
+							class="form-control" id="cpf" placeholder="000.000.000-00"
+							size="14" maxlength="14">
+						<div class="invalid-feedback">Por favor, informe um CPF
+							válido.</div>
+					</div>
+					<br/>
+					<div class="form-row col-md-6">
+						<label for="email">Endereço de email</label> <input type="email" th:field="*{email}"
+							class="form-control" id="email" aria-describedby="emailHelp"
+							placeholder="Seu email" >
+						<div class="invalid-feedback">Por favor, informe um email
+							válido.</div>
+						<small id="emailHelp" class="form-text text-muted">Nunca
+							vamos compartilhar seu email, com ninguém.</small>
+					</div>
+					<br/>
+					<div class="form-row col-md-6">
+						<label for="senha">Senha</label> <input type="text" id="senha" th:field="*{senha}"
+							class="form-control" aria-describedby="passwordHelpInline" placeholder="Sua senha"
+							maxlength="20" size="20" >
+						<div class="invalid-feedback">Por favor, informe uma senha
+							válida.</div>
+						<small id="passwordHelpInline" class="text-muted"> Deve
+							ter entre 8 e 20 caracteres. </small>
+					</div>
+					<br/>
+					<input type="hidden" id="id" name="id" value=""/>
+					<button class="btn btn-warning" type="submit">Enviar</button>
+					<button type="reset" class="btn btn-warning">Limpar</button>
+				
+				<br/>
+			</form>
+			</div>
+			<br/>
+	</section>
+</body>
+</html>
