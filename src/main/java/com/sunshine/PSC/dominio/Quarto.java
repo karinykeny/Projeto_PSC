@@ -73,13 +73,6 @@ public class Quarto implements Serializable {
 		this.qtdPessoas = qtdPessoas;
 	}
 
-	/*
-	 * public String getTipodeCama() { return tipoDeCama; }
-	 * 
-	 * public void setTipodeCama(String tipodeCama) { this.tipoDeCama = tipodeCama;
-	 * }
-	 */
-
 	public StatusQuarto getStatus() {
 		return StatusQuarto.toEnum(status);
 	}

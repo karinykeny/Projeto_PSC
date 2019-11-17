@@ -29,7 +29,7 @@ public class Reserva implements Serializable {
 	private Integer nPessoas;
 	//@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate dataEntrada;
-//	@DateTimeFormat(pattern="dd-MM-yyyy")
+    //@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate dataSaida;
 	private Double precoDiaria;
 	private Double total; 
