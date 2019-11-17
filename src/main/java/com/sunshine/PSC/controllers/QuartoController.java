@@ -21,7 +21,7 @@ import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 import com.sunshine.PSC.validator.QuartoValidator;
 
 @Controller
-@RequestMapping("/quarto")
+@RequestMapping("/quartos")
 public class QuartoController {
 
 	@Autowired
@@ -37,25 +37,25 @@ public class QuartoController {
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
 
-		return "quarto/cadastrarQuartos";
+		return "quartos/cadastrarQuartos";
 	}
 
 	// @RequestMapping("quarto/create")
 	@PostMapping("/create")
 	public String create(@Valid Quarto quarto, BindingResult result, RedirectAttributes attr ) {
 		if(result.hasErrors()) {
-			return "quarto/cadastrarQuartos";
+			return "quartos/cadastrarQuartos";
 			}
 			service.save(quarto);
 			attr.addFlashAttribute("success", "quarto cadastrado com sucesso!");
 			
-		return "quarto/confirmacao";
+		return "quartos/confirmacao";
 	}
 
 	@GetMapping("/listarQuartos")
 	public String findAll(ModelMap model) {
 		model.addAttribute("quartos", service.findAll());
-		return "quarto/listarQuartos";
+		return "quartos/listarQuartos";
 	}
 
 	@GetMapping("/buscarid")
@@ -68,7 +68,7 @@ public class QuartoController {
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("quarto", service.findById(id));
 		
-		return "quarto/cadastrarQuartos";
+		return "quartos/cadastrarQuartos";
 	}
 
 	@PostMapping("/editar")
@@ -78,7 +78,7 @@ public class QuartoController {
 		service.updateQuarto(quarto);
 		
 		if(result.hasErrors()) {
-		return "quarto/cadastrarQuartos";
+		return "quartos/cadastrarQuartos";
 		}
 		return "redirect:/quarto/listarQuartos";
 	}
@@ -87,7 +87,13 @@ public class QuartoController {
 	public String deletarQuarto(Quarto quarto) throws ObjectNotFoundException {
 		findById(quarto.getId());
 		service.deleteQuarto(quarto);
-		return "quarto/confirmacao";
+		return "quartos/confirmacao";
+	}
+	
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("quarto", service.findAll());
+		return "/adm/listQuartos";
 	}
 
 }
