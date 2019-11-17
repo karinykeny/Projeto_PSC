@@ -37,25 +37,25 @@ public class QuartoController {
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
 
-		return "quartos/cadastrarQuartos";
+		return "quarto/cadastrarQuartos";
 	}
 
 	// @RequestMapping("quarto/create")
 	@PostMapping("/create")
 	public String create(@Valid Quarto quarto, BindingResult result, RedirectAttributes attr ) {
 		if(result.hasErrors()) {
-			return "quartos/cadastrarQuartos";
+			return "quarto/cadastrarQuartos";
 			}
 			service.save(quarto);
 			attr.addFlashAttribute("success", "quarto cadastrado com sucesso!");
 			
-		return "quartos/confirmacao";
+		return "quarto/confirmacao";
 	}
 
 	@GetMapping("/listarQuartos")
 	public String findAll(ModelMap model) {
 		model.addAttribute("quartos", service.findAll());
-		return "quartos/listarQuartos";
+		return "quarto/listarQuartos";
 	}
 
 	@GetMapping("/buscarid")
@@ -68,7 +68,7 @@ public class QuartoController {
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("quarto", service.findById(id));
 		
-		return "quartos/cadastrarQuartos";
+		return "quarto/cadastrarQuartos";
 	}
 
 	@PostMapping("/editar")
@@ -78,7 +78,7 @@ public class QuartoController {
 		service.updateQuarto(quarto);
 		
 		if(result.hasErrors()) {
-		return "quartos/cadastrarQuartos";
+		return "quarto/cadastrarQuartos";
 		}
 		return "redirect:/quarto/listarQuartos";
 	}
@@ -87,7 +87,7 @@ public class QuartoController {
 	public String deletarQuarto(Quarto quarto) throws ObjectNotFoundException {
 		findById(quarto.getId());
 		service.deleteQuarto(quarto);
-		return "quartos/confirmacao";
+		return "quarto/confirmacao";
 	}
 	
 	@GetMapping("/listar")
