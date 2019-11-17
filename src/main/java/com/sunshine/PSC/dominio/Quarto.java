@@ -33,7 +33,7 @@ public class Quarto implements Serializable {
 	private String tipoDeCama;
 	private Integer status;
 	@JsonIgnore
-	@ManyToMany(mappedBy = "quartos")
+	@ManyToMany(mappedBy = "quartos")//quartos
 	private List<Reserva> reservas = new ArrayList<>();
 
 	public Quarto() {
