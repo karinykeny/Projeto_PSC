@@ -38,9 +38,16 @@ public class ClienteService {
 		return dao.save(cliente);
 	}
 
-	public void deleteCliente(Integer id) throws ObjectNotFoundException {
-		findById(id);
-		dao.deleteById(id);
+	public void deleteCliente(Cliente cliente) throws ObjectNotFoundException {
+		findById(cliente.getId());
+		dao.delete(cliente);
+	}
+	
+	public boolean clienteTemReserva(int id) {
+		if(findById(id).getReservas().isEmpty()) {
+			return false;
+		}		
+		return true;
 	}
 
 }

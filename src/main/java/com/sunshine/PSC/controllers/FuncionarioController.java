@@ -53,6 +53,12 @@ public class FuncionarioController {
 		return "funcionario/atualizar";
 	}
 	
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("funcionario", service.findAll());
+		return "/adm/listFuncionarios";
+	}
+	
 // ====================== METODOS ======================
 	
 	@PostMapping(value="/create")

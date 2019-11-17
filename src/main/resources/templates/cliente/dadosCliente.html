@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html layout:decorate="~{layoutCliente}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" style="height: 100vh;">
+			<h1>Dados Cadastrados</h1>
+			<br/>
+					<div>
+				<div class="table-responsive">
+					<table
+						class="table table-sm table-striped table-hover table-bordered"
+						id="myTable">
+						<thead class="thead-dark">
+							<tr class="header">
+								<th>Id</th>
+								<th>Nome</th>
+								<th>CPF</th>
+								<th>E-mail</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cli : ${clientes}">
+								<td><span th:text="${cli.id}"></span></td>
+								<td><span th:text="${cli.nome}"></span></td>
+								<td><span th:text="${cli.cpf}"></span></td>
+								<td><span th:text="${cli.email}"></span></td>
+								<td align="center"><div class="btn-group pull-right">
+										<a class="btn btn-sm btn-warning"
+											th:href="@{/clientes/edit/{id}(id=${cli.id})}">Editar</a> <a
+											class="delete btn btn-sm btn-danger"
+											th:href="@{/clientes/deletar/{id}(id=${cli.id})}">Excluir</a>
+									</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

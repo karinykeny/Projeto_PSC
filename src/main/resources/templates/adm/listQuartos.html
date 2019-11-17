@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layoutAdm}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" style="height: 100vh;">
+			<form>
+				<div class="row" style="margin: 10px;">
+					<div class="col-sm-4">
+						<input type="text" class="form-control " id="myInput"
+							onkeyup="myFunction()" placeholder="Procure pelo Nome">
+					</div>
+					<div>
+						<a th:href="@{quartos/cadastrarQuartos}" class="btn btn-warning">Cadastrar
+							Quarto</a>
+					</div>
+				</div>
+			</form>
+			<div>
+			<div class="table-responsive">
+				<table class="table table-sm table-striped table-hover table-bordered" id="myTable">
+					<thead class="thead-dark">
+						<tr class="header">
+							<th>Quarto</th>
+							<th>Quantidade de pessoas</th>
+							<th>Tipo de cama</th>
+							<th>status</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="q : ${quarto}">
+							<td><span th:text="${q.nomeQuarto}"></span></td>
+							<td><span th:text="${q.qtdPessoas}"></span></td>
+							<td><span th:text="${q.tipoDeCama}"></span></td>
+							<td><span th:text="${q.status}"></span></td>
+							<td align="center"><div class="btn-group pull-right">
+									<a class="btn btn-sm btn-warning"
+										th:href="@{/quarto/preupdate/{id} (id=${q.id})}">Editar</a> <a
+										class="delete btn btn-sm btn-danger"
+										th:href="@{/quarto/deletar/{id} (Id=${q.id})} " method="POST">Excluir</a>
+								</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+		<script>
+			function myFunction() {
+				// Declarar variáveis
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("myTable");
+				tr = table.getElementsByTagName("tr");
+				y = 0;
+				// Percorra todas as linhas da tabela e oculte aqueles que não correspondem à consulta de pesquisa
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[0];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+		</script>
+	</section>
+</body>
+
+</html>
