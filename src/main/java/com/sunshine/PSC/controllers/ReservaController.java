@@ -35,7 +35,7 @@ public class ReservaController {
 	@GetMapping("/cadastrarReservas")
 	public String form(Reserva reserva, ModelMap model) {
 	
-		model.addAttribute("clientes", cService.findAll());
+		model.addAttribute("clientes", cService.findAll() );
 		
 		return "reserva/cadastrarReservas";
 		

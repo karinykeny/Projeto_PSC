@@ -37,7 +37,7 @@ public class QuartoController {
 	@GetMapping("/cadastrarQuartos")
 	public String form(Quarto quarto) {
 
-		return "quartos/cadastrarQuartos";
+		return "quartos/cadastrarQuartos" ;
 	}
 
 	// @RequestMapping("quarto/create")

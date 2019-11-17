@@ -66,7 +66,7 @@ public class Quarto implements Serializable {
 	}
 
 	public Integer getQtdPessoas() {
-		return qtdPessoas;
+		return  qtdPessoas;
 	}
 
 	public void setQtdPessoas(Integer qtdPessoas) {

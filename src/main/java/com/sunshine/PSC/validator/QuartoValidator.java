@@ -26,7 +26,7 @@ public class QuartoValidator implements Validator{
 		boolean containsDigit = false;
 		
 		if (q.getTipoDeCama() != null && !q.getTipoDeCama().isEmpty()) {
-		        for (char c : q.getTipoDeCama().toCharArray()) {
+		      for (char c : q.getTipoDeCama().toCharArray()) {
 		            if (containsDigit = Character.isDigit(c)) {
 		              errors.rejectValue("tipoDeCama", "tipoDeCamaInteger.quarto.tipoDeCama");
 		            }
