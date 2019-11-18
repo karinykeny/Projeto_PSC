@@ -17,11 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -62,9 +64,9 @@ public class FuncionarioController {
 // ====================== METODOS ======================
 	
 	@PostMapping(value="/create")
-	public String create(Funcionario funcionario) {
+	public void create(Funcionario funcionario) {//String para void
 		service.save(funcionario);
-		return "funcionario/confirmacao";
+		//return "funcionario/confirmacao";
 	}
 
 	@GetMapping(value="/listarFuncionarios")
@@ -105,5 +107,21 @@ public class FuncionarioController {
 
 	
 	
+	@GetMapping("/suggest-event")
+	public String suggestEvent() {
+	    return "/suggested-event/suggestEvent";
+	} 
+
+	@PostMapping("/suggest-event")
+	public String receiveSuggestedEvent(BindingResult result, RedirectAttributes redirectAttributes) {
+	    redirectAttributes.addFlashAttribute("message", "Failed");
+	    redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+	    if (result.hasErrors()) {
+	        return "redirect:/suggest-event";
+	    }
+	    redirectAttributes.addFlashAttribute("message", "Success");
+	    redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+	    return "redirect:/suggest-event";
+	}	
 	
 }
