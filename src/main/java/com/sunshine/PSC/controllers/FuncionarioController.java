@@ -5,7 +5,6 @@ import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.service.FuncionarioService;
 import com.sunshine.PSC.dao.FuncionarioDao;
 
-
 import javassist.tools.rmi.ObjectNotFoundException;
 
 import java.util.List;
@@ -64,9 +63,9 @@ public class FuncionarioController {
 // ====================== METODOS ======================
 	
 	@PostMapping(value="/create")
-	public void create(Funcionario funcionario) {//String para void
+	public String create(Funcionario funcionario) {
 		service.save(funcionario);
-		//return "funcionario/confirmacao";
+		return "funcionario/confirmacao";
 	}
 
 	@GetMapping(value="/listarFuncionarios")
@@ -102,26 +101,6 @@ public class FuncionarioController {
 		service.updateFuncionario(funcionario);
 		return "redirect:/funcionario/listarFuncionarios";
 	}
-	
-	
 
-	
-	
-	@GetMapping("/suggest-event")
-	public String suggestEvent() {
-	    return "/suggested-event/suggestEvent";
-	} 
-
-	@PostMapping("/suggest-event")
-	public String receiveSuggestedEvent(BindingResult result, RedirectAttributes redirectAttributes) {
-	    redirectAttributes.addFlashAttribute("message", "Failed");
-	    redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-	    if (result.hasErrors()) {
-	        return "redirect:/suggest-event";
-	    }
-	    redirectAttributes.addFlashAttribute("message", "Success");
-	    redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-	    return "redirect:/suggest-event";
-	}	
 	
 }
