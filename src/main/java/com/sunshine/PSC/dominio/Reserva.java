@@ -41,6 +41,7 @@ public class Reserva implements Serializable {
 	private Double total;
 
 	private String dataEntradaTemp;
+	
 	private String dataSaidaTemp;
 
 	@ManyToMany
@@ -69,6 +70,26 @@ public class Reserva implements Serializable {
 		this.precoDiaria = precoDiaria;
 		this.total = precoDiaria;
 	}
+	public Reserva(Integer nPessoas, Double precoDiaria, String  dataEntradaTemp, String  dataSaidaTemp , Cliente cliente, Funcionario funcionario ) {
+		this.nPessoas = nPessoas;
+		this.precoDiaria = precoDiaria;
+		this.dataEntradaTemp = dataEntradaTemp;
+		this.dataSaidaTemp = dataSaidaTemp;
+		this.cliente = cliente;
+		this.funcionario = funcionario;
+		
+	}
+	public Reserva(Integer nPessoas, Double precoDiaria, LocalDate  dataEntrada, LocalDate  dataSaida , Cliente cliente, Funcionario funcionario ) {
+		this.nPessoas = nPessoas;
+		this.precoDiaria = precoDiaria;
+		this.dataEntrada = dataEntrada;
+		this.dataSaida = dataSaida;
+		this.cliente = cliente;
+		this.funcionario = funcionario;
+		
+	}
+	
+	
 
 	public Integer getId() {
 		return id;

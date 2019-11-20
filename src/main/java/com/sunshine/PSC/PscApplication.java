@@ -1,6 +1,8 @@
 package com.sunshine.PSC;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -58,7 +60,10 @@ public class PscApplication implements CommandLineRunner {
 		funcionarioDao.save(f1);
 		funcionarioDao.save(f2);
 
-		Reserva r1 = new Reserva(null, 6, null, null, null, null);
+	Reserva r1 = new Reserva(6, 60.00, LocalDate.of(2019, 11, 22), LocalDate.of(2019, 11, 24), c1, f1);
+	Reserva r2 = new Reserva(6, 65.00, LocalDate.of(2019, 11, 26), LocalDate.of(2019, 11, 27), c1, f1);	
+	
+		
 		rdao.save(r1);
 		
 		/*Funcao fun1 = new Funcao();
