@@ -1,5 +1,11 @@
 package com.sunshine.PSC.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sunshine.PSC.dominio.Reserva;
+import com.sunshine.PSC.service.ClienteService;
 import com.sunshine.PSC.service.QuartoService;
 import com.sunshine.PSC.service.ReservaService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
@@ -22,19 +29,33 @@ public class ReservaController {
 	private ReservaService service;
 	@Autowired
 	private QuartoService qService;
+	@Autowired
+	private ClienteService cService;
 
 	@GetMapping("/cadastrarReservas")
-	public String form(Reserva reserva) {
-
+	public String form(Reserva reserva, ModelMap model) {
+	
+		model.addAttribute("clientes", cService.findAll() );
+		
 		return "reserva/cadastrarReservas";
+		
+		
 	}
 
 	// @RequestMapping("reserva/create")
 	@PostMapping("/create")
-	public String create(Reserva reserva) {
+	public String create(Reserva reserva) throws ParseException {
+		String DTE = reserva.getDataEntradaTemp();
+		String DTS = reserva.getDataSaidaTemp();
+		
+		LocalDate date1 = LocalDate.parse(DTE);
+		LocalDate date2 = LocalDate.parse(DTS);
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
 		service.save(reserva);
 		return "reserva/confirmacao";
 	}
+	
 
 	@GetMapping("/listarReservas")
 	public String findAll(ModelMap model) {
@@ -70,6 +91,12 @@ public class ReservaController {
 		}
 
 		return "reserva/confirmacao";
+	}
+	
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("reserva", service.findAll());
+		return "/adm/listReservas";
 	}
 
 }

@@ -30,6 +30,7 @@ public class FuncionarioController {
 	
 // ================= CHAMAR TELAS ==================	
 	
+	
 	@GetMapping("/cadastrarFuncionarios")
 	public String form(Funcionario funcionario) {
 
@@ -44,6 +45,12 @@ public class FuncionarioController {
 	@RequestMapping(value="funcionario/atualizar")
 	public String formatualizar() {
 		return "funcionario/atualizar";
+	}
+	
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("funcionario", service.findAll());
+		return "/adm/listFuncionarios";
 	}
 	
 // ====================== METODOS ======================

@@ -1,6 +1,7 @@
 package com.sunshine.PSC.dominio;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,27 +15,42 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Reserva implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private Integer nPessoas;
-	private Date dataEntrada;
-	private Date dataSaida;
+
+	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	private LocalDate dataEntrada;
+
+	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	private LocalDate dataSaida;
+
 	private Double precoDiaria;
+
 	private Double total;
-	
+
+	private String dataEntradaTemp;
+	private String dataSaidaTemp;
+
 	@ManyToMany
 	@JoinTable(name = "RESERVA_QUARTOS", joinColumns = @JoinColumn(name = "reserva_id"), inverseJoinColumns = @JoinColumn(name = "quarto_id"))
 	private List<Quarto> quartos = new ArrayList<>();
+
 	@JsonIgnore
 	@ManyToOne
 	private Cliente cliente;
+
 	@JsonIgnore
 	@ManyToOne
 	private Funcionario funcionario;
@@ -43,7 +59,8 @@ public class Reserva implements Serializable {
 
 	}
 
-	public Reserva(Integer id, Integer nPessoas, Date dataEntrada, Date dataSaida, Double precoDiaria, Double total) {
+	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double precoDiaria,
+			Double total) {
 		super();
 		this.id = id;
 		this.nPessoas = nPessoas;
@@ -69,20 +86,36 @@ public class Reserva implements Serializable {
 		this.nPessoas = nPessoas;
 	}
 
-	public Date getDataEntrada() {
+	public LocalDate getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Date dataEntrada) {
+	public void setDataEntrada(LocalDate dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
-	public Date getDataSaida() {
+	public LocalDate getDataSaida() {
 		return dataSaida;
 	}
 
-	public void setDataSaida(Date dataSaida) {
+	public void setDataSaida(LocalDate dataSaida) {
 		this.dataSaida = dataSaida;
+	}
+
+	public String getDataEntradaTemp() {
+		return dataEntradaTemp;
+	}
+
+	public void setDataEntradaTemp(String dataEntradaTemp) {
+		this.dataEntradaTemp = dataEntradaTemp;
+	}
+
+	public String getDataSaidaTemp() {
+		return dataSaidaTemp;
+	}
+
+	public void setDataSaidaTemp(String dataSaidaTemp) {
+		this.dataSaidaTemp = dataSaidaTemp;
 	}
 
 	public List<Quarto> getQuartos() {

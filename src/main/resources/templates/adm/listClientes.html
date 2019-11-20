@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layoutAdm}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="container" style="height: 100vh;">
+			<form>
+				<div class="row" style="margin: 10px;">
+					<div class="col-sm-4">
+						<input type="text" class="form-control " id="myInput"
+							onkeyup="myFunction()"
+							placeholder="Procure pelo CPF (000.000.000-00)">
+					</div>
+					<div>
+						<a th:href="@{/clientes/create}" class="btn btn-warning">Cadastrar
+							Cliente</a>
+					</div>
+				</div>
+			</form>
+			<div>
+				<div class="table-responsive">
+					<table
+						class="table table-sm table-striped table-hover table-bordered"
+						id="myTable">
+						<thead class="thead-dark">
+							<tr class="header">
+								<th>Id</th>
+								<th>Nome</th>
+								<th>CPF</th>
+								<th>E-mail</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cli : ${clientes}">
+								<td><span th:text="${cli.id}"></span></td>
+								<td><span th:text="${cli.nome}"></span></td>
+								<td><span th:text="${cli.cpf}"></span></td>
+								<td><span th:text="${cli.email}"></span></td>
+								<td align="center"><div class="btn-group pull-right">
+										<a class="btn btn-sm btn-warning"
+											th:href="@{/clientes/edit/{id}(id=${cli.id})}">Editar</a> <a
+											class="delete btn btn-sm btn-danger" type="button"
+											data-toggle="modal" data-target="#excluirModal"
+											th:id="${ 'btn_clientes/deletar/' + cli.id}">Excluir</a>
+									</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div th:replace="componentes/modal :: modal"></div>
+		<script type="text/javascript">
+			var url = '';
+
+			$('button[id*="btn_"]').click(
+					function() {
+						url = "http://localhost:8080/"
+								+ $(this).attr('id').split("_")[1];
+					});
+
+			$('#ok').click(function() {
+				document.location.href = url;
+			});
+
+			function myFunction() {
+				// Declarar variáveis
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("myTable");
+				tr = table.getElementsByTagName("tr");
+				y = 0;
+				// Percorra todas as linhas da tabela e oculte aqueles que não correspondem à consulta de pesquisa
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[2];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+		</script>
+	</section>
+</body>
+
+</html>

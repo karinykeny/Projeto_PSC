@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="../../static/css2/style.css"rel="stylesheet" th:href="@{/css2/style.css}"/>
+</head>
+<body>
+	<nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
+		<ul class="nav nav-pills">
+			<li class="nav-item"><span class="nav-link active">Clientes</span></li>
+			<li class="nav-item"><a class="nav-link"
+				th:href="@{/clientes/create}"> <i class="oi oi-spreadsheet"></i>
+					<span>Cadastrar Clientes</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/clientes/listar"> <i class="oi oi-spreadsheet"></i>
+					<span>Listar Clientes</span>
+			</a></li>
+		</ul>
+
+		<ul class="nav nav-pills">
+			<li class="nav-item"><span class="nav-link active">Funcionários</span></li>
+			<li class="nav-item"><a class="nav-link" href="/funcionario/listar">
+					<i class="oi oi-spreadsheet"></i> <span>Listar Funcionários </span>
+			</a></li>
+		</ul>
+
+		<ul class="nav nav-pills">
+			<li class="nav-item"><span class="nav-link active">Quartos</span></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/quartos/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar Quartos
+				</span>
+			</a></li>
+		</ul>
+		<ul class="nav nav-pills">
+			<li class="nav-item"><span class="nav-link active">Reservas</span></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/reserva/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar Reservas
+				</span>
+			</a></li>
+		</ul>
+	</nav>
+</body>
+</html>

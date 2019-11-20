@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sunshine.PSC.dominio.enums.StatusQuarto;
@@ -20,12 +24,16 @@ public class Quarto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank(message = "O nome do quarto é obrigatório.")
+	@Size(min = 3, max = 10, message = "O nome do quarto deve ter entre {min} e {max} caracteres")
 	private String nomeQuarto;
+	@NumberFormat
 	private Integer qtdPessoas;
+	@NotBlank(message = "É necessário informar o tipo de cama do quarto")
 	private String tipoDeCama;
 	private Integer status;
 	@JsonIgnore
-	@ManyToMany(mappedBy = "quartos")
+	@ManyToMany(mappedBy = "quartos")//quartos
 	private List<Reserva> reservas = new ArrayList<>();
 
 	public Quarto() {
@@ -58,23 +66,23 @@ public class Quarto implements Serializable {
 	}
 
 	public Integer getQtdPessoas() {
-		return qtdPessoas;
+		return  qtdPessoas;
 	}
 
 	public void setQtdPessoas(Integer qtdPessoas) {
 		this.qtdPessoas = qtdPessoas;
 	}
 
-	public String getTipodeCama() {
+	public StatusQuarto getStatus() {
+		return StatusQuarto.toEnum(status);
+	}
+
+	public String getTipoDeCama() {
 		return tipoDeCama;
 	}
 
-	public void setTipodeCama(String tipodeCama) {
-		this.tipoDeCama = tipodeCama;
-	}
-
-	public StatusQuarto getStatus() {
-		return StatusQuarto.toEnum(status);
+	public void setTipoDeCama(String tipoDeCama) {
+		this.tipoDeCama = tipoDeCama;
 	}
 
 	public void setStatus(StatusQuarto status) {

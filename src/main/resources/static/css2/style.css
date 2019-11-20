@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-	padding-top: 56px;
+	padding-top: 0px;
 	padding-left: 0;
 } 
 
@@ -23,13 +23,13 @@ body {
  * Content
  */
 .layout-content {
-    width: 100%;
+	width: 100%;
     padding-top: 0px;
 }
 
 .container {
 	width: 100%;
-	padding-top: 20px;
+	padding-top: 0px;
 }
 
 /*
@@ -79,15 +79,15 @@ body {
 }
 
 .sidebar.sidebar-open {
-    width: 300px;
+    width: 200px;
 }
 
 /*
  * nav-pills home
  */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-	color: #fff;
-	background-color: #1e94d2;
+	color: #1a1a1a;
+	background-color:lightgrey;
 }
 
 /*
@@ -118,4 +118,3 @@ body {
 	color: #777777;
 	text-align: center;
 }
-
