@@ -71,17 +71,16 @@ public class PscApplication implements CommandLineRunner {
 		Funcao fun2 = new Funcao();
 		fun2.setDescricao("ROLE_USER");*/
 		
-		
-		
-		
-		
+
 
 		
 		//Cliente c2 = new Cliente("Heitor", "058.966.204-03", "heitor@teste.com", "$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
 		//clienteDao.save(c2);
 		
+
 		//Cliente cli = clienteDao.findByCpf("058.966.204-03");
 		//System.out.println(cli.getNome() + "NOME DO CLIENTE");
+
 	}
 
 }
