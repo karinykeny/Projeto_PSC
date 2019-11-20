@@ -5,68 +5,26 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	
-	<section class="layout-content" layout:fragment="corpo">
-		</br>
-		<div class="container" align="center" style="height: 135vh; width: 50rem; background-color:rgb(243, 239, 188)">
-		<br/>
-			<h2>Cadastro de Reservas</h2>
-			<p>Bem vindo ao site do Hotel Sunshine</p>
-			
-			
-			<form th:action="${reserva.id} == null ? @{/reserva/create} : @{/reserva/editar}"
-				  th:object="${reserva}" method="post">
-				  
-				  <div th:replace="fragments/validacao :: validacao"></div> 		
-					<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
-					<div class="form-row col-md-6" >
-						<label for="name">Numero de pessoas</label> 
-						<input type="number" class="form-control" id="numerodepessoas" placeholder="Nome do quarto"  th:field="*{nPessoas}" th:classappend="${#fields.hasErrors('nPessoas')} ? 'is-invalid'" required>
-						<div class="invalid-feedback">Por favor, informe um nome válido.</div>
-					</div>
-					</br>
-					<div class="form-row col-md-6">
-						<label>Data de entrada</label> 
-						<input type="date" id="datadeentrada" th:field="*{dataEntradaTemp}" th:classappend="${#fields.hasErrors('dataEntradaTemp')} ? 'is-invalid'" required>
-						<div class="invalid-feedback">Por favor, informe uma quatidade válida.</div>
-					</div>
-					</br>
-					<div class="form-row col-md-6">
-						<label >Data de saida</label>
-						<input type="date" id="datadesaida" th:field="*{dataSaidaTemp}" th:classappend="${#fields.hasErrors('dataSaidaTemp')} ? 'is-invalid'" required>
-						<div class="invalid-feedback">informação inválida.</div>
-					</div>
-					</br>
-					<div class="form-row col-md-6">
-						<label >Preço da diaria</label>
-						<input type="number" id="preco" th:field="*{precoDiaria}" th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'" required>
-						<div class="invalid-feedback">informação inválida.</div>
-					</div>
-					</br>
-					<div>
-					
-				  <select th:field="*{cliente}">
-                     <option value=""> -- </option>
-                     <option th:each="cliente : ${clientes}" th:value="${cliente.Id}" th:utext="${cliente.nome}"/>
-                  </select>
-					<!-- <select name="status">
-    				<option th:each="cliente : ${clientes}" th:value="${statusOpt}" th:text="${statusOpt}"></option>
-					
-					</select>-->
-					</div>
-					</br>
-				 		<input type="hidden" id="Id" th:field="*{Id}">
-						<!-- Input escondido carrega o Id para o método edit -->
-					</br>
-					<button class=" btn btn-success" type="submit" href="/quarto" url="/quarto">Enviar</button>
-					<button type="reset" class="btn btn-success" href="/" url="/home">Limpar</button>
-				
-				<br/>
-				
-				<div class="colcol-md-12">
-				<a href="/quarto/listarQuartos" class="btn btn-warning">voltar</a>
-				</div>
-			</form>
+ <section class="layout-content" layout:fragment="corpo">
+	<h1>Bem vindo ao site do Hotel Sunshine</h1>
+	<h2>Formulário de Reserva</h2>
+	<br />
+	<form
+		th:action="${reserva.id} == null ? @{/reserva/create} : @{/reserva/editar}"
+		th:object="${reserva}" method="post">
+
+		<fieldset>
+			<legend>Dados</legend>
+			<div id="cadastro">
+				<label> Numero de pessoas </label> <input id="numerodepessoas"
+					type="number" th:field="*{nPessoas}">
+				<!-- <input type="number" name="nPessoas" >  -->
+			</div>
+			<label> Data de entrada </label> <input id="datadeentrada"
+				type="date" th:field="*{dataEntrada}">
+			<div>
+				<label> Data de saida </label> 
+				<input type="date" th:field="*{dataSaida}">
 			</div>
 			<br/>
 		<script>
