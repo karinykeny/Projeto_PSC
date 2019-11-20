@@ -3,7 +3,6 @@ package com.sunshine.PSC.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,59 +14,52 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Reserva implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private Integer nPessoas;
-	//@DateTimeFormat(pattern="dd-MM-yyyy")
+
+	// @DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate dataEntrada;
-    //@DateTimeFormat(pattern="dd-MM-yyyy")
+
+	// @DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate dataSaida;
+
 	private Double precoDiaria;
-	private Double total; 
-	
-	public String getDataEntradaTemp() {
-		return dataEntradaTemp;
-	}
 
-	public void setDataEntradaTemp(String dataEntradaTemp) {
-		this.dataEntradaTemp = dataEntradaTemp;
-	}
-
-	public String getDataSaidaTemp() {
-		return dataSaidaTemp;
-	}
-
-	public void setDataSaidaTemp(String dataSaidaTemp) {
-		this.dataSaidaTemp = dataSaidaTemp;
-	}
+	private Double total;
 
 	private String dataEntradaTemp;
 	private String dataSaidaTemp;
-	
+
 	@ManyToMany
 	@JoinTable(name = "RESERVA_QUARTOS", joinColumns = @JoinColumn(name = "reserva_id"), inverseJoinColumns = @JoinColumn(name = "quarto_id"))
 	private List<Quarto> quartos = new ArrayList<>();
+
 	@JsonIgnore
 	@ManyToOne
 	private Cliente cliente;
+
 	@JsonIgnore
 	@ManyToOne
 	private Funcionario funcionario;
+	
+	private Pagamento pagamento;
 
 	public Reserva() {
 
 	}
 
-	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double precoDiaria, Double total) {
+	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double precoDiaria,
+			Double total) {
 		super();
 		this.id = id;
 		this.nPessoas = nPessoas;
@@ -107,6 +99,22 @@ public class Reserva implements Serializable {
 
 	public void setDataSaida(LocalDate dataSaida) {
 		this.dataSaida = dataSaida;
+	}
+
+	public String getDataEntradaTemp() {
+		return dataEntradaTemp;
+	}
+
+	public void setDataEntradaTemp(String dataEntradaTemp) {
+		this.dataEntradaTemp = dataEntradaTemp;
+	}
+
+	public String getDataSaidaTemp() {
+		return dataSaidaTemp;
+	}
+
+	public void setDataSaidaTemp(String dataSaidaTemp) {
+		this.dataSaidaTemp = dataSaidaTemp;
 	}
 
 	public List<Quarto> getQuartos() {
