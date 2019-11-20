@@ -1,5 +1,7 @@
 package com.sunshine.PSC.validator;
 
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -21,10 +23,14 @@ public class QuartoValidator implements Validator{
 		//errors = é o objeto que se irá lidar com a validação;
 		Quarto q = (Quarto) object;
 		
-		if(q.getTipoDeCama().matches("[0-9]")) {
-			errors.rejectValue("tipoDeCama", "tipoDeCamaInteger.quarto.tipoDeCama");
-			//tipoDeCama = referencia ao atributo do objeto que se tem;
-			//tipoDeCamaInteger.quarto.tipoDeCama = Chave referente a messagem que está contida em messages.properties
-		}
+		boolean containsDigit = false;
+		
+		if (q.getTipoDeCama() != null && !q.getTipoDeCama().isEmpty()) {
+		      for (char c : q.getTipoDeCama().toCharArray()) {
+		            if (containsDigit = Character.isDigit(c)) {
+		              errors.rejectValue("tipoDeCama", "tipoDeCamaInteger.quarto.tipoDeCama");
+		            }
+		        }
+		    }
 	}
 }

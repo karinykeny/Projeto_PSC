@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunshine.PSC.dominio.Quarto;
@@ -21,7 +20,7 @@ import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 import com.sunshine.PSC.validator.QuartoValidator;
 
 @Controller
-@RequestMapping("/quartos")
+@RequestMapping("/quarto")
 public class QuartoController {
 
 	@Autowired
@@ -38,6 +37,7 @@ public class QuartoController {
 	public String form(Quarto quarto) {
 
 		return "quarto/cadastrarQuartos";
+
 	}
 
 	// @RequestMapping("quarto/create")

@@ -1,20 +1,11 @@
+
 <!DOCTYPE html>
-
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html layout:decorate="~{layout}">
 <head>
-<title>Hotel Sunshine</title>
-<meta name="description"
-	content="Aprenda a criar um site completo que usa formulários em HTML">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
+<meta charset="UTF-8">
 </head>
-
 <body>
+ <section class="layout-content" layout:fragment="corpo">
 	<h1>Bem vindo ao site do Hotel Sunshine</h1>
 	<h2>Formulário de Reserva</h2>
 	<br />
@@ -28,30 +19,34 @@
 				<label> Numero de pessoas </label> <input id="numerodepessoas"
 					type="number" th:field="*{nPessoas}">
 				<!-- <input type="number" name="nPessoas" >  -->
-			
-						</div>
+			</div>
 			<label> Data de entrada </label> <input id="datadeentrada"
-				type="date" th:field="*{dataEntradaTemp}">
-				<!--type="date" th:field="*{dataEntrada}">  -->
+				type="date" th:field="*{dataEntrada}">
 			<div>
-			
-				<label> Data de saida </label> <input id="datadesaida"
-				type="date" th:field="*{dataSaidaTemp}">
+				<label> Data de saida </label> 
+				<input type="date" th:field="*{dataSaida}">
 			</div>
-			
-			
-			<label> Preço da diaria </label> <input type="number"
-				th:field="*{precoDiaria}">
-			<div>
-				<label> total </label> <input type="text" th:field="*{total}">
-
-			</div>
-			<input type="hidden" id="Id" th:field="*{Id}">
-			<button type="submit">Cadastrar</button>
-
-		</fieldset>
-
-	</form>
-
+			<br/>
+		<script>
+			// Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+		(function() {
+		 'use strict';
+	      window.addEventListener('load',function() {
+		 // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+		    var forms = document.getElementsByClassName('needs-validation');
+	    // Faz um loop neles e evita o envio
+			var validation = Array.prototype.filter.call(forms,function(form) {
+								form.addEventListener('submit',function(event) {
+									if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+									}
+									 form.classList.add('was-validated');
+								 },false);
+			});
+		}, false);
+	})();
+		</script>
+	</section>
 </body>
 </html>

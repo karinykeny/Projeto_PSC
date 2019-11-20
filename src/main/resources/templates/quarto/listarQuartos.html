@@ -30,7 +30,7 @@
 							<th>Quantidade de pessoas</th>
 							<th>Tipo de cama</th>
 							<th>status</th>
-							<th></th>
+							<th> </th>
 							<th></th>
 						</tr>
 					</thead>
@@ -38,12 +38,12 @@
 						<tr th:each="q : ${quartos}">
 							<td><span th:text="${q.nomeQuarto}"></span></td>
 							<td><span th:text="${q.qtdPessoas}"></span></td>
-							<td><span th:text="${q.tipodeCama}"></span></td>
+							<td><span th:text="${q.tipoDeCama}"></span></td>
 							<td><span th:text="${q.status}"></span></td>
 						
 						  	<td>	
 								<a th:href="@{preupdate/{Id} (Id=${q.id})}">
-								<span title="Editar">editar</span>
+								<span title="Editar"> editar</span>
 								</a>
 							</td>	
 							<td>

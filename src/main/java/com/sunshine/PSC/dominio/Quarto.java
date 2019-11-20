@@ -33,7 +33,7 @@ public class Quarto implements Serializable {
 	private String tipoDeCama;
 	private Integer status;
 	@JsonIgnore
-	@ManyToMany(mappedBy = "quartos")
+	@ManyToMany(mappedBy = "quartos")//quartos
 	private List<Reserva> reservas = new ArrayList<>();
 
 	public Quarto() {
@@ -66,19 +66,12 @@ public class Quarto implements Serializable {
 	}
 
 	public Integer getQtdPessoas() {
-		return qtdPessoas;
+		return  qtdPessoas;
 	}
 
 	public void setQtdPessoas(Integer qtdPessoas) {
 		this.qtdPessoas = qtdPessoas;
 	}
-
-	/*
-	 * public String getTipodeCama() { return tipoDeCama; }
-	 * 
-	 * public void setTipodeCama(String tipodeCama) { this.tipoDeCama = tipodeCama;
-	 * }
-	 */
 
 	public StatusQuarto getStatus() {
 		return StatusQuarto.toEnum(status);
