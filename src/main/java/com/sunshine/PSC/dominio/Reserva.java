@@ -3,7 +3,6 @@ package com.sunshine.PSC.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -54,6 +51,8 @@ public class Reserva implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	private Funcionario funcionario;
+	
+	private Pagamento pagamento;
 
 	public Reserva() {
 
