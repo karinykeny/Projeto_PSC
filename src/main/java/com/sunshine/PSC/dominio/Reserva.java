@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -51,7 +53,8 @@ public class Reserva implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	private Funcionario funcionario;
-	
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
 	private Pagamento pagamento;
 
 	public Reserva() {
@@ -147,6 +150,14 @@ public class Reserva implements Serializable {
 
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 	@Override
