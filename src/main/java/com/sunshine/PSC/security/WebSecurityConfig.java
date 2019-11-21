@@ -27,9 +27,14 @@ public class WebSecurityConfig extends  WebSecurityConfigurerAdapter  {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{ //método de configurações
 		http.csrf().disable().authorizeRequests()//crsf provê vários tipos de segurança para a aplicação
+<<<<<<< HEAD
 		.antMatchers(HttpMethod.GET, "/").permitAll()
 		//todos os me
 		/*.antMatchers(HttpMethod.GET, "/quarto/listarQuartos").hasRole("ADMIN")
+=======
+		/*.antMatchers(HttpMethod.GET, "/").permitAll()//todos os me
+
+>>>>>>> 0d15b4c8ec93c949e219b61f82a249a64a3ec83a
 
 		.antMatchers(HttpMethod.GET, "quarto/cadastrarQuartos").hasRole("USER")
 		.antMatchers(HttpMethod.GET, "/reserva/listarReservas").hasRole("ADMIN")
