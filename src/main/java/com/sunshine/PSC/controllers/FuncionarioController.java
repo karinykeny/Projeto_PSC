@@ -1,12 +1,34 @@
 package com.sunshine.PSC.controllers;
 
+<<<<<<< HEAD
+=======
+import com.sunshine.PSC.dominio.Funcionario;
+import com.sunshine.PSC.dominio.Quarto;
+import com.sunshine.PSC.service.FuncionarioService;
+import com.sunshine.PSC.dao.FuncionarioDao;
+
+import javassist.tools.rmi.ObjectNotFoundException;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+>>>>>>> 0c4f74c5074625dff93100d54cf0c91544453f5b
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+>>>>>>> 0c4f74c5074625dff93100d54cf0c91544453f5b
 
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.service.FuncionarioService;
@@ -19,12 +41,19 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioService service;
+<<<<<<< HEAD
 
+=======
+	
+	
+
+	
+>>>>>>> 0c4f74c5074625dff93100d54cf0c91544453f5b
 // ================= CHAMAR TELAS ==================	
 
 	@GetMapping("/cadastrarFuncionarios")
-	public String form(Funcionario funcionario) {
-
+	public String form(Funcionario funcionario) { //
+	    
 		return "funcionario/cadastrarFuncionarios";
 	}
 
@@ -85,4 +114,8 @@ public class FuncionarioController {
 		return "redirect:/funcionario/listarFuncionarios";
 	}
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 0c4f74c5074625dff93100d54cf0c91544453f5b
 }
