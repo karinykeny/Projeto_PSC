@@ -14,11 +14,11 @@ import com.sunshine.PSC.dominio.enums.EstadoPagamento;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
+public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer id;
-	private EstadoPagamento estado;
+	private Integer estado;
 
 	@OneToOne
 	@JoinColumn(name = "reserva_id")
@@ -32,7 +32,7 @@ public class Pagamento implements Serializable {
 	public Pagamento(Integer id, EstadoPagamento estado, Reserva reserva) {
 		super();
 		this.id = id;
-		this.estado = estado;
+		this.estado = estado.getCod();
 		this.reserva = reserva;
 	}
 
@@ -45,11 +45,11 @@ public class Pagamento implements Serializable {
 	}
 
 	public EstadoPagamento getEstado() {
-		return estado;
+		return EstadoPagamento.toEnum(estado);
 	}
 
 	public void setEstado(EstadoPagamento estado) {
-		this.estado = estado;
+		this.estado = estado.getCod();
 	}
 
 	public Reserva getReserva() {
