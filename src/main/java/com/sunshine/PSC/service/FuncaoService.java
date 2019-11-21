@@ -3,7 +3,6 @@ package com.sunshine.PSC.service;
 import org.springframework.stereotype.Service;
 
 import com.sunshine.PSC.dao.FuncaoDao;
-import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcao;
 
 @Service
