@@ -2,13 +2,15 @@ package com.sunshine.PSC.dominio;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.sunshine.PSC.dominio.enums.EstadoPagamento;
 
+@Entity
 public class PagamentoComBoleto extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	private Date dataVencimento;
 	private Date dataPagamento;
 	private Integer NumeroDoBoleto;

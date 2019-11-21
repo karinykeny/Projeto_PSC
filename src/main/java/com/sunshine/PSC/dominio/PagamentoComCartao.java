@@ -1,7 +1,9 @@
 package com.sunshine.PSC.dominio;
 
-import com.sunshine.PSC.dominio.enums.EstadoPagamento;
+import javax.persistence.Entity;
 
+import com.sunshine.PSC.dominio.enums.EstadoPagamento;
+@Entity
 public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
