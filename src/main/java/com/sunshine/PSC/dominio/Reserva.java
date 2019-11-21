@@ -84,7 +84,7 @@ public class Reserva implements Serializable {
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
 		this.cliente = cliente;
-		this.funcionario = funcionario;
+		this.funcionario = funcionario ;
 		
 	}
 	

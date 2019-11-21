@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+public class WebSecurityConfig extends  WebSecurityConfigurerAdapter  {
 	//"WebSecurityConfigurerAdapter" - Classe nativa do Spring Security 
 
 	@Autowired
@@ -27,7 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{ //método de configurações
 		http.csrf().disable().authorizeRequests()//crsf provê vários tipos de segurança para a aplicação
-		.antMatchers(HttpMethod.GET, "/").permitAll()//todos os me
+		.antMatchers(HttpMethod.GET, "/").permitAll()
+		//todos os me
 		/*.antMatchers(HttpMethod.GET, "/quarto/listarQuartos").hasRole("ADMIN")
 
 		.antMatchers(HttpMethod.GET, "quarto/cadastrarQuartos").hasRole("USER")
