@@ -27,13 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 		.antMatchers(HttpMethod.GET, "quarto/cadastrarQuartos").hasRole("USER")
 		.antMatchers(HttpMethod.GET, "/reserva/listarReservas").hasRole("ADMIN")
-		
-<<<<<<< HEAD
+
 		//.anyRequest().authenticated() //para todas as demais requisições precisará de Autenticação*/
 		
-=======
 
->>>>>>> 0c4f74c5074625dff93100d54cf0c91544453f5b
 		//.anyRequest().authenticated() //para todas as demais requisições precisará de Autenticação
 
 		.and().formLogin().permitAll()// para que a pessoa acesse o formulário de login do spring security e assim ter acesso... 
