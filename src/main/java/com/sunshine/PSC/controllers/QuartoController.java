@@ -92,7 +92,7 @@ public class QuartoController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("quarto", service.findAll());
+		model.addAttribute("quartos", service.findAll());
 		return "/adm/listQuartos";
 	}
 
