@@ -33,6 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 		.antMatchers(HttpMethod.GET, "quarto/cadastrarQuartos").hasRole("USER")
 		.antMatchers(HttpMethod.GET, "/reserva/listarReservas").hasRole("ADMIN")
+
+		//.anyRequest().authenticated() //para todas as demais requisições precisará de Autenticação*/
 		
 		.anyRequest().authenticated() //para todas as demais requisições precisará de Autenticação*/
 		

@@ -1,7 +1,5 @@
 package com.sunshine.PSC.validator;
 
-import java.util.regex.Pattern;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
