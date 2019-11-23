@@ -14,8 +14,7 @@
 							onkeyup="myFunction()" placeholder="Procure pelo Nome">
 					</div>
 					<div>
-						<a th:href="@{quartos/cadastrarQuartos}" class="btn btn-warning">Cadastrar
-							Quarto</a>
+						<a th:href="@{cadastrarQuartos}" class="btn btn-warning">Cadastrar Quarto</a>
 					</div>
 				</div>
 			</form>
@@ -32,16 +31,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="q : ${quarto}">
+						<tr th:each="q : ${quartos}">
 							<td><span th:text="${q.nomeQuarto}"></span></td>
 							<td><span th:text="${q.qtdPessoas}"></span></td>
 							<td><span th:text="${q.tipoDeCama}"></span></td>
 							<td><span th:text="${q.status}"></span></td>
 							<td align="center"><div class="btn-group pull-right">
 									<a class="btn btn-sm btn-warning"
-										th:href="@{/quarto/preupdate/{id} (id=${q.id})}">Editar</a> <a
-										class="delete btn btn-sm btn-danger"
-										th:href="@{/quarto/deletar/{id} (Id=${q.id})} " method="POST">Excluir</a>
+										th:href="@{/quarto/preupdate/{id} (id=${q.id})}">Editar</a> 
+										
+										<a class="delete btn btn-sm btn-danger" th:href="@{deletar/{Id} (Id=${q.id})} " method="POST">Excluir</a>
 								</div></td>
 						</tr>
 					</tbody>

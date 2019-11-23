@@ -3,23 +3,27 @@ package com.sunshine.PSC.dominio;
 import javax.persistence.Entity;
 
 import com.sunshine.PSC.dominio.enums.EstadoPagamento;
+
 @Entity
 public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
-
+	private String nome;
 	private Integer numeroDeParcelas;
-	private Integer numeroCartão;
+	private Integer numeroCartao;
 
 	public PagamentoComCartao() {
 
 	}
 
 	public PagamentoComCartao(Integer id, EstadoPagamento estado, Reserva reserva, Integer numeroDeParcelas,
-			Integer numeroCartao) {
+			Integer numeroCartao, String nome) {
 		super(id, estado, reserva);
-		this.numeroCartão = numeroCartao;
+		
+		
+		this.numeroCartao = numeroCartao;
 		this.numeroDeParcelas = numeroDeParcelas;
+		this.nome = nome;
 
 	}
 
@@ -31,12 +35,20 @@ public class PagamentoComCartao extends Pagamento {
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
 
-	public Integer getNumeroCartão() {
-		return numeroCartão;
+	public Integer getNumeroCartao() {
+		return numeroCartao;
 	}
 
-	public void setNumeroCartão(Integer numeroCartão) {
-		this.numeroCartão = numeroCartão;
+	public void setNumeroCartão(Integer numeroCartao) {
+		this.numeroCartao = numeroCartao;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
