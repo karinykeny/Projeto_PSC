@@ -1,9 +1,6 @@
 package com.sunshine.PSC;
 
-import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +15,6 @@ import com.sunshine.PSC.dao.ReservaDao;
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.dominio.Pagamento;
-import com.sunshine.PSC.dominio.PagamentoComBoleto;
 import com.sunshine.PSC.dominio.PagamentoComCartao;
 import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.dominio.Reserva;

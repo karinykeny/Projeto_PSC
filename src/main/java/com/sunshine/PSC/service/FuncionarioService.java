@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.sunshine.PSC.dao.FuncionarioDao;
 import com.sunshine.PSC.dominio.Funcionario;
-import com.sunshine.PSC.dominio.Quarto;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
