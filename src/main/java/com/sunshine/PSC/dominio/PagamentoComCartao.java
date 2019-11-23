@@ -9,7 +9,7 @@ public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
 	private Integer numeroDeParcelas;
-	private Integer numeroCartão;
+	private Integer numeroCartao;
 
 	public PagamentoComCartao() {
 
@@ -18,7 +18,9 @@ public class PagamentoComCartao extends Pagamento {
 	public PagamentoComCartao(Integer id, EstadoPagamento estado, Reserva reserva, Integer numeroDeParcelas,
 			Integer numeroCartao) {
 		super(id, estado, reserva);
-		this.numeroCartão = numeroCartao;
+		
+		
+		this.numeroCartao = numeroCartao;
 		this.numeroDeParcelas = numeroDeParcelas;
 
 	}
