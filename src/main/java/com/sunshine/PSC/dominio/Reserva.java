@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,6 +38,7 @@ public class Reserva implements Serializable {
 	private Double total;
 
 	private String dataEntradaTemp;
+	
 	private String dataSaidaTemp;
 
 	@ManyToMany
@@ -53,8 +52,7 @@ public class Reserva implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	private Funcionario funcionario;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
+	
 	private Pagamento pagamento;
 
 	public Reserva() {
@@ -71,6 +69,26 @@ public class Reserva implements Serializable {
 		this.precoDiaria = precoDiaria;
 		this.total = precoDiaria;
 	}
+	public Reserva(Integer nPessoas, Double precoDiaria, String  dataEntradaTemp, String  dataSaidaTemp , Cliente cliente, Funcionario funcionario ) {
+		this.nPessoas = nPessoas;
+		this.precoDiaria = precoDiaria;
+		this.dataEntradaTemp = dataEntradaTemp;
+		this.dataSaidaTemp = dataSaidaTemp;
+		this.cliente = cliente;
+		this.funcionario = funcionario;
+		
+	}
+	public Reserva(Integer nPessoas, Double precoDiaria, LocalDate  dataEntrada, LocalDate  dataSaida , Cliente cliente, Funcionario funcionario ) {
+		this.nPessoas = nPessoas;
+		this.precoDiaria = precoDiaria;
+		this.dataEntrada = dataEntrada;
+		this.dataSaida = dataSaida;
+		this.cliente = cliente;
+		this.funcionario = funcionario ;
+		
+	}
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -150,14 +168,6 @@ public class Reserva implements Serializable {
 
 	public void setTotal(Double total) {
 		this.total = total;
-	}
-
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
 	}
 
 	@Override

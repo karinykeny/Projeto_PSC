@@ -47,18 +47,13 @@ public class ReservaController {
 	public String create(Reserva reserva) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
+		
 		LocalDate date1 = LocalDate.parse(DTE);
 		LocalDate date2 = LocalDate.parse(DTS);
-		boolean isBefore = date1.isBefore(date2); // (Before = antes)
-		if(isBefore==false) {
-			return "reserva/listarReservas";
-		}else {
-			reserva.setDataEntrada(date1);
-			reserva.setDataSaida(date2);
-			service.save(reserva);
-			return "reserva/confirmacao";
-		}
-
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
+		service.save(reserva);
+		return "reserva/confirmacao";
 	}
 	
 
@@ -100,7 +95,7 @@ public class ReservaController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("reserva", service.findAll());
+		model.addAttribute("reserva", service.findAll()) ;
 		return "/adm/listReservas";
 	}
 

@@ -1,6 +1,10 @@
 package com.sunshine.PSC.session;
 
-//@Configuration
-//public class SessionConfig extends AbstractSecurityWebApplicationInitializer {
 
-//}
+
+
+public class SessionConfig {
+
+
+}
+
