@@ -14,33 +14,50 @@
 
 				<div class="checkout-header">
 					<h1 class="checkout-title">
-						Pagamento <span class="checkout-price"></span>
+						Pagamento com Cartão <span class="checkout-price"></span>
 					</h1>
+
+
+
 					<div class="form-row col-md-6">
+						<label for="numeroCartao">Numero do Cartao</label> <input
+							type="number" class="form-control" id="numeroCartao"
+							th:field="*{numeroCartao}" placeholder="4111 1111 1111 1111"
+							 required>
+						<div class="invalid-feedback">Por favor, informe um numero
+							valido de cartão</div>
+					</div>
+
+					<div class="form-row col-md-6">
+						<label for="name">Nome Do Titular</label> <input type="text"
+							class="form-control" id="nome" th:field="*{nome}"
+							placeholder="Nome Do titular" required>
+						<div class="invalid-feedback">Por favor, informe um nome
+							válido.</div>
+					</div>
+					<div class="form-row col-md-6">
+						<label for="numeroDeParcelas">Numero de parcelas</label> <input
+							type="number" class="form-control" id="numeroDeParcelas"
+							th:field="*{numeroDeParcelas}" required>
+						<div class="invalid-feedback">Por favor, informe um numero
+							valido de parcelas</div>
+					</div>
+					
+					<div class="form-row col-md-4">
 						<label for="reserva">Reserva</label> <select id="reserva"
 							class="form-control" th:field="*{reserva}">
 							<option value="">Selecione</option>
-							<option th:each="r: ${reservas}" th:value="${r.id}">Reserva</option>
+							<option th:each="r: ${reservas}"
+							 th:value="${r.id}" th:text="${r.id}">Reserva</option>
 
 						</select>
 
 					</div>
 
 
-					<p>
-						<input type="text" class="checkout-input checkout-name"
-							placeholder="Nome do titular"> <input type="text"
-							class="checkout-input checkout-exp" placeholder="MM"> <input
-							class="checkout-input checkout-exp" placeholder="YY">
-					</p>
-					<p>
-						<input type="text" class="checkout-input checkout-card"
-							placeholder="4111 1111 1111 1111"> <input type="text"
-							class="checkout-input checkout-cvc" placeholder="CVC">
-					</p>
-					<p>
-						<input type="submit" value="Purchase" class="checkout-btn">
-					</p>
+
+					
+					<button class="btn btn-warning" type="submit" >Enviar</button>
 			</form>
 
 		</div>
