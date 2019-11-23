@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.service.FuncionarioService;
 
@@ -28,6 +29,11 @@ public class FuncionarioController {
 	    
 		return "funcionario/cadastrarFuncionarios";
 	}
+	
+	@GetMapping("/createFuncionarios")//cadastro de funcionario na area do adm 
+	public String createFuncionarios(Funcionario funcionario) {   
+		return "adm/createFuncionario";
+	}
 
 	@RequestMapping(value = "funcionario/deletar")
 	public String formdeletar() {
@@ -43,6 +49,12 @@ public class FuncionarioController {
 	public String listar(ModelMap model) {
 		model.addAttribute("funcionario", service.findAll());
 		return "/adm/listFuncionarios";
+	}
+	
+	@PostMapping("/seve")//inicio do cadastro de funcionário na area do adm
+	public String seve(Funcionario funcionario) {
+		service.save(funcionario);
+		return "/adm/areaAdm";
 	}
 
 // ====================== METODOS ======================

@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -32,7 +33,7 @@ public class Cliente implements Serializable, UserDetails {
 	private Integer id;
 	@Column(nullable = false, unique = true)
 	private String nome;
-	//@CPF(message = "CPF inválido! não use ")
+	@CPF(message = "CPF inválido! não use ")
 	private String cpf;
 	@Email(message = "E-mail inválido!")
 	private String email;
@@ -44,12 +45,7 @@ public class Cliente implements Serializable, UserDetails {
 	private Funcionario funcionario;
 
 	@ManyToMany
-	@JoinTable( 
-	        name = "clientes_funcoes", 
-	        joinColumns = @JoinColumn(
-	          name = "cliente_id", referencedColumnName = "id"), 
-	        inverseJoinColumns = @JoinColumn(
-	          name = "funcao_id", referencedColumnName = "Descricao"))
+	@JoinTable(name = "clientes_funcoes", joinColumns = @JoinColumn(name = "cliente_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "funcao_id", referencedColumnName = "Descricao"))
 	private List<Funcao> funcoes;
 
 	public Cliente() {
@@ -58,7 +54,7 @@ public class Cliente implements Serializable, UserDetails {
 
 	public Cliente(String nome, String cpf, String email, String senha) {
 		super();
-	
+
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -120,7 +116,7 @@ public class Cliente implements Serializable, UserDetails {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
+
 	public List<Funcao> getFuncoes() {
 		return funcoes;
 	}
@@ -162,37 +158,37 @@ public class Cliente implements Serializable, UserDetails {
 
 	@Override
 	public String getPassword() {
-		
+
 		return this.senha;
 	}
 
 	@Override
 	public String getUsername() {
-		
+
 		return this.cpf;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-	
+
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-	
+
 		return true;
 	}
 
