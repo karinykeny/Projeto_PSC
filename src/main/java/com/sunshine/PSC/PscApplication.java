@@ -70,7 +70,6 @@ public class PscApplication implements CommandLineRunner {
 
 		Reserva r1 = new Reserva(null, 6, null, null, null, null);
 
-		//Reserva r2 = new Reserva(6, 65.00, LocalDate.of(2019, 11, 26), LocalDate.of(2019, 11, 27), c1, f1);	
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
 
 	
