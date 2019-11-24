@@ -1,9 +1,6 @@
 package com.sunshine.PSC;
 
-import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +15,6 @@ import com.sunshine.PSC.dao.ReservaDao;
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.dominio.Pagamento;
-import com.sunshine.PSC.dominio.PagamentoComBoleto;
 import com.sunshine.PSC.dominio.PagamentoComCartao;
 import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.dominio.Reserva;
@@ -69,8 +65,8 @@ public class PscApplication implements CommandLineRunner {
 		funcionarioDao.save(f2);
 
 		Reserva r1 = new Reserva(null, 6, null, null, null, null);
+		Reserva r2 = new Reserva(null, 3, null, null, null, null);
 
-		//Reserva r2 = new Reserva(6, 65.00, LocalDate.of(2019, 11, 26), LocalDate.of(2019, 11, 27), c1, f1);	
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
 
 	
@@ -79,7 +75,7 @@ public class PscApplication implements CommandLineRunner {
 
 		r1.setPagamento(pgt1);
 
-		rdao.save(r1);
+		rdao.saveAll(Arrays.asList(r1,r2));
 	
 
 		/*
