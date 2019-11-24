@@ -51,8 +51,9 @@ public class ReservaController {
 		return "reserva/confirmacao";
 	}
 
-	@GetMapping("/createReservas/{cliente}") // cadastro de reseerva na area do adm
-	public String createReservas(Reserva reserva) {
+	@GetMapping("/createReservas/{id}") // cadastro de reseerva na area do adm
+	public String createReservas(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
+		model.addAttribute("cliente", service.findById(id));
 		return "adm/createReserva";
 	}
 

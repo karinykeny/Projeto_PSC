@@ -83,6 +83,12 @@ public class FuncionarioController {
 
 		return "funcionario/cadastrarFuncionarios";
 	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
+		model.addAttribute("funcionario", service.findById(id));
+		return "adm/editFuncionario";
+	}
 
 	@GetMapping("/deletar/{id}")
 	public String deletarFuncionario(Funcionario funcionario, ModelMap model) throws ObjectNotFoundException {
@@ -97,6 +103,13 @@ public class FuncionarioController {
 		findById(funcionario.getId());
 		service.updateFuncionario(funcionario);
 		return "redirect:/funcionario/listarFuncionarios";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(Funcionario funcionario) throws ObjectNotFoundException {
+		findById(funcionario.getId());
+		service.updateFuncionario(funcionario);
+		return "adm/areaAdm";
 	}
 
 
