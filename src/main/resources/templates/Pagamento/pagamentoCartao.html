@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title>Pagamento com cartao</title>
 </head>
 <body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<div class="container" align="center"
+			style="height: 135vh; width: 50rem; background-color: rgb(243, 239, 188)">
+
+			<form class="checkout" th:action="@{/pagamento/salvar}"
+				th:object="${pagamentoComCartao}" method="POST">
+
+				<div class="checkout-header">
+					<h1 class="checkout-title">
+						Pagamento com Cartão <span class="checkout-price"></span>
+					</h1>
 
 
 
+					<div class="form-row col-md-6">
+						<label for="numeroCartao">Numero do Cartao</label> <input
+							type="number" class="form-control" id="numeroCartao"
+							th:field="*{numeroCartao}" placeholder="4111 1111 1111 1111"
+							 required>
+						<div class="invalid-feedback">Por favor, informe um numero
+							valido de cartão</div>
+					</div>
+
+					<div class="form-row col-md-6">
+						<label for="name">Nome Do Titular</label> <input type="text"
+							class="form-control" id="nome" th:field="*{nome}"
+							placeholder="Nome Do titular" required>
+						<div class="invalid-feedback">Por favor, informe um nome
+							válido.</div>
+					</div>
+					<div class="form-row col-md-6">
+						<label for="numeroDeParcelas">Numero de parcelas</label> <input
+							type="number" class="form-control" id="numeroDeParcelas"
+							th:field="*{numeroDeParcelas}" required>
+						<div class="invalid-feedback">Por favor, informe um numero
+							valido de parcelas</div>
+					</div>
+					
+					<div class="form-row col-md-4">
+						<label for="reserva">Reserva</label> <select id="reserva"
+							class="form-control" th:field="*{reserva}">
+							<option value="">Selecione</option>
+							<option th:each="r: ${reservas}"
+							 th:value="${r.id}" th:text="${r.id}">Reserva</option>
+
+						</select>
+
+					</div>
+
+
+
+					
+					<button class="btn btn-warning" type="submit" >Enviar</button>
+			</form>
+
+		</div>
+	</section>
 </body>
 </html>

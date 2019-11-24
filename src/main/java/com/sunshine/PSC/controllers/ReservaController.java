@@ -83,13 +83,13 @@ public class ReservaController {
 	}
 
 	@GetMapping("/deletar/{id}")
-	public String deletarReserva(Reserva reserva) throws ObjectNotFoundException {
+	public String deletarReserva(Reserva reserva, ModelMap model) throws ObjectNotFoundException {
 		findById(reserva.getId());
 		if (!service.reservaTemCliente(reserva.getId())) {
 			service.deleteReserva(reserva);
 		}
-
-		return "reserva/confirmacao";
+		model.addAttribute("reserva", service.findAll());
+		return "adm/listReservas";
 	}
 
 	@GetMapping("/listar")

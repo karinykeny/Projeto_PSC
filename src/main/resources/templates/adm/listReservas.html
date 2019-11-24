@@ -44,15 +44,16 @@
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
 											th:href="@{/reserva/preupdate/{id} (id=${r.id})}">Editar</a>
-										<a class="delete btn btn-sm btn-danger"
-											th:href="@{/reserva/deletar/{id} (id=${r.id})} "
-											method="POST">Excluir</a>
+										<button class="delete btn btn-sm btn-danger" data-toggle="modal" 
+											data-target="#excluirModal" th:id="${ 'btn_reserva/deletar/' + r.id}"
+											method="POST">Excluir</button>
 									</div></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<div th:replace="componentes/modal :: modal"> </div>
 		</div>
 		<script>
 			function myFunction() {

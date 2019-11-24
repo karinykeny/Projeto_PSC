@@ -92,10 +92,11 @@ public class QuartoController {
 	}
 
 	@GetMapping("/deletar/{id}")
-	public String deletarQuarto(Quarto quarto) throws ObjectNotFoundException {
+	public String deletarQuarto(Quarto quarto, ModelMap model ) throws ObjectNotFoundException {
 		findById(quarto.getId());
 		service.deleteQuarto(quarto);
-		return "quarto/confirmacao";
+		model.addAttribute("quartos", service.findAll());
+		return "/adm/listQuartos";
 	}
 
 	@GetMapping("/listar")

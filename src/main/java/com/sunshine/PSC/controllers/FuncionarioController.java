@@ -85,10 +85,11 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/deletar/{id}")
-	public String deletarFuncionario(Funcionario funcionario) throws ObjectNotFoundException {
+	public String deletarFuncionario(Funcionario funcionario, ModelMap model) throws ObjectNotFoundException {
 		findById(funcionario.getId());
 		service.deleteFuncionario(funcionario);
-		return "funcionario/confirmacao";
+		model.addAttribute("funcionario", service.findAll());
+		return "adm/listFuncionarios";
 	}
 
 	@PostMapping("/editar")
