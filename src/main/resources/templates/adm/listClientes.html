@@ -7,6 +7,8 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
+		<h3>Lista de Clientes</h3>
+		<br/>
 			<form>
 				<div class="row" style="margin: 10px;">
 					<div class="col-sm-4">
@@ -42,7 +44,7 @@
 								<td><span th:text="${cli.email}"></span></td>
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
-											th:href="@{'/{id}(id=${cli.id})}">Editar</a> <button
+											th:href="@{edit/{id}(id=${cli.id})}">Editar</a> <button
 											class="delete btn btn-sm btn-danger" type="button"
 											data-toggle="modal" data-target="#excluirModal"
 											th:id="${ 'btn_clientes/deletar/' + cli.id}">Excluir</button>

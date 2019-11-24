@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.service.QuartoService;
@@ -108,6 +109,19 @@ public class QuartoController {
 	@PostMapping("/seve") //inicio do cadastro de quarto na area do adm
 	public String seve(Quarto quarto) {
 		service.save(quarto);
+		return "/adm/areaAdm";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
+		model.addAttribute("quarto", service.findById(id));
+		return "/adm/editQuarto";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(Quarto quarto) throws ObjectNotFoundException {
+		findById(quarto.getId());
+		service.updateQuarto(quarto);
 		return "/adm/areaAdm";
 	}
 
