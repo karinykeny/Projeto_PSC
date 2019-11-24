@@ -62,12 +62,13 @@ public class ClienteController {
  // ================= DELETE ==================	
 	
 	@GetMapping("/deletar/{id}")
-	public String deletar(Cliente cliente)throws ObjectNotFoundException{
+	public String deletar(Cliente cliente, ModelMap model)throws ObjectNotFoundException{
 		service.findById(cliente.getId());
 			if(!service.clienteTemReserva(cliente.getId())) {
 				service.deleteCliente(cliente);
 			}
-		return "/adm/areaAdm";
+			model.addAttribute("clientes", service.findAll());
+		return "adm/listClientes";
 	}
 	
  // ================= CREATE ==================	
