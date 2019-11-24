@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{ //método de configurações
 		http.csrf().disable().authorizeRequests()//crsf provê vários tipos de segurança para a aplicação
+		
 		/*.antMatchers(HttpMethod.GET, "/").permitAll()//todos os me
 
 

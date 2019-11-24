@@ -42,7 +42,7 @@
 								<td><span th:text="${cli.email}"></span></td>
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
-											th:href="@{/clientes/edit/{id}(id=${cli.id})}">Editar</a> <a
+											th:href="@{'/{id}(id=${cli.id})}">Editar</a> <a
 											class="delete btn btn-sm btn-danger" type="button"
 											data-toggle="modal" data-target="#excluirModal"
 											th:id="${ 'btn_clientes/deletar/' + cli.id}">Excluir</a>
