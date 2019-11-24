@@ -11,22 +11,20 @@
 			<br />
 			<h2>Cadastro de Reservas</h2>
 			<hr />
-			<form th:action="@{/reserva/seve}" th:object="${cliente}"
+			<form th:action="@{/reserva/seve}" th:object="${reserva}"
 				method="POST">
 
-				<div th:replace="fragments/validacao :: validacao"></div>
+				<!-- <div th:replace="fragments/validacao :: validacao"></div> -->
 				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
 
 				<div class="form-row col-md-6">
 					<label for="name">Nome do cliente</label> <input type="text"
-						th:field="*{cliente.nome}" class="form-control" id="cliente.nome"
-						placeholder="Nome Completo"
-						th:classappend="${#fields.hasErrors('cliente.nome')} ? 'is-invalid'"
-						required>
+						th:field="*{reserva.getCliente().getNome()}" class="form-control" id="reserva.cliente.nome"
+						placeholder="Nome Completo">
 					<div class="invalid-feedback">Por favor, informe um nome
 						válido.</div>
 				</div>
-				<br />
+				  <br />
 				<div class="form-row col-md-6">
 					<label for="exampleFormControlSelect1">Número de pessoas</label> <select
 						class="form-control" id="exampleFormControlSelect1"
