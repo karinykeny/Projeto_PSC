@@ -51,7 +51,7 @@ public class ReservaController {
 		return "reserva/confirmacao";
 	}
 
-	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
+	@GetMapping("/createReservas/{cliente}") // cadastro de reseerva na area do adm
 	public String createReservas(Reserva reserva) {
 		return "adm/createReserva";
 	}

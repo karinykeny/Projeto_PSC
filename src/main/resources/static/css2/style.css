@@ -68,13 +68,13 @@ body {
 
 .sidebar ul{
     list-style: none;
-    padding: 10px 0px;
+    padding: 1px 0px;
 }
 
 .sidebar ul li a{
     display: block;
     color:#1a1a1a;
-    padding: 10px 15px;
+    padding: 5px 15px;
     white-space: nowrap;
 }
 

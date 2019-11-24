@@ -36,6 +36,12 @@ public class ClienteController {
 		return "/adm/listClientes";
 	}
 	
+	@GetMapping("/listaDeClientes")
+	public String listaDeClientes(ModelMap model) {
+		model.addAttribute("clientes", service.findAll());
+		return "/adm/preReserva";
+	}
+	
 	@GetMapping("/area")
 	public String area() {
 		return "/cliente/areaCliente";
