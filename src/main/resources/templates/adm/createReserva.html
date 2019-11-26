@@ -2,30 +2,69 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 
 	<section class="layout-content" layout:fragment="corpo">
-		<div class="container" align="center"
+		<div class="container"
 			style="height: 100vh; width: 50rem; background-color: rgb(243, 239, 188)">
 			<br />
 			<h2>Cadastro de Reservas</h2>
 			<hr />
 			<form th:action="@{/reserva/seve}" th:object="${reserva}"
 				method="POST">
-
-				<!-- <div th:replace="fragments/validacao :: validacao"></div> -->
-				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
-
-				<div class="form-row col-md-6">
-					<label for="name">Nome do cliente</label> <input type="text"
-						th:field="*{reserva.getCliente().getNome()}" class="form-control" id="reserva.cliente.nome"
-						placeholder="Nome Completo">
-					<div class="invalid-feedback">Por favor, informe um nome
-						válido.</div>
+				<div class="form-row col-md-4">
+					<label for="cliente">Cliente</label> <select id="cliente"
+						class="form-control" th:field="*{cliente}">
+						<option value="">Selecione</option>
+						<option th:each="c: ${clientes}" th:value="${c.id}"
+							th:text="${c.cpf}" selected="selected">Cliente</option>
+					</select>
 				</div>
-				  <br />
-				<div class="form-row col-md-6">
+				<div class="row" style="margin: 10px 0;">
+					<div class="form-row col-4">
+						<label for="example-date-input" class="col-form-label">Check-in</label>
+						<input class="form-control" type="date" id="datadeentrada"
+							th:field="*{dataEntradaTemp}"
+							th:classappend="${#fields.hasErrors('dataEntradaTemp')} ? 'is-invalid'"
+							required>
+					</div>
+					<div class="form-row col-4">
+						<label for="example-date-input" class="col-form-label">Check-out</label>
+						<input class="form-control" type="date" id="datadesaida"
+							th:field="*{dataSaidaTemp}"
+							th:classappend="${#fields.hasErrors('dataSaidaTemp')} ? 'is-invalid'"
+							required>
+					</div>
+				</div>
+				<br />
+				<div class="input-group mb-3 col-md-6">
+					<label>Preço diaria:</label>&emsp;
+					<div class="input-group-prepend">
+						<span class="input-group-text">$</span>
+					</div>
+					<input type="text" class="form-control" id="precoDiaria"
+						th:field="*{precoDiaria}"
+						th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'"
+						required>
+					<div class="input-group-append"></div>
+				</div>
+				<div class="input-group mb-3 col-md-6">
+					<label>Preço Total:</label>&emsp;
+					<div class="input-group-prepend">
+						<span class="input-group-text">$</span>
+					</div>
+					<input type="text" class="form-control" id="total"
+						th:field="*{total}"
+						th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'"
+						required>
+					<div class="input-group-append"></div>
+				</div>
+				<div class="form-row col-md-3">
 					<label for="exampleFormControlSelect1">Número de pessoas</label> <select
 						class="form-control" id="exampleFormControlSelect1"
 						th:field="*{nPessoas}">
@@ -34,51 +73,24 @@
 					</select>
 				</div>
 				<br />
-				<div class="form-row col-md-6">
-					<label>Data de entrada</label> <input type="date"
-						id="datadeentrada" th:field="*{dataEntradaTemp}"
-						th:classappend="${#fields.hasErrors('dataEntradaTemp')} ? 'is-invalid'"
-						required>
-					<div class="invalid-feedback">Por favor, informe uma
-						quatidade válida.</div>
-				</div>
-				</br>
-				<div class="form-group col-md-9">
-					<label>Data de saida</label> <input type="date" id="datadesaida"
-						th:field="*{dataSaidaTemp}"
-						th:classappend="${#fields.hasErrors('dataSaidaTemp')} ? 'is-invalid'"
-						required>
-					<div class="invalid-feedback">informação inválida.</div>
-				</div>
-				<br />
-				<div class="input-group mb-3 col-md-6">
-					<label>Preço da diaria</label>
-					<div class="input-group-prepend">
-						<span class="input-group-text">$</span>
-					</div>
-					<input type="text" class="form-control"
-						aria-label="Amount (to the nearest dollar)"
-						th:field="*{precoDiaria}"
-						th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'"
-						required>
-					<div class="input-group-append">
-						<span class="input-group-text">,00</span>
-					</div>
-				</div>
-				<div class="form-group col-md-6">
-					<label>Preço da diaria</label> <input type="number" id="preco"
-						th:field="*{precoDiaria}"
-						th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'"
-						required>
-					<div class="invalid-feedback">informação inválida.</div>
-				</div>
-				</br>
 				<hr />
-				<input type="hidden" id="id" name="id" value="" />
-				<button class="btn btn-warning" type="submit">Enviar</button>
-				<button type="reset" class="btn btn-warning">Limpar</button>
+				<div
+					style="margin: 10px 10; padding: 10px; display: flex; justify-content: flex-end;">
+					<input type="hidden" id="id" name="id" value="" />
+					<button class="btn btn-warning" type="submit">Enviar</button>
+					&ensp;
+					<button type="reset" class="btn btn-warning">Limpar</button>
+				</div>
 				<br />
 			</form>
+			<script type="text/javascript">
+				jQuery(function($) {
+					$("#precoDiaria, #total").mask('#.##0,00', {
+						reverse : true
+					});
+
+				});
+			</script>
 	</section>
 </body>
 </html>

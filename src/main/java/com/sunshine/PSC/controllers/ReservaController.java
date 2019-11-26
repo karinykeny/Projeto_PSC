@@ -36,6 +36,12 @@ public class ReservaController {
 		return "reserva/cadastrarReservas";
 
 	}
+	
+	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
+	public String createReservas(Reserva reserva, ModelMap model) {
+		model.addAttribute("clientes", cService.findAll());
+		return "adm/createReserva";
+	}
 
 	// @RequestMapping("reserva/create")
 	@PostMapping("/create")
@@ -49,12 +55,6 @@ public class ReservaController {
 		reserva.setDataSaida(date2);
 		service.save(reserva);
 		return "reserva/confirmacao";
-	}
-
-	@GetMapping("/createReservas/{id}") // cadastro de reseerva na area do adm
-	public String createReservas(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
-		model.addAttribute("cliente", service.findById(id));
-		return "adm/createReserva";
 	}
 
 	@GetMapping("/listarReservas")
@@ -99,8 +99,21 @@ public class ReservaController {
 		return "/adm/listReservas";
 	}
 
-	@PostMapping("/seve") // inicio do cadastro de reserva na area do adm
-	public String seve(Reserva reserva) {
+	//@PostMapping("/seve") // inicio do cadastro de reserva na area do adm
+	//public String seve(Reserva reserva) {
+	//	service.save(reserva);
+	//	return "/adm/areaAdm";
+	//}
+	
+	@PostMapping("/seve")
+	public String seve(Reserva reserva) throws ParseException {
+		String DTE = reserva.getDataEntradaTemp();
+		String DTS = reserva.getDataSaidaTemp();
+
+		LocalDate date1 = LocalDate.parse(DTE);
+		LocalDate date2 = LocalDate.parse(DTS);
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
 		service.save(reserva);
 		return "/adm/areaAdm";
 	}
