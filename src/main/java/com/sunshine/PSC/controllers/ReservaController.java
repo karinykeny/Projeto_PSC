@@ -49,6 +49,7 @@ public class ReservaController {
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
 		service.save(reserva);
+		
 		return "reserva/confirmacao";
 	}
 	

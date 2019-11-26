@@ -1,6 +1,8 @@
 package com.sunshine.PSC.controllers;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sunshine.PSC.dominio.Pagamento;
 import com.sunshine.PSC.dominio.PagamentoComCartao;
 import com.sunshine.PSC.dominio.Reserva;
+import com.sunshine.PSC.dominio.enums.EstadoPagamento;
 import com.sunshine.PSC.service.PagamentoService;
 import com.sunshine.PSC.service.ReservaService;
 
@@ -35,6 +39,12 @@ public class PagamentoController {
 
 	@ModelAttribute("reservas")
 	public List<Reserva> listaDeReservas() {
-		return reservaService.findAll();
+		//List<Reserva> lista = reservaService.findAll().stream().filter(p -> p.getPagamento().getEstado() == EstadoPagamento.PENDENTE).collect(Collectors.toList());
+		List<Pagamento> pgtList = pagamentoService.findAll().stream().filter(p -> p.getEstado() == EstadoPagamento.QUITADO ).collect(Collectors.toList());
+		
+	    //List<Reserva> lista = reservaService.findAll().stream().filter(r -> r.getPagamento().getEstado());
+		
+		return lista; 
+		//return reservaService.findAll();
 	}
 }

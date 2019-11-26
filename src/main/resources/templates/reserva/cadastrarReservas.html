@@ -44,7 +44,7 @@
 					</br>
 					<div>
 					
-				  <select th:field="*{cliente}">
+				   <select th:field="*{cliente}">
                      <option value=""> -- </option>
                      <option th:each="cliente : ${clientes}" th:value="${cliente.Id}" th:utext="${cliente.nome}"/>
                   </select>

@@ -39,7 +39,7 @@ public class PagamentoComCartao extends Pagamento {
 		return numeroCartao;
 	}
 
-	public void setNumeroCartão(Integer numeroCartao) {
+	public void setNumeroCartao(Integer numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 
