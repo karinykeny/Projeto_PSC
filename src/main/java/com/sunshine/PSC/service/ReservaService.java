@@ -48,7 +48,9 @@ public class ReservaService {
 
 	public Reserva calcularTotal(Reserva reserva) {
 		Period periodo;
-		Integer totalDias = Period.between(reserva.getDataEntrada(), reserva.getDataSaida()).getDays();
+		Integer totalDias = (Period.between(reserva.getDataEntrada(), reserva.getDataSaida()).getYears() * 365)
+				+ (Period.between(reserva.getDataEntrada(), reserva.getDataSaida()).getMonths() * 30)
+				+ (Period.between(reserva.getDataEntrada(), reserva.getDataSaida()).getDays());
 		reserva.setTotal((Double) (totalDias * reserva.getPrecoDiaria()));
 		return reserva;
 	}

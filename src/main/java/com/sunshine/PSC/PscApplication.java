@@ -64,7 +64,7 @@ public class PscApplication implements CommandLineRunner {
 		funcionarioDao.save(f1);
 		funcionarioDao.save(f2);
 
-		Reserva r1 = new Reserva(null, 6, null, null, null, null);
+		Reserva r1 = new Reserva(null, 6, null, null, 10.0, null);
 		Reserva r2 = new Reserva(null, 3, null, null, null, null);
 
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
