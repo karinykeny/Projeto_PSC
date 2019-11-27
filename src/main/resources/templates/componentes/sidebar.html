@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../../static/css2/style.css"rel="stylesheet" th:href="@{/css2/style.css}"/>
+<link href="../../static/css2/style.css" rel="stylesheet"
+	th:href="@{/css2/style.css}" />
 </head>
 <body>
 	<nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
@@ -12,31 +13,47 @@
 				th:href="@{/clientes/create}"> <i class="oi oi-spreadsheet"></i>
 					<span>Cadastrar Clientes</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/clientes/listar"> <i class="oi oi-spreadsheet"></i>
-					<span>Listar Clientes</span>
+			<li class="nav-item"><a class="nav-link" href="/clientes/listar">
+					<i class="oi oi-spreadsheet"></i> <span>Listar Clientes</span>
 			</a></li>
 		</ul>
 
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active">Funcionários</span></li>
-			<li class="nav-item"><a class="nav-link" href="/funcionario/listar">
-					<i class="oi oi-spreadsheet"></i> <span>Listar Funcionários </span>
+			<li class="nav-item"><a class="nav-link"
+				href="/funcionario/createFuncionarios"> <i
+					class="oi oi-spreadsheet"></i> <span>Cadastrar Funcionários
+				</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/funcionario/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar
+						Funcionários </span>
 			</a></li>
 		</ul>
 
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active">Quartos</span></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/quarto/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar Quartos
-				</span>
+			<li class="nav-item"><a class="nav-link" href="/quarto/cadastrarQuartos"> <i class="oi oi-spreadsheet"></i>
+					<span>Cadastrar Quartos </span>	
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/quarto/listar">
+					<i class="oi oi-spreadsheet"></i> <span>Listar Quartos </span>
 			</a></li>
 		</ul>
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active">Reservas</span></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/reserva/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar Reservas
-				</span>
+				href="/clientes/listaDeClientes"> <i class="oi oi-spreadsheet"></i>
+					<span>Cadastrar Reservas </span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/reserva/listar">
+					<i class="oi oi-spreadsheet"></i> <span>Listar Reservas </span>
+			</a></li>
+		</ul>
+		<ul class="nav nav-pills">
+			<li class="nav-item"><span class="nav-link active">Pagamentos</span></li>
+			<li class="nav-item"><a class="nav-link" href="https://acesso.pagseguro.uol.com.br/">
+					<i class="oi oi-spreadsheet"></i> <span>Consultar</span>
 			</a></li>
 		</ul>
 	</nav>

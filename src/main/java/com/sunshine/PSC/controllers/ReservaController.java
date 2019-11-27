@@ -30,12 +30,17 @@ public class ReservaController {
 
 	@GetMapping("/cadastrarReservas")
 	public String form(Reserva reserva, ModelMap model) {
-	
-		model.addAttribute("clientes", cService.findAll() );
-		
+
+		model.addAttribute("clientes", cService.findAll());
+
 		return "reserva/cadastrarReservas";
-		
-		
+
+	}
+	
+	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
+	public String createReservas(Reserva reserva, ModelMap model) {
+		model.addAttribute("clientes", cService.findAll());
+		return "adm/createReserva";
 	}
 
 	// @RequestMapping("reserva/create")
@@ -43,7 +48,7 @@ public class ReservaController {
 	public String create(Reserva reserva) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
-		
+
 		LocalDate date1 = LocalDate.parse(DTE);
 		LocalDate date2 = LocalDate.parse(DTS);
 		reserva.setDataEntrada(date1);
@@ -52,7 +57,6 @@ public class ReservaController {
 		
 		return "reserva/confirmacao";
 	}
-	
 
 	@GetMapping("/listarReservas")
 	public String findAll(ModelMap model) {
@@ -70,7 +74,7 @@ public class ReservaController {
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("reserva", service.findById(id));
 
-		return "reserva/cadastrarReservas";
+		return "redirect:/reserva/createReservas";
 	}
 
 	@PostMapping("/editar")
@@ -89,11 +93,30 @@ public class ReservaController {
 		model.addAttribute("reserva", service.findAll());
 		return "adm/listReservas";
 	}
-	
+
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("reserva", service.findAll()) ;
+		model.addAttribute("reserva", service.findAll());
 		return "/adm/listReservas";
+	}
+
+	//@PostMapping("/seve") // inicio do cadastro de reserva na area do adm
+	//public String seve(Reserva reserva) {
+	//	service.save(reserva);
+	//	return "/adm/areaAdm";
+	//}
+	
+	@PostMapping("/seve")
+	public String seve(Reserva reserva) throws ParseException {
+		String DTE = reserva.getDataEntradaTemp();
+		String DTS = reserva.getDataSaidaTemp();
+
+		LocalDate date1 = LocalDate.parse(DTE);
+		LocalDate date2 = LocalDate.parse(DTS);
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
+		service.save(reserva);
+		return "/adm/areaAdm";
 	}
 
 }

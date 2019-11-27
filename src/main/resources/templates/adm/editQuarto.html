@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html layout:decorate="~{layoutAdm}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container" align="center"
+			style="height: 100vh; width: 50rem; background-color: rgb(243, 239, 188)">
+			<br />
+			<h2>Cadastro de Quarto</h2>
+			<hr />
+			<form th:action="@{/quarto/edit}" th:object="${quarto}" method="POST">
+
+				<div th:replace="fragments/validacao :: validacao"></div>
+				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
+
+
+				<div class="form-row col-md-6">
+					<label for="name">Nome do quarto</label> <input type="text"
+						class="form-control" id="nomequarto" placeholder="Nome do quarto"
+						th:field="*{nomeQuarto}"
+						th:classappend="${#fields.hasErrors('nomeQuarto')} ? 'is-invalid'"
+						required>
+					<div class="invalid-feedback">Por favor, informe um nome
+						válido.</div>
+				</div>
+				<br />
+				<div class="form-row col-md-6">
+					<label for="exampleFormControlSelect1">Quantidade de
+						pessoas</label> <select class="form-control"
+						id="exampleFormControlSelect1" th:field="*{qtdPessoas}">
+						<option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}"
+							th:text="${i}"></option>
+					</select>
+				</div>
+				<br />
+				<div class="form-row col-md-6">
+					<label for="exampleFormControlSelect1">Tipo de cama</label> <select
+						class="form-control" id="rows0.variety" name="rows[0].variety" th:field="*{tipoDeCama}">						
+						<option selected="selected" value="Solteiro">Solteiro</option>
+						<option value="Casal">Casal</option>
+						<option value="Casal/Solteiro">Misto</option>
+					</select>
+				</div>
+				<br />
+				<div class="form-row col-md-6">
+				<label >Status</label>
+					<select name="status" class="form-control">
+						<option
+							th:each="statusOpt : ${T(com.sunshine.PSC.dominio.enums.StatusQuarto).values()}"
+							th:value="${statusOpt}" th:text="${statusOpt}"></option>
+						<!-- Aqui traz um select diretamente da classe enum Status Quarto, já atribuindo o value e o text de acordo com o Objeto statusOpt e sendo referenciado pelo name(atributo da classe quarto) no começo do select -->
+					</select>
+				</div>
+				<br />
+				<hr />
+				<input type="hidden" id="id" name="id" value="" />
+				<button class="btn btn-warning" type="submit">Enviar</button>
+				<button type="reset" class="btn btn-warning">Limpar</button>
+				<br />
+			</form>
+		</div>
+	</section>
+</body>
+</html>

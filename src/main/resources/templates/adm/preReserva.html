@@ -7,21 +7,18 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
-		<h3>Lista de Clientes</h3>
+		<h2>Selecione um cliente para reserva.</h2>
 		<br/>
 			<form>
-				<div class="row" style="margin: 10px;">
+				<div class="row" >
 					<div class="col-sm-4">
 						<input type="text" class="form-control " id="myInput"
 							onkeyup="myFunction()"
 							placeholder="Procure pelo CPF (000.000.000-00)">
 					</div>
-					<div>
-						<a th:href="@{/clientes/create}" class="btn btn-warning">Cadastrar
-							Cliente</a>
-					</div>
 				</div>
 			</form>
+			<br/>
 			<div>
 				<div class="table-responsive">
 					<table
@@ -29,25 +26,18 @@
 						id="myTable">
 						<thead class="thead-dark">
 							<tr class="header">
-								<th>Id</th>
-								<th>Nome</th>
-								<th>CPF</th>
-								<th>E-mail</th>
+								<th>CPF Cliente</th>
+								<th>Nome Cliente</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="cli : ${clientes}">
-								<td><span th:text="${cli.id}"></span></td>
-								<td><span th:text="${cli.nome}"></span></td>
 								<td><span th:text="${cli.cpf}"></span></td>
-								<td><span th:text="${cli.email}"></span></td>
+								<td><span th:text="${cli.nome}"></span></td>
 								<td align="center"><div class="btn-group pull-right">
-										<a class="btn btn-sm btn-warning"
-											th:href="@{edit/{id}(id=${cli.id})}">Editar</a> <button
-											class="delete btn btn-sm btn-danger" type="button"
-											data-toggle="modal" data-target="#excluirModal"
-											th:id="${ 'btn_clientes/deletar/' + cli.id}">Excluir</button>
+										<a class="btn btn-sm btn-warning" type="button"
+											th:href="@{/reserva/createReservas}">Reserva</a>
 									</div></td>
 							</tr>
 						</tbody>
@@ -79,7 +69,7 @@
 				y = 0;
 				// Percorra todas as linhas da tabela e oculte aqueles que não correspondem à consulta de pesquisa
 				for (i = 0; i < tr.length; i++) {
-					td = tr[i].getElementsByTagName("td")[2];
+					td = tr[i].getElementsByTagName("td")[0];
 					if (td) {
 						txtValue = td.textContent || td.innerText;
 						if (txtValue.toUpperCase().indexOf(filter) > -1) {

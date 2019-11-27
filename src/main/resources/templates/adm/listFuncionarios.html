@@ -7,6 +7,8 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
+		<h3>Lista de Funcinários</h3>
+		<br/>
 			<form>
 				<div class="row" style="margin: 10px;">
 					<div class="col-sm-4">
@@ -15,24 +17,24 @@
 							placeholder="Procure pelo CPF (000.000.000-00)">
 					</div>
 					<div>
-						<a th:href="@{cadastrarFuncionarios}"
+						<a th:href="@{/funcionario/createFuncionarios}"
 							class="btn btn-warning">Cadastrar Funcionário</a>
 					</div>
 				</div>
-
 			</form>
 			<div>
 				<div class="table-responsive">
-					<table class="table table-sm table-striped table-hover table-bordered"
+					<table
+						class="table table-sm table-striped table-hover table-bordered"
 						id="myTable">
 						<thead class="thead-dark">
-							<tr  class="header">
-								<td>Nome</td>
-								<td>CPF</td>
-								<td>Email</td>
-								<td>Senha</td>
-								<td>Telefone</td>
-								<td></td>
+							<tr class="header">
+								<th>Nome</th>
+								<th>CPF</th>
+								<th>Email</th>
+								<th>Senha</th>
+								<th>Telefone</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +46,7 @@
 								<td><span th:text="${f.telefone}"></span></td>
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
-											th:href="@{preupdate/{id}(id=${f.id})}">Editar</a> 
+											th:href="@{preupdate/{Id} (Id=${f.id})}">Editar</a> 
 											
 										<button class="delete btn btn-sm btn-danger" type="button" 
 										        data-toggle="modal" data-target="#excluirModal" 
@@ -56,9 +58,21 @@
 					</table>
 				</div>
 			</div>
-			<div th:replace="componentes/modal :: modal"> </div>
 		</div>
-		<script>
+		<div th:replace="componentes/modal :: modal"></div>
+		<script type="text/javascript">
+			var url = '';
+
+			$('button[id*="btn_"]').click(
+					function() {
+						url = "http://localhost:8080/"
+								+ $(this).attr('id').split("_")[1];
+					});
+
+			$('#ok').click(function() {
+				document.location.href = url;
+			});
+
 			function myFunction() {
 				// Declarar variáveis
 				var input, filter, table, tr, td, i, txtValue;
@@ -83,4 +97,5 @@
 		</script>
 	</section>
 </body>
+
 </html>

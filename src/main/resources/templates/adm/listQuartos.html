@@ -7,6 +7,8 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
+		<h3>Lista de Quartos</h3>
+		<br/>
 			<form>
 				<div class="row" style="margin: 10px;">
 					<div class="col-sm-4">
@@ -37,7 +39,7 @@
 							<td><span th:text="${q.tipoDeCama}"></span></td>
 							<td><span th:text="${q.status}"></span></td>
 							<td align="center"><div class="btn-group pull-right">
-									<a class="btn btn-sm btn-warning" th:href="@{/quarto/preupdate/{id} (id=${q.id})}">Editar</a> 
+									<a class="btn btn-sm btn-warning" th:href="@{preupdate/{Id} (Id=${q.id})}">Editar</a> 
 									<!--<a class="delete btn btn-sm btn-danger"  th:id="${ 'btn_/quarto/deletar/' +q.id}" method="POST" data-toggle="modal" data-target="#myModal">Excluir</a>-->	
 									<button class="delete btn btn-sm btn-danger"  th:id="${ 'btn_quarto/deletar/' +q.id}" method="POST" type="button" data-toggle="modal" data-target="#excluirModal">Excluir</button>
 								</div>

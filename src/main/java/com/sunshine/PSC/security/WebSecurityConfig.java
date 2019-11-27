@@ -43,10 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				 * de Autenticação
 				 */
 
-
-				// .anyRequest().authenticated() //para todas as demais requisições precisará de
-				// Autenticação*/
-
 				// .anyRequest().authenticated() //para todas as demais requisições precisará de
 				// Autenticação
 

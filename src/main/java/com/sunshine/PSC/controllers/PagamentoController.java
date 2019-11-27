@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +19,12 @@ import com.sunshine.PSC.dominio.enums.EstadoPagamento;
 import com.sunshine.PSC.service.PagamentoService;
 import com.sunshine.PSC.service.ReservaService;
 
+
+
 @Controller
 @RequestMapping("/pagamento")
 public class PagamentoController {
+
 	@Autowired
 	private PagamentoService pagamentoService;
 	@Autowired
@@ -31,6 +35,12 @@ public class PagamentoController {
 		return "Pagamento/pagamentoCartao";
 	}
 
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("pagamento", pagamentoService.findAll());
+		return "/adm/listPagamentos";
+	}
+
 	@PostMapping("/salvar")
 	public String salvar(PagamentoComCartao pagamento) {
 		pagamentoService.save(pagamento);
@@ -39,7 +49,7 @@ public class PagamentoController {
 
 	@ModelAttribute("reservas")
 	public List<Reserva> listaDeReservas() {
-		//List<Reserva> lista = reservaService.findAll().stream().filter(p -> p.getPagamento().getEstado() == EstadoPagamento.PENDENTE).collect(Collectors.toList());
+		List<Reserva> lista = reservaService.findAll().stream().filter(p -> p.getPagamento().getEstado() == EstadoPagamento.PENDENTE).collect(Collectors.toList());
 		List<Pagamento> pgtList = pagamentoService.findAll().stream().filter(p -> p.getEstado() == EstadoPagamento.QUITADO ).collect(Collectors.toList());
 		
 	    //List<Reserva> lista = reservaService.findAll().stream().filter(r -> r.getPagamento().getEstado());

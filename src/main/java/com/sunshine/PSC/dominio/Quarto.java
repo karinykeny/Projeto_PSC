@@ -25,7 +25,7 @@ public class Quarto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotBlank(message = "O nome do quarto é obrigatório.")
-	@Size(min = 3, max = 10, message = "O nome do quarto deve ter entre {min} e {max} caracteres")
+	@Size(min = 3, max = 50, message = "O nome do quarto deve ter entre {min} e {max} caracteres")
 	private String nomeQuarto;
 	@NumberFormat
 	private Integer qtdPessoas;

@@ -9,8 +9,33 @@
 		<div class="container" align="center"
 			style="height: 135vh; width: 50rem; background-color: rgb(243, 239, 188)">
 
-			<form class="checkout" th:action="@{/pagamento/salvar}"
-				th:object="${pagamentoComCartao}" method="POST">
+			<form method="post" target="pagseguro"
+				action="https://pagseguro.uol.com.br/v2/checkout/payment.html">
+
+				<!-- Campos obrigatórios -->
+				<input name="receiverEmail" type="hidden"
+					value="karinykeny@gmail.com">
+				<!-- Em value colocar um email válido -->
+				<input name="currency" type="hidden" value="BRL">
+				<!-- Em value: No momento, a única opção disponível é BRL (Real). -->
+
+				<!-- Itens do pagamento (ao menos um item é obrigatório) -->
+				<input name="itemId1" type="hidden" value="0001">
+				<!-- Em value: Identificam os iten sendo pago -->
+				<input name="itemDescription1" type="hidden"
+					value="Apartamento Standard">
+				<!-- Em value: Descrições dos itens -->
+				<input name="itemAmount1" type="hidden" value="200.00">
+				<!-- Em value: Valores unitários dos itens -->
+				<input name="itemQuantity1" type="hidden" value="3">
+				<!-- Em value: IQuantidades dos itens -->
+				<input name="itemWeight1" type="hidden" value="0000">
+				<!-- Em value: Pesos dos itens, nesse caso é passado 0000 -->
+
+				<!-- submit do form (obrigatório) -->
+				<input alt="Pague com PagSeguro" name="submit" type="image"
+					src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif" />
+
 
 				<div class="checkout-header">
 					<h1 class="checkout-title">
@@ -58,6 +83,7 @@
 
 					
 					<button class="btn btn-warning" type="submit" >Enviar</button>
+
 			</form>
 
 		</div>
