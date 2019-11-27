@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,13 +28,13 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	private Integer nPessoas;
 
-	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	@FutureOrPresent(message = " a data deve ser atual ou futura !")
 	private LocalDate dataEntrada;
 
-	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	@Future(message = " a data deve ser atual ou futura !")
 	private LocalDate dataSaida;
 
 	private Double precoDiaria;

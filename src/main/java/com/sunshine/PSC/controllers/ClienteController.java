@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
@@ -81,14 +82,16 @@ public class ClienteController {
 	// ================= CREATE ==================
 
 	@PostMapping("/Salvar")
-	public String salvar(Cliente cliente) {
+	public String salvar(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
+		attr.addFlashAttribute("sucess", "cliente inserido com sucesso");
 		return "/cliente/areaCliente";
 	}
 
 	@PostMapping("/seve")
-	public String seve(Cliente cliente) {
+	public String seve(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
+		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "/adm/areaAdm";
 	}
 

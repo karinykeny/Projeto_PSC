@@ -3,9 +3,12 @@ package com.sunshine.PSC.controllers;
 import java.text.ParseException;
 import java.time.LocalDate;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,16 +39,15 @@ public class ReservaController {
 		return "reserva/cadastrarReservas";
 
 	}
-	
+
 	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
 	public String createReservas(Reserva reserva, ModelMap model) {
 		model.addAttribute("clientes", cService.findAll());
 		return "adm/createReserva";
 	}
 
-	// @RequestMapping("reserva/create")
 	@PostMapping("/create")
-	public String create(Reserva reserva) throws ParseException {
+	public String create(@Valid Reserva reserva, BindingResult result) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
 
@@ -53,8 +55,12 @@ public class ReservaController {
 		LocalDate date2 = LocalDate.parse(DTS);
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
+
+		if (result.hasErrors()) {
+			return "adm/createReserva";
+		}
 		service.save(reserva);
-		
+
 		return "reserva/confirmacao";
 	}
 
@@ -78,8 +84,20 @@ public class ReservaController {
 	}
 
 	@PostMapping("/editar")
-	public String updateReserva(Reserva reserva) throws ObjectNotFoundException {
+	public String updateReserva(@Valid Reserva reserva, BindingResult result) throws ObjectNotFoundException {
 		findById(reserva.getId());
+
+		String DTE = reserva.getDataEntradaTemp();
+		String DTS = reserva.getDataSaidaTemp();
+
+		LocalDate date1 = LocalDate.parse(DTE);
+		LocalDate date2 = LocalDate.parse(DTS);
+		reserva.setDataEntrada(date1);
+		reserva.setDataSaida(date2);
+
+		if (result.hasErrors()) {
+			return "adm/createReserva";
+		}
 		service.updateReserva(reserva);
 		return "redirect:/reserva/listarReservas";
 	}
@@ -100,14 +118,14 @@ public class ReservaController {
 		return "/adm/listReservas";
 	}
 
-	//@PostMapping("/seve") // inicio do cadastro de reserva na area do adm
-	//public String seve(Reserva reserva) {
-	//	service.save(reserva);
-	//	return "/adm/areaAdm";
-	//}
-	
+	// @PostMapping("/seve") // inicio do cadastro de reserva na area do adm
+	// public String seve(Reserva reserva) {
+	// service.save(reserva);
+	// return "/adm/areaAdm";
+	// }
+
 	@PostMapping("/seve")
-	public String seve(Reserva reserva) throws ParseException {
+	public String seve(@Valid Reserva reserva, BindingResult result) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
 
@@ -115,6 +133,10 @@ public class ReservaController {
 		LocalDate date2 = LocalDate.parse(DTS);
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
+
+		if (result.hasErrors()) {
+			return "adm/createReserva";
+		}
 		service.save(reserva);
 		return "/adm/areaAdm";
 	}

@@ -4,55 +4,53 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<section class="layout-content"  layout:fragment="corpo">
+	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
 			<form>
-				<div class="row" style="margin:10px;">
+				<div class="row" style="margin: 10px;">
 					<div class="colcol-sm-5">
-						<input  type="text" class="form-control " placeholder="Pesquisar"> &nbsp;
+						<input type="text" class="form-control " placeholder="Pesquisar">
+						&nbsp;
 					</div>
 					&nbsp;&nbsp;
 					<div class="colcol-sm-3">
-						<button type="submit" class="btn btn-warning" >Pesquisar</button>
+						<button type="submit" class="btn btn-warning">Pesquisar</button>
 					</div>
 					&nbsp;&nbsp;
 					<div class="colcol-sm-3">
-						<a href="/reserva/cadastrarReservas" class="btn btn-warning">Realizar Reserva</a>
+						<a href="/reserva/cadastrarReservas" class="btn btn-warning">Realizar
+							Reserva</a>
 					</div>
-					</div>
+				</div>
 			</form>
 			<div>
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
 							<th>Numero de pessoas</th>
-			<th>Data de entrada</th>
-			<th>Data de saida</th>
-			<th>valor da diaria</th>
-			<th>valor total da reserva</th>
-			<th></th>
+							<th>Data de entrada</th>
+							<th>Data de saida</th>
+							<th>valor da diaria</th>
+							<th>valor total da reserva</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="r : ${reservas}">
-							
+
 							<td><span th:text="${r.nPessoas}"></span></td>
 							<td><span th:text="${r.dataEntrada}"></span></td>
 							<td><span th:text="${r.dataSaida}"></span></td>
 							<td><span th:text="${r.precoDiaria}"></span></td>
 							<td><span th:text="${r.total}"></span></td>
-							
-						  	<td>	
-								<a th:href="@{preupdate/{Id} (Id=${r.id})}">
-								<span title="Editar">editar</span>
-								</a>
-							</td>	
-							<td>
-								<a th:href="@{deletar/{Id} (Id=${r.id})} " method="POST">
-								<span title="Deletar">deletar</span>
-								</a>
-							</td>
+
+							<td><a th:href="@{preupdate/{Id} (Id=${r.id})}"> <span
+									title="Editar">editar</span>
+							</a></td>
+							<td><a th:href="@{deletar/{Id} (Id=${r.id})} " method="POST">
+									<span title="Deletar">deletar</span>
+							</a></td>
 						</tr>
 					</tbody>
 				</table>
