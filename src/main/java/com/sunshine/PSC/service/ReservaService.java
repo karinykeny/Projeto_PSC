@@ -1,5 +1,6 @@
 package com.sunshine.PSC.service;
 
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +16,6 @@ public class ReservaService {
 
 	@Autowired
 	private ReservaDao dao;
-
-	public Reserva save(Reserva reserva) {
-		reserva.setId(null);
-		return dao.save(reserva);
-	}
 
 	public List<Reserva> findAll() {
 		return dao.findAll();
@@ -48,6 +44,19 @@ public class ReservaService {
 			return false;
 		}
 		return true;
+	}
+
+	public Reserva calcularTotal(Reserva reserva) {
+		Period periodo;
+		Integer totalDias = Period.between(reserva.getDataEntrada(), reserva.getDataSaida()).getDays();
+		reserva.setTotal((Double) (totalDias * reserva.getPrecoDiaria()));
+		return reserva;
+	}
+
+	public Reserva save(Reserva reserva) {
+		reserva.setId(null);
+		calcularTotal(reserva);
+		return dao.save(reserva);
 	}
 
 }
