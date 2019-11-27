@@ -36,11 +36,13 @@
 					</thead>
 					<tbody>
 						<tr th:each="r : ${reservas}">
+							
 							<td><span th:text="${r.nPessoas}"></span></td>
 							<td><span th:text="${r.dataEntrada}"></span></td>
 							<td><span th:text="${r.dataSaida}"></span></td>
 							<td><span th:text="${r.precoDiaria}"></span></td>
 							<td><span th:text="${r.total}"></span></td>
+							
 						  	<td>	
 								<a th:href="@{preupdate/{Id} (Id=${r.id})}">
 								<span title="Editar">editar</span>
