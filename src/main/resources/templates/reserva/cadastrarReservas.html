@@ -17,12 +17,16 @@
 				  th:object="${reserva}" method="post">
 				  
 				  <div th:replace="fragments/validacao :: validacao"></div> 		
-					<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
-					<div class="form-row col-md-6" >
-						<label for="name">Numero de pessoas</label> 
-						<input type="number" class="form-control" id="numerodepessoas" placeholder="Nome do quarto"  th:field="*{nPessoas}" th:classappend="${#fields.hasErrors('nPessoas')} ? 'is-invalid'" required>
-						<div class="invalid-feedback">Por favor, informe um nome válido.</div>
-					</div>
+					
+				  <div class="form-row col-md-3">
+					<label for="exampleFormControlSelect1">Número de pessoas</label> <select
+						class="form-control" id="exampleFormControlSelect1"
+						th:field="*{nPessoas}">
+						<option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}"
+							th:text="${i}"></option>
+					</select>
+				  </div>
+					
 					</br>
 					<div class="form-row col-md-6">
 						<label>Data de entrada</label> 
@@ -46,8 +50,14 @@
 					
 				   <select th:field="*{cliente}">
                      <option value=""> -- </option>
-                     <option th:each="cliente : ${clientes}" th:value="${cliente.Id}" th:utext="${cliente.nome}"/>
+                     <option th:each="cliente : ${clientes}" th:value="${cliente.Id}" th:utext="${cliente.nome}"  multiple="multiple"/>
                   </select>
+					
+					<select th:field="*{quartos}">
+                     <option value=""> -- </option>
+                     <option th:each="quarto : ${quartos}" th:value="${quarto.Id}" th:utext="${quarto.nomeQuarto}"  multiple="multiple"/>
+                  </select>
+					
 					<!-- <select name="status">
     				<option th:each="cliente : ${clientes}" th:value="${statusOpt}" th:text="${statusOpt}"></option>
 					
@@ -69,7 +79,29 @@
 			</div>
 			<br/>
 		<script>
-			// Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+		
+		
+		/*$(document).ready(function() {
+		    console.log( "ready!" );
+		});
+			
+		$.ajax({
+		    type: 'POST',
+		    url: 'reserva/carregarDatas',
+		    contentType: 'application/json',
+		    data: dataEntrada:dataEntrada, dataSaida:dataSaida,
+		    success : function(data){
+		        innerOptionsInHTML(data);
+		    }
+		}).done(function() {
+		    console.log("success");
+		}).fail(function() {
+		    console.log("error");
+		});*/
+		
+		
+		
+		// Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
 		(function() {
 		 'use strict';
 	      window.addEventListener('load',function() {
@@ -87,6 +119,10 @@
 			});
 		}, false);
 	})();
+			
+	
+			
+			
 		</script>
 	</section>
 </body>

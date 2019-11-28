@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.ClienteService;
 import com.sunshine.PSC.service.QuartoService;
@@ -35,19 +37,21 @@ public class ReservaController {
 	public String form(Reserva reserva, ModelMap model) {
 
 		model.addAttribute("clientes", cService.findAll());
-
+		model.addAttribute("quartos", qService.findAll());
 		return "reserva/cadastrarReservas";
 
 	}
 
 	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
-	public String createReservas(Reserva reserva, ModelMap model) {
+	public String createReservas(Reserva reserva,Quarto quarto , ModelMap model) {
 		model.addAttribute("clientes", cService.findAll());
-		return "adm/createReserva";
+		model.addAttribute("quartos", qService.findAll());
+		
+		return "reserva/cadastrarReservas";
 	}
 
 	@PostMapping("/create")
-	public String create(@Valid Reserva reserva, BindingResult result) throws ParseException {
+	public String create(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
 
@@ -140,5 +144,7 @@ public class ReservaController {
 		service.save(reserva);
 		return "/adm/areaAdm";
 	}
+	
+	 
 
 }
