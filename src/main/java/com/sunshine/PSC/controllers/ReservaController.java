@@ -60,12 +60,15 @@ public class ReservaController {
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
 
-		if (result.hasErrors()) {
-			return "adm/createReserva";
+		boolean comparacao = date1.isBefore(date2);
+		
+		if(comparacao==true) {
+			service.save(reserva);
+			return "reserva/confirmacao";
+		}else {
+			return "reserva/listarReservas";
 		}
-		service.save(reserva);
-
-		return "reserva/confirmacao";
+		
 	}
 
 	@GetMapping("/listarReservas")

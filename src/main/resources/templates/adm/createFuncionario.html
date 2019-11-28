@@ -3,6 +3,7 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script src="script.js"></script>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -15,8 +16,7 @@
 				method="POST">
 
 				<div th:replace="fragments/validacao :: validacao"></div>
-				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
-
+				
 				<div class="form-row col-md-6">
 					<label for="name">Nome do funcionário</label> <input type="text"
 						th:field="*{nome}" class="form-control" id="nome"
@@ -28,7 +28,7 @@
 				</div>
 				<br />
 				<div class="form-row col-md-6">
-					<label for="cpf">CPF</label> <input type="text" th:field="*{cpf}"
+					<label for="cpf">CPF</label> <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00" th:field="*{cpf}"
 						class="form-control" id="cpf" placeholder="000.000.000-00"
 						size="14" maxlength="14"
 						th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
