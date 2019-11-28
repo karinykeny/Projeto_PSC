@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sunshine.PSC.dominio.Pagamento;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.ClienteService;
+import com.sunshine.PSC.service.PagamentoService;
 import com.sunshine.PSC.service.QuartoService;
 import com.sunshine.PSC.service.ReservaService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
@@ -27,6 +29,8 @@ public class ReservaController {
 	private QuartoService qService;
 	@Autowired
 	private ClienteService cService;
+	@Autowired
+	private PagamentoService pService;
 
 	@GetMapping("/cadastrarReservas")
 	public String form(Reserva reserva, ModelMap model) {
@@ -41,6 +45,13 @@ public class ReservaController {
 		model.addAttribute("clientes", cService.findById(id));
 		model.addAttribute("quartos", qService.findAll());
 		return "adm/createReserva";
+	}
+	
+	@GetMapping("/prePg/{id}")
+	public String pagar(Reserva reserva,Pagamento pagamento,@PathVariable("id") Integer id, ModelMap model) {
+		model.addAttribute("reserva", service.findById(id));
+		pService.save(pagamento);		
+		return "adm/pagamentoReserva";
 	}
 
 	// @RequestMapping("reserva/create")

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sunshine.PSC.dominio.Pagamento;
 import com.sunshine.PSC.dominio.PagamentoComCartao;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.PagamentoService;
@@ -38,9 +39,9 @@ public class PagamentoController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(PagamentoComCartao pagamento) {
+	public String salvar(Pagamento pagamento) {
 		pagamentoService.save(pagamento);
-		return "redirect:/pagamento/pagamentoCartao";
+		return "adm/area";
 	}
 
 	@ModelAttribute("reservas")

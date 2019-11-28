@@ -90,7 +90,7 @@
 					style="margin: 10px 10; padding: 10px; display: flex; justify-content: flex-end;">
 					<!--  <input type="hidden" id="cliente.id" name="cliente.id" th:field="*{cliente.id}"/>-->
 					<input type="hidden" id="id" name="id" value="" />
-					<button class="btn btn-warning" type="submit">Enviar</button>
+					<button class="btn btn-warning" type="submit" th:href="@{/prePg/{id} (id=${reserva.id})}">Enviar</button>
 					&ensp;
 					<button type="reset" class="btn btn-warning">Limpar</button>
 				</div>
