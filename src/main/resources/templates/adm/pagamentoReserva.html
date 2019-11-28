@@ -11,7 +11,7 @@
 
 	<section class="layout-content" layout:fragment="corpo">
 		<div class="container"
-			style=" width: 50rem; background-color: rgb(243, 239, 188)">
+			style="height: 100vh; width: 50rem; background-color: rgb(243, 239, 188)">
 			<br />
 			<h2>Cadastro de Reservas</h2>
 			<hr />
@@ -28,12 +28,8 @@
 				</div>
 				<br />
 				<div class="form-row col-md-4">
-					<label for="Quarto">Quarto</label> <select id="quarto"
-						class="form-control" th:field="*{quartos}">
-						<option value="">Selecione o Quarto</option>
-						<option th:each="q: ${quartos}" th:value="${q.id}"
-							th:text="${q.nomeQuarto}" th:selected="selected">Quarto</option>
-					</select>
+					<label for="Quarto">Quarto</label> <label id="quarto"
+						class="form-control" th:field="*{quartos}" th:each="q: ${quartos}" th:text="${q.nomeQuarto}"></label>
 				</div>
 				<div class="row" style="margin: 10px 0;">
 					<div class="form-row col-4">
@@ -88,7 +84,6 @@
 				<hr />
 				<div
 					style="margin: 10px 10; padding: 10px; display: flex; justify-content: flex-end;">
-					<!--  <input type="hidden" id="cliente.id" name="cliente.id" th:field="*{cliente.id}"/>-->
 					<input type="hidden" id="id" name="id" value="" />
 					<button class="btn btn-warning" type="submit">Enviar</button>
 					&ensp;

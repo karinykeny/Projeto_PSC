@@ -7,8 +7,8 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
-		<h3>Lista de Reservas</h3>
-		<br/>
+			<h3>Lista de Reservas</h3>
+			<br />
 			<form>
 				<div class="row" style="margin: 10px;">
 					<div class="col-sm-4">
@@ -17,7 +17,8 @@
 							placeholder="Procure pelo número da reserva">
 					</div>
 					<div>
-						<a th:href="@{cadastrarReservas}" class="btn btn-warning">Cadastrar Reserva</a>
+						<a th:href="@{cadastrarReservas}" class="btn btn-warning">Cadastrar
+							Reserva</a>
 					</div>
 				</div>
 			</form>
@@ -28,6 +29,7 @@
 						id="myTable">
 						<thead class="thead-dark">
 							<tr class="header">
+								<th>Id</th>
 								<th>Numero de pessoas</th>
 								<th>Data de entrada</th>
 								<th>Data de saida</th>
@@ -38,6 +40,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="r : ${reserva}">
+								<td th:text="${r.id}"></td>
 								<td th:text="${r.nPessoas}"></td>
 								<td th:text="${r.dataEntrada}"></td>
 								<td th:text="${r.dataSaida}"></td>
@@ -46,16 +49,16 @@
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
 											th:href="@{/reserva/preupdate/{id} (id=${r.id})}">Editar</a>
-										<button class="delete btn btn-sm btn-danger" data-toggle="modal" 
-											data-target="#excluirModal" th:id="${ 'btn_reserva/deletar/' + r.id}"
-											method="POST">Excluir</button>
+										<button class="delete btn btn-sm btn-danger"
+											data-toggle="modal" data-target="#excluirModal"
+											th:id="${ 'btn_reserva/deletar/' + r.id}" method="POST">Excluir</button>
 									</div></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div th:replace="componentes/modal :: modal"> </div>
+			<div th:replace="componentes/modal :: modal"></div>
 		</div>
 		<script>
 			function myFunction() {

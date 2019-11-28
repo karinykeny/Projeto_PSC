@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
@@ -71,8 +72,11 @@ public class ClienteController {
 	@GetMapping("/deletar/{id}")
 	public String deletar(Cliente cliente, ModelMap model) throws ObjectNotFoundException {
 		service.findById(cliente.getId());
-		if (!service.clienteTemReserva(cliente.getId())) {
+		if (service.clienteTemReserva(cliente.getId())) {
+			model.addAttribute("fail","Cliente não removido. Possui reserva(s) vonculada(s).");
+		}else {
 			service.deleteCliente(cliente);
+			model.addAttribute("success","Cliente excluído com sucesso.");
 		}
 		model.addAttribute("clientes", service.findAll());
 		return "adm/listClientes";
@@ -81,15 +85,17 @@ public class ClienteController {
 	// ================= CREATE ==================
 
 	@PostMapping("/Salvar")
-	public String salvar(Cliente cliente) {
+	public String salvar(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
+		attr.addFlashAttribute("success","Cliente Cadastrado com sucesso.");
 		return "/cliente/areaCliente";
 	}
 
 	@PostMapping("/seve")
-	public String seve(Cliente cliente) {
+	public String seve(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
-		return "/adm/areaAdm";
+		attr.addFlashAttribute("success","Cliente Cadastrado com sucesso.");
+		return "/adm/area";
 	}
 
 	// ================= UPDATE ==================

@@ -30,16 +30,16 @@ public class ReservaController {
 
 	@GetMapping("/cadastrarReservas")
 	public String form(Reserva reserva, ModelMap model) {
-
 		model.addAttribute("clientes", cService.findAll());
 
 		return "reserva/cadastrarReservas";
 
 	}
 	
-	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
-	public String createReservas(Reserva reserva, ModelMap model) {
-		model.addAttribute("clientes", cService.findAll());
+	@GetMapping("/createReservas/{id}") // cadastro de reseerva na area do adm
+	public String createReservas(Reserva reserva,@PathVariable("id") Integer id, ModelMap model) {
+		model.addAttribute("clientes", cService.findById(id));
+		model.addAttribute("quartos", qService.findAll());
 		return "adm/createReserva";
 	}
 
@@ -115,7 +115,7 @@ public class ReservaController {
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
 		service.save(reserva);
-		return "/adm/areaAdm";
+		return "/adm/pagamentoReserva";
 	}
 
 }

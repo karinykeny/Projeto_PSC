@@ -33,7 +33,7 @@ public class Cliente implements Serializable, UserDetails {
 	private Integer id;
 	@Column(nullable = false, unique = true)
 	private String nome;
-	@CPF(message = "CPF inválido! não use ")
+	//@CPF(message = "CPF inválido! não use ")
 	private String cpf;
 	@Email(message = "E-mail inválido!")
 	private String email;

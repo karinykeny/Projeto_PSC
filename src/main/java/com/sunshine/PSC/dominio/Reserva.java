@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -47,11 +49,11 @@ public class Reserva implements Serializable {
 	private List<Quarto> quartos = new ArrayList<>();
 
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne (cascade= {CascadeType.MERGE, CascadeType.ALL})
 	private Cliente cliente;
 
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne (cascade= {CascadeType.MERGE, CascadeType.ALL})
 	private Funcionario funcionario;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
