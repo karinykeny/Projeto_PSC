@@ -1,18 +1,20 @@
 package com.sunshine.PSC.controllers;
 
 import java.text.ParseException;
-import java.time.LocalDate;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Pagamento;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.ClienteService;
@@ -20,6 +22,7 @@ import com.sunshine.PSC.service.PagamentoService;
 import com.sunshine.PSC.service.QuartoService;
 import com.sunshine.PSC.service.ReservaService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
+import com.sunshine.PSC.validator.ReservaValidator;
 
 @Controller
 @RequestMapping("/reserva")
@@ -33,6 +36,10 @@ public class ReservaController {
 	private ClienteService cService;
 	@Autowired
 	private PagamentoService pService;
+	
+	public void InitBinder(WebDataBinder binder) {
+		binder.addValidators(new ReservaValidator());
+	}
 
 	// ================= CREATE ==================
 	@GetMapping("/cadastrarReservas") // Reserva cliente
@@ -50,28 +57,19 @@ public class ReservaController {
 
 	@PostMapping("/create") // Reserva cliente
 	public String create(Reserva reserva, RedirectAttributes attr) throws ParseException {
-		String DTE = reserva.getDataEntradaTemp();
-		String DTS = reserva.getDataSaidaTemp();
-
-		LocalDate date1 = LocalDate.parse(DTE);
-		LocalDate date2 = LocalDate.parse(DTS);
-		reserva.setDataEntrada(date1);
-		reserva.setDataSaida(date2);
 		service.save(reserva);
 		attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");
 		return "reserva/confirmacao";
 	}
 
 	@PostMapping("/seve") // Reserva administrador
-	public String seve(Reserva reserva) throws ParseException {
-		String DTE = reserva.getDataEntradaTemp();
-		String DTS = reserva.getDataSaidaTemp();
-
-		LocalDate date1 = LocalDate.parse(DTE);
-		LocalDate date2 = LocalDate.parse(DTS);
-		reserva.setDataEntrada(date1);
-		reserva.setDataSaida(date2);
+	public String seve(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
+		
+		if (result.hasErrors()) {
+			return "/adm/createReserva";
+		}
 		service.save(reserva);
+		attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");		
 		return "/adm/pagamentoReserva";
 	}
 
@@ -100,14 +98,6 @@ public class ReservaController {
 	@PostMapping("/edit") // Area do administrador
 	public String edit(Reserva reserva, RedirectAttributes attr) throws ObjectNotFoundException {
 		service.findById(reserva.getId());
-		String DTE = reserva.getDataEntradaTemp();
-		String DTS = reserva.getDataSaidaTemp();
-
-		LocalDate date1 = LocalDate.parse(DTE);
-		LocalDate date2 = LocalDate.parse(DTS);
-		reserva.setDataEntrada(date1);
-		reserva.setDataSaida(date2);
-		service.updateReserva(reserva);
 		attr.addFlashAttribute("success", "Reserva alterado com sucesso.");
 		return "redirect:/reserva/listar";
 	}
@@ -135,7 +125,7 @@ public class ReservaController {
 		return "/adm/listReservas";
 	}
 
-	// ================= PAGAMENTO =========
+	// ================= PAGAMENTO ==============
 
 	@GetMapping("/prePg/{id}") // Area do administrador
 	public String pagar(Reserva reserva, Pagamento pagamento, @PathVariable("id") Integer id, ModelMap model) {
@@ -143,5 +133,8 @@ public class ReservaController {
 		pService.save(pagamento);
 		return "adm/pagamentoReserva";
 	}
+	
+	
+	
 
 }

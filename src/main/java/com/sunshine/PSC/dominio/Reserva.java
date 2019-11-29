@@ -1,11 +1,16 @@
 package com.sunshine.PSC.dominio;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +20,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.PastOrPresent;
 
-import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,18 +40,25 @@ public class Reserva implements Serializable {
 
 	private Integer nPessoas;
 
-	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	//@PastOrPresent(message = "{PastOrPresent.reserva.dataEntrada}")
+	@DateTimeFormat(iso = ISO.DATE)
+	//@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 
-	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_saida", columnDefinition = "DATE")
 	private LocalDate dataSaida;
 
-	private Double precoDiaria;
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	private BigDecimal precoDiaria;
 
-	private Double total;
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	private BigDecimal total;
 
-	private String dataEntradaTemp;
-	private String dataSaidaTemp;
+	//private String dataEntradaTemp;
+	//private String dataSaidaTemp;
 
 	@ManyToMany
 	@JoinTable(name = "RESERVA_QUARTOS", joinColumns = @JoinColumn(name = "reserva_id"), inverseJoinColumns = @JoinColumn(name = "quarto_id"))
@@ -63,8 +79,8 @@ public class Reserva implements Serializable {
 
 	}
 
-	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double precoDiaria,
-			Double total) {
+	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, BigDecimal precoDiaria,
+			BigDecimal total) {
 		super();
 		this.id = id;
 		this.nPessoas = nPessoas;
@@ -106,22 +122,6 @@ public class Reserva implements Serializable {
 		this.dataSaida = dataSaida;
 	}
 
-	public String getDataEntradaTemp() {
-		return dataEntradaTemp;
-	}
-
-	public void setDataEntradaTemp(String dataEntradaTemp) {
-		this.dataEntradaTemp = dataEntradaTemp;
-	}
-
-	public String getDataSaidaTemp() {
-		return dataSaidaTemp;
-	}
-
-	public void setDataSaidaTemp(String dataSaidaTemp) {
-		this.dataSaidaTemp = dataSaidaTemp;
-	}
-
 	public List<Quarto> getQuartos() {
 		return quartos;
 	}
@@ -138,19 +138,19 @@ public class Reserva implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Double getPrecoDiaria() {
+	public BigDecimal getPrecoDiaria() {
 		return precoDiaria;
 	}
 
-	public void setPrecoDiaria(Double precoDiaria) {
+	public void setPrecoDiaria(BigDecimal precoDiaria) {
 		this.precoDiaria = precoDiaria;
 	}
 
-	public Double getTotal() {
+	public BigDecimal getTotal() {
 		return total;
 	}
 
-	public void setTotal(Double total) {
+	public void setTotal(BigDecimal total) {
 		this.total = total;
 	}
 
