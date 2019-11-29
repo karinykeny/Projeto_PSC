@@ -42,7 +42,7 @@
 						class="form-control" id="rows0.variety" name="rows[0].variety" th:field="*{tipoDeCama}">						
 						<option selected="selected" value="Solteiro">Solteiro</option>
 						<option value="Casal">Casal</option>
-						<option value="Casal/Solteiro">Misto</option>
+						<option value="Misto">Misto</option>
 					</select>
 				</div>
 				<br />
@@ -57,7 +57,7 @@
 				</div>
 				<br />
 				<hr />
-				<input type="hidden" id="id" name="id" value="" />
+				<input type="hidden" id="id" name="id" th:field="*{id}"/>
 				<button class="btn btn-warning" type="submit">Enviar</button>
 				<button type="reset" class="btn btn-warning">Limpar</button>
 				<br />

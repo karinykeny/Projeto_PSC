@@ -15,8 +15,6 @@
 			<h2>Formulário do Cliente</h2>
 			<hr />
 			
-			<div th:replace="fragments/alert"></div>
-			
 			<form th:action="@{/clientes/seve}" th:object="${cliente}"
 				method="POST">
 

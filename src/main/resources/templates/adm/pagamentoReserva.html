@@ -15,6 +15,7 @@
 			<br />
 			<h2>Pagamento de Reservas</h2>
 			<hr />
+			<div th:replace="fragments/alert"></div>
 			<form th:action="@{/pagamento/salvar}" th:object="${reserva}"
 				method="POST">
 

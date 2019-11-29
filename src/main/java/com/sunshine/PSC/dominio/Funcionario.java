@@ -25,14 +25,11 @@ public class Funcionario implements Serializable, UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NonNull
 	@Size (min = 3, max = 50)
 	private String nome;
-	@CPF
 	private String cpf ;
 	@Email
 	private String email;
-	@NonNull
 	private String senha;
 	private String telefone;
 	@OneToMany(mappedBy = "funcionario")

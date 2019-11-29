@@ -3,6 +3,10 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -11,6 +15,7 @@
 			<br />
 			<h2>Formulário de Funcionário</h2>
 			<hr />
+			
 			<form th:action="@{/funcionario/seve}" th:object="${funcionario}"
 				method="POST">
 
@@ -30,7 +35,7 @@
 				<div class="form-row col-md-6">
 					<label for="cpf">CPF</label> <input type="text" th:field="*{cpf}"
 						class="form-control" id="cpf" placeholder="000.000.000-00"
-						size="14" maxlength="14"
+						size="11" maxlength="11"
 						th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
 						required>
 					<div class="invalid-feedback">Por favor, informe um CPF
@@ -77,6 +82,13 @@
 				<br />
 			</form>
 		</div>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$("#cpf").mask("000.000.000-00");
+				$("#telefone").mask("(00)00000.0000");
+
+			});
+		</script>
 	</section>
 </body>
 </html>

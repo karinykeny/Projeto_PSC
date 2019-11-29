@@ -42,5 +42,12 @@ public class QuartoService {
 		findById(quarto.getId());
 		dao.delete(quarto);
 	}
+	
+	public boolean quartoTemReserva(int id) {
+		if(findById(id).getReservas().isEmpty()) {
+			return false;
+		}		
+		return true;
+	}
 
 }

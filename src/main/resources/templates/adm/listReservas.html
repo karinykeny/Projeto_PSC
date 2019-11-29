@@ -23,6 +23,7 @@
 				</div>
 			</form>
 			<div>
+			<div th:replace="fragments/alert"></div>
 				<div class="table-responsive">
 					<table
 						class="table table-sm table-striped table-hover table-bordered"
@@ -48,7 +49,7 @@
 								<td th:text="${r.total}"></td>
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
-											th:href="@{/reserva/preupdate/{id} (id=${r.id})}">Editar</a>
+											th:href="@{/reserva/edit/{id} (id=${r.id})}">Editar</a>
 										<button class="delete btn btn-sm btn-danger"
 											data-toggle="modal" data-target="#excluirModal"
 											th:id="${ 'btn_reserva/deletar/' + r.id}" method="POST">Excluir</button>

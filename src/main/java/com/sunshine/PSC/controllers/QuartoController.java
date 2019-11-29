@@ -34,84 +34,21 @@ public class QuartoController {
 
 		binder.addValidators(new QuartoValidator());
 	}
-
-	@GetMapping("/cadastrarQuartos")
-	public String form(Quarto quarto) {
-
-		return "quarto/cadastrarQuartos";
-
-	}
 	
+	// ================= CREATE ==================
 	@GetMapping("/createrQuartos") //cadastro de quarto na area do adm
 	public String createrQuartos(Quarto quarto) {
 		return "adm/createQuarto";
-
-	}
-
-	// @RequestMapping("quarto/create")
-	@PostMapping("/create")
-	public String create(@Valid Quarto quarto, BindingResult result, RedirectAttributes attr) {
-		if (result.hasErrors()) {
-			return "quarto/cadastrarQuartos";
-		}
-		service.save(quarto);
-		attr.addFlashAttribute("success", "quarto cadastrado com sucesso!");
-
-		return "quarto/confirmacao";
-	}
-
-	@GetMapping("/listarQuartos")
-	public String findAll(ModelMap model) {
-		model.addAttribute("quartos", service.findAll());
-		return "quarto/listarQuartos";
-	}
-
-	@GetMapping("/buscarid")
-	public Quarto findById(int Id) throws ObjectNotFoundException {
-
-		return service.findById(Id);
-	}
-
-	@GetMapping("/preupdate/{id}")
-	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
-		model.addAttribute("quarto", service.findById(id));
-
-		return "quarto/cadastrarQuartos";
-	}
-
-	@PostMapping("/editar")
-	public String updateQuarto(@Valid Quarto quarto, BindingResult result, RedirectAttributes attr)
-			throws ObjectNotFoundException {
-
-		findById(quarto.getId());
-		service.updateQuarto(quarto);
-
-		if (result.hasErrors()) {
-			return "quarto/cadastrarQuartos";
-		}
-		return "redirect:/quarto/listarQuartos";
-	}
-
-	@GetMapping("/deletar/{id}")
-	public String deletarQuarto(Quarto quarto, ModelMap model ) throws ObjectNotFoundException {
-		findById(quarto.getId());
-		service.deleteQuarto(quarto);
-		model.addAttribute("quartos", service.findAll());
-		return "/adm/listQuartos";
-	}
-
-	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("quartos", service.findAll());
-		return "/adm/listQuartos";
-	}
-
-	@PostMapping("/seve") //inicio do cadastro de quarto na area do adm
-	public String seve(Quarto quarto) {
-		service.save(quarto);
-		return "/adm/areaAdm";
 	}
 	
+	@PostMapping("/seve") //inicio do cadastro de quarto na area do adm
+	public String seve(Quarto quarto, RedirectAttributes attr) {
+		service.save(quarto);
+		attr.addFlashAttribute("success", "Quarto cadastrado com sucesso.");
+		return "redirect:/quarto/listar";
+	}
+	
+	// ================= UPDATE ==================
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("quarto", service.findById(id));
@@ -119,10 +56,32 @@ public class QuartoController {
 	}
 	
 	@PostMapping("/edit")
-	public String edit(Quarto quarto) throws ObjectNotFoundException {
-		findById(quarto.getId());
+	public String edit(Quarto quarto, RedirectAttributes attr) throws ObjectNotFoundException {
+		service.findById(quarto.getId());
 		service.updateQuarto(quarto);
-		return "/adm/areaAdm";
+		attr.addFlashAttribute("success", "Quarto alterado com sucesso.");
+		return "redirect:/quarto/listar";
+	}
+	
+	// ================= DELETE ==================
+	@GetMapping("/deletar/{id}")
+	public String deletarQuarto(Quarto quarto, ModelMap model ) throws ObjectNotFoundException {
+		service.findById(quarto.getId());
+		if (service.quartoTemReserva(quarto.getId())){
+			model.addAttribute("fail", "Quarto não removido. Possui reserva(s) vonculada(s).");
+		} else {
+			service.deleteQuarto(quarto);
+			model.addAttribute("success", "Quarto excluído com sucesso.");
+		}
+		model.addAttribute("quartos", service.findAll());
+		return "/adm/listQuartos";
+	}
+	
+	// ================= LIST ====================
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("quartos", service.findAll());
+		return "/adm/listQuartos";
 	}
 
 }
