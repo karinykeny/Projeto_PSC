@@ -92,7 +92,7 @@ public class ClienteController {
 	public String seve(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
-		return "/adm/areaAdm";
+		return "redirect:/clientes/listar";
 	}
 
 	// ================= UPDATE ==================

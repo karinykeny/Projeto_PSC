@@ -58,7 +58,7 @@ public class QuartoController {
 		service.save(quarto);
 		attr.addFlashAttribute("success", "quarto cadastrado com sucesso!");
 
-		return "adm/listQuartos";
+		return "redirect:/quarto/listar";
 	}
 
 	@GetMapping("/listarQuartos")

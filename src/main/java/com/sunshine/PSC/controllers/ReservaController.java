@@ -2,6 +2,7 @@ package com.sunshine.PSC.controllers;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -44,6 +45,7 @@ public class ReservaController {
 
 	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
 	public String createReservas(Reserva reserva,Quarto quarto , ModelMap model) {
+		model.addAttribute("reservas", service.findAll());
 		model.addAttribute("clientes", cService.findAll());
 		model.addAttribute("quartos", qService.findAll());
 		
@@ -59,23 +61,28 @@ public class ReservaController {
 		LocalDate date2 = LocalDate.parse(DTS);
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
-
-		boolean comparacao = date1.isBefore(date2);
 		
+		
+		boolean comparacao = date1.isBefore(date2);
+		ModelMap model = new ModelMap();
 		if(comparacao==true) {
 			service.save(reserva);
-			return "reserva/confirmacao";
+	  
+			model.addAttribute("reserva", service.findAll());
+			//return "reserva/listarReservas";
+			return "redirect:/reserva/listar";
 		}else {
-			return "reserva/listarReservas";
+			model.addAttribute("reserva", service.findAll());
+			return "redirect:/reserva/listar";
 		}
 		
 	}
 
-	@GetMapping("/listarReservas")
+	/*@GetMapping("/listarReservas")
 	public String findAll(ModelMap model) {
-		model.addAttribute("reservas", service.findAll());
-		return "reserva/listarReservas";
-	}
+		model.addAttribute("reserva", service.findAll());
+		return "/adm/listReservas";
+	}*/
 
 	@GetMapping("/buscarid")
 	public Reserva findById(int Id) throws ObjectNotFoundException {
