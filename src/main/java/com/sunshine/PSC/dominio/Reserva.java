@@ -65,7 +65,7 @@ public class Reserva implements Serializable {
 	private List<Quarto> quartos = new ArrayList<>();
 
 	@JsonIgnore
-	@ManyToOne (cascade= {CascadeType.MERGE, CascadeType.ALL})
+	@ManyToOne //(cascade= {CascadeType.MERGE, CascadeType.ALL})
 	private Cliente cliente;
 
 	@JsonIgnore

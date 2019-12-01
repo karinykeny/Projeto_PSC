@@ -3,6 +3,8 @@ package com.sunshine.PSC.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sunshine.PSC.dominio.Cliente;
+
 @Controller
 public class IndexController {
 	
@@ -43,5 +45,10 @@ public class IndexController {
 	      return "/adm/areaAdm";
 
 		}
+	
+	@GetMapping("cliente/novo") 
+	public String cadastar(Cliente cliente) {
+		return "/cliente/cadastrarCliente";
+	}
 }
 

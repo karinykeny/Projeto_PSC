@@ -22,11 +22,12 @@
 				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
 
 				<div class="form-row col-md-6">
-					<label for="cliente">CPF do Cliente</label> <label type="text"
-						th:field="*{cliente}" th:each="c: ${clientes}" th:text="${c.cpf}"
-						class="form-control" id="cliente"></label>
+					<label for="cliente">CPF do Cliente</label> <input type="text"
+						th:value="${cliente.cpf}" 
+						class="form-control" id="cliente" disabled="disabled"/>
 				</div>
 				<br />
+
 				<div class="form-row col-md-4">
 					<label for="Quarto">Quarto</label> <select id="quarto"
 						class="form-control" th:field="*{quartos}">

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Pagamento;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.ClienteService;
@@ -37,6 +38,8 @@ public class ReservaController {
 	@Autowired
 	private PagamentoService pService;
 	
+	private Cliente cliente;
+	
 	public void InitBinder(WebDataBinder binder) {
 		binder.addValidators(new ReservaValidator());
 	}
@@ -50,7 +53,8 @@ public class ReservaController {
 
 	@GetMapping("/createReservas/{id}") // Reserva administrador
 	public String createReservas(Reserva reserva, @PathVariable("id") Integer id, ModelMap model) {
-		model.addAttribute("clientes", cService.findById(id));
+		cliente = cService.findById(id);
+		model.addAttribute("cliente", cliente);
 		model.addAttribute("quartos", qService.findAll());
 		return "adm/createReserva";
 	}
@@ -68,6 +72,7 @@ public class ReservaController {
 		if (result.hasErrors()) {
 			return "/adm/createReserva";
 		}
+		reserva.setCliente(cliente);
 		service.save(reserva);
 		attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");		
 		return "/adm/pagamentoReserva";
@@ -121,6 +126,7 @@ public class ReservaController {
 
 	@GetMapping("/listar") // Area do administrador
 	public String listar(ModelMap model) {
+		model.addAttribute("cliente", qService.findAll());
 		model.addAttribute("reserva", service.findAll());
 		return "/adm/listReservas";
 	}

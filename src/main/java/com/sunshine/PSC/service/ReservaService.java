@@ -3,6 +3,8 @@ package com.sunshine.PSC.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,11 @@ public class ReservaService {
 
 	@Autowired
 	private ReservaDao dao;
+	
 
+	@Transactional
 	public Reserva save(Reserva reserva) {
-		reserva.setId(null);
+		
 		return dao.save(reserva);
 	}
 

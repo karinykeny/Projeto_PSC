@@ -1,19 +1,13 @@
 package com.sunshine.PSC.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -29,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests()//crsf provê vários tipos de segurança para a aplicação
 		
 		/*.antMatchers(HttpMethod.GET, "/").permitAll()//todos os me
-
 	protected void configure(HttpSecurity http) throws Exception { // método de configurações
 		http.csrf().disable().authorizeRequests()// crsf provê vários tipos de segurança para a aplicação
 				/*
@@ -65,5 +58,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	// Esse método serve para que o spring security não bloqueie as páginas
 	// estáticas quando o browser pedir o acesso a estas pastas
-
 }

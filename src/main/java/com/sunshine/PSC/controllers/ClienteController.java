@@ -21,16 +21,12 @@ public class ClienteController {
 	private ClienteService service;
 
 	// ================= CREATE ==================
-	@GetMapping("/cadastrar") // Area do cliente
-	public String cadastar(Cliente cliente) {
-		return "/cliente/cadastrarCliente";
-	}
 
 	@GetMapping("/create") // Area do administrador
 	public String create(Cliente cliente) {
 		return "/adm/createCliente";
 	}
-
+	
 	@PostMapping("/Salvar") // Area do cliente
 	public String salvar(Cliente cliente, RedirectAttributes attr) {
 		service.save(cliente);
