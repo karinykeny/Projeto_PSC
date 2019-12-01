@@ -3,6 +3,7 @@ package com.sunshine.PSC.dominio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class Reserva implements Serializable {
 
 	private Integer nPessoas;
 
-	//@PastOrPresent(message = "{PastOrPresent.reserva.dataEntrada}")
+	// @PastOrPresent(message = "{PastOrPresent.reserva.dataEntrada}")
 	@DateTimeFormat(iso = ISO.DATE)
-	//@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
+	// @Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 
 	@DateTimeFormat(iso = ISO.DATE)
@@ -57,19 +58,19 @@ public class Reserva implements Serializable {
 	@Column(columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal total;
 
-	//private String dataEntradaTemp;
-	//private String dataSaidaTemp;
+	// private String dataEntradaTemp;
+	// private String dataSaidaTemp;
 
-	@ManyToMany
-	@JoinTable(name = "RESERVA_QUARTOS", joinColumns = @JoinColumn(name = "reserva_id"), inverseJoinColumns = @JoinColumn(name = "quarto_id"))
-	private List<Quarto> quartos = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "QUARTO_ID")
+	private Quarto quarto;
 
 	@JsonIgnore
-	@ManyToOne //(cascade= {CascadeType.MERGE, CascadeType.ALL})
+	@ManyToOne // (cascade= {CascadeType.MERGE, CascadeType.ALL})
 	private Cliente cliente;
 
 	@JsonIgnore
-	@ManyToOne (cascade= {CascadeType.MERGE, CascadeType.ALL})
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.ALL })
 	private Funcionario funcionario;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
@@ -80,7 +81,7 @@ public class Reserva implements Serializable {
 	}
 
 	public Reserva(Integer id, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, BigDecimal precoDiaria,
-			BigDecimal total) {
+			BigDecimal total, Quarto quarto) {
 		super();
 		this.id = id;
 		this.nPessoas = nPessoas;
@@ -88,6 +89,8 @@ public class Reserva implements Serializable {
 		this.dataSaida = dataSaida;
 		this.precoDiaria = precoDiaria;
 		this.total = precoDiaria;
+		this.quarto = quarto;
+		
 	}
 
 	public Integer getId() {
@@ -122,12 +125,12 @@ public class Reserva implements Serializable {
 		this.dataSaida = dataSaida;
 	}
 
-	public List<Quarto> getQuartos() {
-		return quartos;
+	public Quarto getQuarto() {
+		return quarto;
 	}
 
-	public void setQuartos(List<Quarto> quartos) {
-		this.quartos = quartos;
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
 	public Cliente getCliente() {
@@ -162,7 +165,13 @@ public class Reserva implements Serializable {
 		this.pagamento = pagamento;
 	}
 	
+	public Long calcularDias() {
+		return ChronoUnit.DAYS.between(getDataEntrada(), getDataSaida());
+	}
 	
+	public void calcularTotal() {
+		this.total = this.quarto.calcularDiaria(this.calcularDias());
+	}
 
 	@Override
 	public int hashCode() {

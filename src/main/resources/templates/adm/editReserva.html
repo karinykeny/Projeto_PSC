@@ -23,7 +23,7 @@
 
 				<div class="form-row col-md-4">
 					<label for="Quarto">Quarto</label> <select id="quarto"
-						class="form-control" th:field="*{quartos}">
+						class="form-control" th:field="*{quarto}">
 						<option value="">Selecione o Quarto</option>
 						<option th:each="q: ${quartos}" th:value="${q.id}"
 							th:text="${q.nomeQuarto}" th:selected="selected">Quarto</option>
@@ -32,16 +32,16 @@
 				<div class="row" style="margin: 10px 0;">
 					<div class="form-row col-4">
 						<label for="example-date-input" class="col-form-label">Check-in</label>
-						<input class="form-control" type="date" id="datadeentrada"
-							th:field="*{dataEntradaTemp}"
-							th:classappend="${#fields.hasErrors('dataEntradaTemp')} ? 'is-invalid'"
+						<input class="form-control" type="date" id="dataEntrada"
+							th:field="*{dataEntrada}"
+							th:classappend="${#fields.hasErrors('dataEntrada')} ? 'is-invalid'"
 							required>
 					</div>
 					<div class="form-row col-4">
 						<label for="example-date-input" class="col-form-label">Check-out</label>
-						<input class="form-control" type="date" id="datadesaida"
-							th:field="*{dataSaidaTemp}"
-							th:classappend="${#fields.hasErrors('dataSaidaTemp')} ? 'is-invalid'"
+						<input class="form-control" type="date" id="dataSaida"
+							th:field="*{dataSaida}"
+							th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"
 							required>
 					</div>
 				</div>

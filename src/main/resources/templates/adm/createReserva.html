@@ -31,7 +31,7 @@
 
 				<div class="form-row col-md-4">
 					<label for="Quarto">Quarto</label> <select id="quarto"
-						class="form-control" th:field="*{quartos}">
+						class="form-control" th:field="*{quarto}" >
 						<option value="">Selecione o Quarto</option>
 						<option th:each="q: ${quartos}" th:value="${q.id}"
 							th:text="${q.nomeQuarto}" th:selected="selected">Quarto</option>
@@ -60,60 +60,25 @@
 					</div>
 				</div>
 				<br />
-				<div class="input-group mb-3 col-md-6">
-					<label>Preço diaria:</label>&emsp;
-					<div class="input-group-prepend">
-						<span class="input-group-text">$</span>
-					</div>
-					<input type="text" step="any" class="form-control" id="precoDiaria"
-						th:field="*{precoDiaria}" data-mask="#.##0,00"
-						data-mask-reverse="true"
-						th:classappend="${#fields.hasErrors('precoDiaria')} ? 'is-invalid'"
-						required>
-					<div class="invalid-feedback">
-						<span th:errors="*{precoDiaria}"></span>
-					</div>
-					<div class="input-group-append"></div>
-				</div>
-				<div class="input-group mb-3 col-md-6">
-					<label>Preço Total:</label>&emsp;
-					<div class="input-group-prepend">
-						<span class="input-group-text">$</span>
-					</div>
-					<input type="text" class="form-control" id="total"
-						th:field="*{total}" data-mask="#.##0,00" data-mask-reverse="true"
-						th:classappend="${#fields.hasErrors('total')} ? 'is-invalid'"
-						required>
-					<div class="invalid-feedback">
-						<span th:errors="*{total}"></span>
-					</div>
-					<div class="input-group-append"></div>
-				</div>
-				<div class="form-row col-md-3">
-					<label for="exampleFormControlSelect1">Número de pessoas</label> <select
-						class="form-control" id="exampleFormControlSelect1"
-						th:field="*{nPessoas}"
-						th:classappend="${#fields.hasErrors('nPessoas')} ? 'is-invalid'">
-						<option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}"
-							th:text="${i}"></option>
-					</select>
-					<div class="invalid-feedback">
-						<span th:errors="*{nPessoas}"></span>
-					</div>
-				</div>
-				<br />
 				<hr />
 				<div
 					style="margin: 10px 10; padding: 10px; display: flex; justify-content: flex-end;">
 					<!--  <input type="hidden" id="cliente.id" name="cliente.id" th:field="*{cliente.id}"/>-->
 					<input type="hidden" id="id" name="id" value="" />
 					<button class="btn btn-warning" type="submit"
-						th:href="@{/prePg/{id} (id=${reserva.id})}">Enviar</button>
+						th:href="@{/prePg/{id} (id=${reserva.id})}" onc>Enviar</button>
 					&ensp;
 					<button type="reset" class="btn btn-warning">Limpar</button>
 				</div>
 				<br />
 			</form>
+			<script type="text/javascript">
+			jQuery(($)=>{
+				$("#dataSaida").on('change',function(){
+	
+				} )
+			});
+			</script>
 			<script type="text/javascript">
 				jQuery(function($) {
 					$("#precoDiaria, #total").mask('#.##0,00', {

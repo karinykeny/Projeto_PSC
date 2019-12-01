@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Pagamento;
+import com.sunshine.PSC.dominio.Quarto;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.service.ClienteService;
 import com.sunshine.PSC.service.PagamentoService;
@@ -68,16 +69,26 @@ public class ReservaController {
 
 	@PostMapping("/seve") // Reserva administrador
 	public String seve(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
-
+		
 		if (result.hasErrors()) {
 			return "/adm/createReserva";
 		}
-			reserva.setCliente(cliente);
+		System.out.println("Aqui ------------->" + reserva.getQuarto());
+		reserva.setCliente(cliente);
+		try {
+			Quarto quarto = qService.findById(reserva.getQuarto().getId());
+			reserva.setPrecoDiaria(quarto.getDiaria());
+			reserva.calcularTotal();
+			reserva.setnPessoas(quarto.getQtdPessoas());
 			service.save(reserva);
-			attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");
+		} catch (Exception e) {
+			attr.addFlashAttribute("fail", e.getMessage());
+			return "redirect:/reserva/createReservas/" + reserva.getCliente().getId();
+		}
+		attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");
 
 		return "/adm/pagamentoReserva";
-	}
+	} 
 
 	// ================= UPDATE ==================
 	@GetMapping("/preupdate/{id}") // Reserva cliente
@@ -104,7 +115,7 @@ public class ReservaController {
 	@PostMapping("/edit") // Area do administrador
 	public String edit(Reserva reserva, RedirectAttributes attr) throws ObjectNotFoundException {
 		service.findById(reserva.getId());
-		attr.addFlashAttribute("success", "Reserva alterado com sucesso.");
+		attr.addFlashAttribute("success", "Reserva alterada com sucesso.");
 		return "redirect:/reserva/listar";
 	}
 

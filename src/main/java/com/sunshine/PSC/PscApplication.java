@@ -1,5 +1,6 @@
 package com.sunshine.PSC;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -47,9 +48,9 @@ public class PscApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Quarto q1 = new Quarto("Quarto 101", 1, "Solteiro", StatusQuarto.disponivel);
-		Quarto q2 = new Quarto("Quarto 202", 2, "Casal", StatusQuarto.disponivel);
-		Quarto q3 = new Quarto("Quarto 303", 4, "Misto", StatusQuarto.disponivel);
+		Quarto q1 = new Quarto("Quarto 101", 1, "Solteiro", StatusQuarto.disponivel,new BigDecimal(200.00));
+		Quarto q2 = new Quarto("Quarto 202", 2, "Casal", StatusQuarto.disponivel,new BigDecimal(150.00));
+		Quarto q3 = new Quarto("Quarto 303", 4, "Misto", StatusQuarto.disponivel,new BigDecimal(500.00));
 
 		Cliente c1 = new Cliente("Adalberto", "410.211.230-80", "Adalberto@teste.com",
 				"$2a$10$UActTpkVD9GI5xwSC/F3vus46CGqFIScgLG9011m6lTB8KMdNhZXO");
@@ -64,9 +65,11 @@ public class PscApplication implements CommandLineRunner {
 		clienteDao.save(c2);
 		funcionarioDao.save(f1);
 		funcionarioDao.save(f2);
-
-		Reserva r1 = new Reserva(null, 6, LocalDate.of(2019, 01, 1), LocalDate.of(2019, 01, 6),null , null);
-		Reserva r2 = new Reserva(null, 3, LocalDate.of(2019, 01, 9), LocalDate.of(2019, 01, 11), null, null);
+		
+		Quarto quarto = new Quarto();
+		quarto.setId(1);
+		Reserva r1 = new Reserva(null, 6, LocalDate.of(2019, 01, 1), LocalDate.of(2019, 01, 6),new BigDecimal(200.00), new BigDecimal(1000.00),quarto );
+		Reserva r2 = new Reserva(null, 3, LocalDate.of(2019, 01, 9), LocalDate.of(2019, 01, 11), new BigDecimal(200.00), new BigDecimal(400.00), quarto);
 
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
 

@@ -1,5 +1,7 @@
 package com.sunshine.PSC.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,7 @@ import com.sunshine.PSC.dao.ReservaDao;
 import com.sunshine.PSC.dominio.Reserva;
 import com.sunshine.PSC.dominio.Reservado;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
+import com.sunshine.PSC.service.exception.ReservaException;
 
 @Service
 public class ReservaService {
@@ -24,15 +27,14 @@ public class ReservaService {
 		List<Reserva> reservas = dao.findAll();
 		Optional<Reserva> quarto = reservas.stream().filter(r -> {
 			Reservado reservado = new Reservado(r.getDataEntrada(), r.getDataSaida());
-			return !reservado.isDisponivel(reserva.getDataEntrada(), reserva.getDataSaida());
+			return r.getQuarto().equals(reserva.getQuarto()) && !reservado.isDisponivel(reserva.getDataEntrada(), reserva.getDataSaida());
 		}).findFirst();
 
-		if (quarto.isEmpty()) {
-			System.out.println("salvamos a reserva :)");
-			return dao.save(reserva);
+		if (quarto.isPresent()) {
+			throw new ReservaException("Quarto não disponível nessa data.");
 		}
 		
-		return reserva;
+		return dao.save(reserva);
 	}
 
 	public List<Reserva> findAll() {

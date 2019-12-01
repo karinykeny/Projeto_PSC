@@ -67,12 +67,12 @@ public class QuartoController {
 	@GetMapping("/deletar/{id}")
 	public String deletarQuarto(Quarto quarto, ModelMap model ) throws ObjectNotFoundException {
 		service.findById(quarto.getId());
-		if (service.quartoTemReserva(quarto.getId())){
-			model.addAttribute("fail", "Quarto não removido. Possui reserva(s) vonculada(s).");
-		} else {
+		//if (service.quartoTemReserva(quarto.getId())){
+			//model.addAttribute("fail", "Quarto não removido. Possui reserva(s) vonculada(s).");
+		//} else {
 			service.deleteQuarto(quarto);
 			model.addAttribute("success", "Quarto excluído com sucesso.");
-		}
+		//}
 		model.addAttribute("quartos", service.findAll());
 		return "/adm/listQuartos";
 	}

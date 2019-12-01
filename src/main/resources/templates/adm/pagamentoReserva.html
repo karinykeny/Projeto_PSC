@@ -51,8 +51,7 @@
 						<span class="input-group-text">$</span>
 					</div>
 					<input type="number" step="any" class="form-control"
-						id="precoDiaria" th:field="*{precoDiaria}"
-						readonly>
+						id="precoDiaria" th:field="*{precoDiaria}" readonly>
 					<div class="input-group-append"></div>
 				</div>
 				<div class="input-group mb-3 col-md-6">
@@ -61,18 +60,12 @@
 						<span class="input-group-text">$</span>
 					</div>
 					<input type="text" class="form-control" id="total"
-						th:field="*{total}"
-						readonly>
+						th:field="*{total}" readonly>
 					<div class="input-group-append"></div>
 				</div>
 				<div class="form-row col-md-3">
-					<label for="exampleFormControlSelect1">Número de pessoas</label> <select
-						class="form-control" id="exampleFormControlSelect1"
-						th:field="*{nPessoas}"
-						readonly>
-						<option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}"
-							th:text="${i}"></option>
-					</select>
+					<label for="nPessoas">Capacidade maxíma de pessoas</label> <input
+						class="form-control" id="nPessoas" th:field="*{nPessoas}" readonly />
 				</div>
 				<br />
 				<hr />
