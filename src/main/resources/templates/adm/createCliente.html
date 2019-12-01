@@ -12,9 +12,9 @@
 		<div class="container" align="center"
 			style="height: 100vh; width: 50rem; background-color: rgb(243, 239, 188)">
 			<br />
-			<h2>Formulário do Cliente</h2>
+			<h2>Cadastrar Cliente</h2>
 			<hr />
-			<form th:action="@{/clientes/seve}" th:object="${cliente}"
+			<form th:action="${cliente.id} == null ? @{/clientes/salvar} : @{/clientes/editar} " th:object="${cliente}"
 				method="POST">
 
 				<div th:replace="fragments/validacao :: validacao"></div>

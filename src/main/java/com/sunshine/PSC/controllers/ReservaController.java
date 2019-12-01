@@ -2,6 +2,7 @@ package com.sunshine.PSC.controllers;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -43,10 +44,11 @@ public class ReservaController {
 	}
 
 	@GetMapping("/createReservas") // cadastro de reseerva na area do adm
-	public String createReservas(Reserva reserva,Quarto quarto , ModelMap model) {
+	public String createReservas(Reserva reserva, Quarto quarto, ModelMap model) {
+		model.addAttribute("reservas", service.findAll());
 		model.addAttribute("clientes", cService.findAll());
 		model.addAttribute("quartos", qService.findAll());
-		
+
 		return "reserva/cadastrarReservas";
 	}
 
@@ -60,17 +62,26 @@ public class ReservaController {
 		reserva.setDataEntrada(date1);
 		reserva.setDataSaida(date2);
 
-		service.save(reserva);
-		
-		return "reserva/confirmacao";
-		
+		boolean comparacao = date1.isBefore(date2);
+		ModelMap model = new ModelMap();
+		if (comparacao == true) {
+			service.save(reserva);
+
+			model.addAttribute("reserva", service.findAll());
+			// return "reserva/listarReservas";
+			return "redirect:/reserva/listar";
+		} else {
+			model.addAttribute("reserva", service.findAll());
+			return "redirect:/reserva/listar";
+		}
+
 	}
 
-	@GetMapping("/listarReservas")
-	public String findAll(ModelMap model) {
-		model.addAttribute("reservas", service.findAll());
-		return "reserva/listarReservas";
-	}
+	/*
+	 * @GetMapping("/listarReservas") public String findAll(ModelMap model) {
+	 * model.addAttribute("reserva", service.findAll()); return "/adm/listReservas";
+	 * }
+	 */
 
 	@GetMapping("/buscarid")
 	public Reserva findById(int Id) throws ObjectNotFoundException {
@@ -86,7 +97,8 @@ public class ReservaController {
 	}
 
 	@PostMapping("/editar")
-	public String updateReserva(@Valid Reserva reserva, BindingResult result) throws ObjectNotFoundException {
+	public String updateReserva(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr)
+			throws ObjectNotFoundException {
 		findById(reserva.getId());
 
 		String DTE = reserva.getDataEntradaTemp();
@@ -127,7 +139,7 @@ public class ReservaController {
 	// }
 
 	@PostMapping("/seve")
-	public String seve(@Valid Reserva reserva, BindingResult result) throws ParseException {
+	public String seve(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
 
@@ -142,7 +154,5 @@ public class ReservaController {
 		service.save(reserva);
 		return "/adm/areaAdm";
 	}
-	
-	 
 
 }

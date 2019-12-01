@@ -73,7 +73,26 @@ public class Reserva implements Serializable {
 		this.precoDiaria = precoDiaria;
 		this.total = total;
 	}
-
+	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria, Double valorTotal ) {
+		super();
+		this.cliente = cliente;
+		this.nPessoas = nPessoas;
+		this.dataEntrada = dataEntrada;
+		this.dataSaida = dataSaida;
+		this.precoDiaria = valorDiaria;
+		this.total = valorTotal;
+	}
+	
+	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria, Double valorTotal, List<Quarto> quartos ) {
+		super();
+		this.cliente = cliente;
+		this.nPessoas = nPessoas;
+		this.dataEntrada = dataEntrada;
+		this.dataSaida = dataSaida;
+		this.precoDiaria = valorDiaria;
+		this.total = valorTotal;
+		this.quartos = quartos;
+	}
 	public Integer getId() {
 		return id;
 	}
