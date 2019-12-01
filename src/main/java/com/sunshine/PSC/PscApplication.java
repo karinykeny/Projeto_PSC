@@ -1,5 +1,6 @@
 package com.sunshine.PSC;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,8 @@ public class PscApplication implements CommandLineRunner {
 		funcionarioDao.save(f1);
 		funcionarioDao.save(f2);
 
-		Reserva r1 = new Reserva(null, 6, null, null, null, null);
-		Reserva r2 = new Reserva(null, 3, null, null, null, null);
+		Reserva r1 = new Reserva(null, 6, LocalDate.of(2019, 01, 1), LocalDate.of(2019, 01, 6),null , null);
+		Reserva r2 = new Reserva(null, 3, LocalDate.of(2019, 01, 9), LocalDate.of(2019, 01, 11), null, null);
 
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
 

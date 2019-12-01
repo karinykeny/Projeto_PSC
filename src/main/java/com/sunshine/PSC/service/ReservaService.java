@@ -1,6 +1,5 @@
 package com.sunshine.PSC.service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sunshine.PSC.dao.ReservaDao;
 import com.sunshine.PSC.dominio.Reserva;
+import com.sunshine.PSC.dominio.Reservado;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 
 @Service
@@ -21,8 +21,18 @@ public class ReservaService {
 
 	@Transactional
 	public Reserva save(Reserva reserva) {
+		List<Reserva> reservas = dao.findAll();
+		Optional<Reserva> quarto = reservas.stream().filter(r -> {
+			Reservado reservado = new Reservado(r.getDataEntrada(), r.getDataSaida());
+			return !reservado.isDisponivel(reserva.getDataEntrada(), reserva.getDataSaida());
+		}).findFirst();
 
-		return dao.save(reserva);
+		if (quarto.isEmpty()) {
+			System.out.println("salvamos a reserva :)");
+			return dao.save(reserva);
+		}
+		
+		return reserva;
 	}
 
 	public List<Reserva> findAll() {
