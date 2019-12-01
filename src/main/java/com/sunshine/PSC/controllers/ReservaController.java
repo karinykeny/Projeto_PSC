@@ -98,7 +98,7 @@ public class ReservaController {
 	}
 
 	@PostMapping("/editar")
-	public String updateReserva(@Valid Reserva reserva, BindingResult result) throws ObjectNotFoundException {
+	public String updateReserva(@Valid Reserva reserva, BindingResult result,  RedirectAttributes attr) throws ObjectNotFoundException {
 		findById(reserva.getId());
 
 		String DTE = reserva.getDataEntradaTemp();
@@ -139,7 +139,7 @@ public class ReservaController {
 	// }
 
 	@PostMapping("/seve")
-	public String seve(@Valid Reserva reserva, BindingResult result) throws ParseException {
+	public String seve(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
 		String DTE = reserva.getDataEntradaTemp();
 		String DTS = reserva.getDataSaidaTemp();
 

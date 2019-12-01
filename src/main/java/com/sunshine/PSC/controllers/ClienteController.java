@@ -1,9 +1,14 @@
 package com.sunshine.PSC.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +18,8 @@ import com.sunshine.PSC.dominio.Cliente;
 import com.sunshine.PSC.dominio.Funcionario;
 import com.sunshine.PSC.service.ClienteService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
+import com.sunshine.PSC.validator.ClienteValidator;
+
 
 @Controller
 @RequestMapping("/clientes")
@@ -20,15 +27,21 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService service;
+	
+	@InitBinder 
+	public void initBinder(WebDataBinder binder) {
+
+		binder.addValidators(new ClienteValidator());
+	}
 
 	// ================= CHAMAR TELAS ==================
 	@GetMapping("/cadastrar")
-	public String cadastar(Cliente cliente) {
+	public String cadastar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		return "/cliente/cadastrarCliente";
 	}
 
 	@GetMapping("/create")
-	public String create(Cliente cliente) {
+	public String create(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		return "/adm/createCliente";
 	}
 
@@ -81,15 +94,15 @@ public class ClienteController {
 
 	// ================= CREATE ==================
 
-	@PostMapping("/Salvar")
-	public String salvar(Cliente cliente, RedirectAttributes attr) {
+	@PostMapping("/salvar")
+	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		service.save(cliente);
 		attr.addFlashAttribute("sucess", "cliente inserido com sucesso");
-		return "/cliente/areaCliente";
+		return "redirect:/clientes/listar";
 	}
 
 	@PostMapping("/seve")
-	public String seve(Cliente cliente, RedirectAttributes attr) {
+	public String seve(Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		service.save(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "redirect:/clientes/listar";
@@ -98,17 +111,23 @@ public class ClienteController {
 	// ================= UPDATE ==================
 
 	@PostMapping("/editar")
-	public String editar(Cliente cliente) throws ObjectNotFoundException {
+	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) throws ObjectNotFoundException {
+		
 		service.findById(cliente.getId());
 		service.updateCliente(cliente);
-		return "/cliente/areaCliente";
+		
+		
+		if (result.hasErrors()) {
+			return "/adm/createCliente";
+		}
+		return "/cliente/listarClientes";
 	}
 
 	@PostMapping("/edit")
-	public String edit(Cliente cliente) throws ObjectNotFoundException {
+	public String edit(@Valid Cliente cliente,BindingResult result, RedirectAttributes attr) throws ObjectNotFoundException {
 		service.findById(cliente.getId());
 		service.updateCliente(cliente);
-		return "/adm/areaAdm";
+		return "redirect:/clientes/listar";
 	}
 
 }

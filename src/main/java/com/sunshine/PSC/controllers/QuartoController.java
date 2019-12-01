@@ -52,8 +52,8 @@ public class QuartoController {
 	@PostMapping("/create")
 	public String create(@Valid Quarto quarto, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			//return "quarto/cadastrarQuartos";
-			return "adm/createQuarto";
+			return "quarto/cadastrarQuartos";
+			//return "adm/createQuarto";
 		}
 		service.save(quarto);
 		attr.addFlashAttribute("success", "quarto cadastrado com sucesso!");

@@ -53,7 +53,7 @@
                      <option th:each="cliente : ${clientes}" th:value="${cliente.Id}" th:utext="${cliente.nome}"  multiple="multiple"/>
                   </select>
 					
-					<select th:field="*{quartos}">
+				  <select th:field="*{quartos}">
                      <option value=""> -- </option>
                      <option th:each="quarto : ${quartos}" th:value="${quarto.Id}" th:utext="${quarto.nomeQuarto}"  multiple="multiple"/>
                   </select>
