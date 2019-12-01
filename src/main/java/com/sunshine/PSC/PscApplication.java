@@ -65,7 +65,7 @@ public class PscApplication implements CommandLineRunner {
 		funcionarioDao.save(f2);
 
 		Reserva r1 = new Reserva(null, 6, null, null, 10.0, null);
-		Reserva r2 = new Reserva(null, 3, null, null, null, null);
+		Reserva r2 = new Reserva(null, 3, null, null, 20.0, null);
 
 		Pagamento pgt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, r1, 6, 6352895,"jonas");
 
@@ -74,6 +74,7 @@ public class PscApplication implements CommandLineRunner {
 
 
 		r1.setPagamento(pgt1);
+		r2.setPagamento(pgt1);
 
 		rdao.saveAll(Arrays.asList(r1,r2));
 	
