@@ -37,9 +37,9 @@ public class ReservaController {
 	private ClienteService cService;
 	@Autowired
 	private PagamentoService pService;
-	
+
 	private Cliente cliente;
-	
+
 	public void InitBinder(WebDataBinder binder) {
 		binder.addValidators(new ReservaValidator());
 	}
@@ -68,18 +68,19 @@ public class ReservaController {
 
 	@PostMapping("/seve") // Reserva administrador
 	public String seve(@Valid Reserva reserva, BindingResult result, RedirectAttributes attr) throws ParseException {
-		
+
 		if (result.hasErrors()) {
 			return "/adm/createReserva";
 		}
-		reserva.setCliente(cliente);
-		service.save(reserva);
-		attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");		
+			reserva.setCliente(cliente);
+			service.save(reserva);
+			attr.addFlashAttribute("success", "Cadastrado realizado com sucesso.");
+
 		return "/adm/pagamentoReserva";
 	}
 
 	// ================= UPDATE ==================
-	@GetMapping("/preupdate/{id}")// Reserva cliente
+	@GetMapping("/preupdate/{id}") // Reserva cliente
 	public String preUpdate(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("reserva", service.findById(id));
 
@@ -139,8 +140,5 @@ public class ReservaController {
 		pService.save(pagamento);
 		return "adm/pagamentoReserva";
 	}
-	
-	
-	
 
 }

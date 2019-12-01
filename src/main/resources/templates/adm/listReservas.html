@@ -31,18 +31,16 @@
 						<thead class="thead-dark">
 							<tr class="header">
 								<th>Id</th>
-								<th>cliente</th>
-								<th>Numero de pessoas</th>
-								<th>Data de entrada</th>
-								<th>Data de saida</th>
-								<th>valor da diaria</th>
-								<th>valor total da reserva</th>
+								<th>Nº de Pessoas</th>
+								<th>Data de Entrada</th>
+								<th>Data de Saída</th>
+								<th>Valor da Diária</th>
+								<th>Total da Reserva</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="r : ${reserva}">
-							<td th:text="${r.cliente}"></td>
+							<tr th:each="r : ${reserva}">							
 								<td th:text="${r.id}"></td>
 								<td th:text="${r.nPessoas}"></td>
 								<td th:text="${r.dataEntrada}"></td>

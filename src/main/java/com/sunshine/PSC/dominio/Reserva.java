@@ -161,6 +161,8 @@ public class Reserva implements Serializable {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
