@@ -28,16 +28,18 @@
 						id="myTable">
 						<thead class="thead-dark">
 							<tr class="header">
+								<th>Cliente</th>
 								<th>Numero de pessoas</th>
 								<th>Data de entrada</th>
 								<th>Data de saida</th>
-								<th>valor da diaria</th>
-								<th>valor total da reserva</th>
+								<th>Valor da diaria</th>
+								<th>Valor total da reserva</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="r : ${reserva}">
+								<td th:text="${r.cliente.nome}"></td>
 								<td th:text="${r.nPessoas}"></td>
 								<td th:text="${r.dataEntrada}"></td>
 								<td th:text="${r.dataSaida}"></td>
