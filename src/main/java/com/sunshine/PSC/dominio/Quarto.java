@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class Quarto implements Serializable {
 	private String tipoDeCama;
 	private Integer status;
 	@JsonIgnore
-	@ManyToMany(mappedBy = "quartos")//quartos
+	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "quartos")//quartos
 	private List<Reserva> reservas = new ArrayList<>();
 
 	public Quarto() {

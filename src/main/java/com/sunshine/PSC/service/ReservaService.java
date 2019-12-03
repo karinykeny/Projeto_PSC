@@ -85,7 +85,11 @@ public class ReservaService {
 		reserva.setId(null);
 
 		calcularTotal(reserva);
-		return dao.save(reserva);
+		if (verificaPeriodo(reserva) == true) {
+			return dao.save(reserva);
+		} else {
+			throw new DateInvalidException("periodo invalido informado");
+		}
 
 	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Cliente implements Serializable, UserDetails {
 	@Email(message = "E-mail inválido!")
 	private String email;
 	private String senha;
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cliente")
 	private List<Reserva> reservas = new ArrayList<>();
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id_fk")

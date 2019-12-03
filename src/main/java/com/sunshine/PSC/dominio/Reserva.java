@@ -28,7 +28,7 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private Integer nPessoas;
 
 	@FutureOrPresent(message = " a data deve ser atual ou futura !")
@@ -73,7 +73,9 @@ public class Reserva implements Serializable {
 		this.precoDiaria = precoDiaria;
 		this.total = total;
 	}
-	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria, Double valorTotal ) {
+
+	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria,
+			Double valorTotal) {
 		super();
 		this.cliente = cliente;
 		this.nPessoas = nPessoas;
@@ -82,8 +84,9 @@ public class Reserva implements Serializable {
 		this.precoDiaria = valorDiaria;
 		this.total = valorTotal;
 	}
-	
-	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria, Double valorTotal, List<Quarto> quartos ) {
+
+	public Reserva(Cliente cliente, Integer nPessoas, LocalDate dataEntrada, LocalDate dataSaida, Double valorDiaria,
+			Double valorTotal, List<Quarto> quartos) {
 		super();
 		this.cliente = cliente;
 		this.nPessoas = nPessoas;
@@ -93,6 +96,7 @@ public class Reserva implements Serializable {
 		this.total = valorTotal;
 		this.quartos = quartos;
 	}
+
 	public Integer getId() {
 		return id;
 	}
