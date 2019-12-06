@@ -15,6 +15,7 @@
 			<h2>Editar Cadastro</h2>
 			<hr/>
 			<form th:action="@{/clientes/editar}" th:object="${cliente}" method="post">
+			
 					<div class="form-row col-md-6">
 						<label for="name">Nome</label> <input type="text"
 							class="form-control" id="name" th:field="*{nome}" placeholder="Nome Completo">
@@ -23,12 +24,12 @@
 					</div>
 					<br/>
 					<div class="form-row col-md-6">
-						<label for="cpf">CPF</label> <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00"
-							class="form-control" id="cpf" th:field="*{cpf}" placeholder="000.000.000-00"
-							size="14" maxlength="14">
-						<div class="invalid-feedback">Por favor, informe um CPF
-							válido.</div>
-					</div>
+					<label>CPF </label> <input type="text" class="form-control"
+						id="cpffuncionario" size="14" maxlength="14" th:field="*{cpf}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00"
+						th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
+						required>
+					<div class="invalid-feedback"> Número do CPF Incorreto.</div>
+				</div>
 					<br/>
 					<div class="form-row col-md-6">
 						<label for="email">Endereço de email</label> <input type="text"

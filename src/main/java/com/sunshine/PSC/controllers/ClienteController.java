@@ -89,11 +89,17 @@ public class ClienteController {
 	// ================= CREATE ==================
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, ModelMap model) {
+		if (result.hasErrors()) {
+			return "adm/createCliente";
+		}
 		service.save(cliente);
-		attr.addFlashAttribute("sucess", "cliente inserido com sucesso");
+		attr.addFlashAttribute("success", "cliente cadastrado com sucesso!");
+		model.addAttribute("cliente", service.findAll());
 		return "redirect:/clientes/listar";
+		
 	}
+
 
 	@PostMapping("/seve")
 	public String seve(Cliente cliente, BindingResult result, RedirectAttributes attr) {

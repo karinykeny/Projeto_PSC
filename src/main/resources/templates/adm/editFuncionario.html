@@ -24,8 +24,7 @@
 				th:action="${funcionario.id} == null ? @{/funcionario/create} : @{/funcionario/editar}"
 				th:object="${funcionario}" method="post">
 
-				<div th:replace="fragments/validacao :: validacao"></div>
-				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
+				
 				<div class="form-row col-md-6">
 					<label for="name">Nome do funcionario</label> <input type="text"
 						class="form-control" id="nomefuncionario"

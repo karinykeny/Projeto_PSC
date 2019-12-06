@@ -2,6 +2,7 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script src="script.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
@@ -16,9 +17,6 @@
 			<hr />
 			<form th:action="${cliente.id} == null ? @{/clientes/salvar} : @{/clientes/editar} " th:object="${cliente}"
 				method="POST">
-
-				<div th:replace="fragments/validacao :: validacao"></div>
-				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
 
 				<div class="form-row col-md-6">
 					<label for="name">Nome</label> <input type="text"
