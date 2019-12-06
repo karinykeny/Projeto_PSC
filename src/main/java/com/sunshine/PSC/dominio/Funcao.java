@@ -49,7 +49,7 @@ public class Funcao implements GrantedAuthority  {
 
 	public List<Cliente> getClientes() {
 		return clientes;
-	}
+	}  
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
