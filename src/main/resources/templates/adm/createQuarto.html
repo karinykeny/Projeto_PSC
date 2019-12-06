@@ -3,6 +3,10 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 
@@ -39,16 +43,30 @@
 				<br />
 				<div class="form-row col-md-6">
 					<label for="exampleFormControlSelect1">Tipo de cama</label> <select
-						class="form-control" id="rows0.variety" name="rows[0].variety" th:field="*{tipoDeCama}">						
+						class="form-control" id="rows0.variety" name="rows[0].variety"
+						th:field="*{tipoDeCama}">
 						<option selected="selected" value="Solteiro">Solteiro</option>
 						<option value="Casal">Casal</option>
 						<option value="Misto">Misto</option>
 					</select>
 				</div>
 				<br />
+				<div class="input-group mb-3 col-md-6">
+					<label>Preço diaria:</label>&emsp;
+					<div class="input-group-prepend">
+						<span class="input-group-text">$</span>
+					</div>
+					<input type="text" step="any" class="form-control" id="diaria"
+						th:field="*{diaria}" data-mask="#.##0,00" data-mask-reverse="true"
+						th:classappend="${#fields.hasErrors('diaria')} ? 'is-invalid'"
+						required>
+					<div class="invalid-feedback">
+						<span th:errors="*{diaria}"></span>
+					</div>
+					<div class="input-group-append"></div>
+				</div>
 				<div class="form-row col-md-6">
-				<label >Status</label>
-					<select name="status" class="form-control">
+					<label>Status</label> <select name="status" class="form-control">
 						<option
 							th:each="statusOpt : ${T(com.sunshine.PSC.dominio.enums.StatusQuarto).values()}"
 							th:value="${statusOpt}" th:text="${statusOpt}"></option>
@@ -63,6 +81,13 @@
 				<br />
 			</form>
 		</div>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$("#diaria").mask('#.##0,00', {
+					reverse : true
+				});
+			});
+		</script>
 	</section>
 </body>
 </html>
