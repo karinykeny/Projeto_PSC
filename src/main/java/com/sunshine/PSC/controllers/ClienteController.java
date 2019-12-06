@@ -20,15 +20,14 @@ import com.sunshine.PSC.service.ClienteService;
 import com.sunshine.PSC.service.exception.ObjectNotFoundException;
 import com.sunshine.PSC.validator.ClienteValidator;
 
-
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
 	private ClienteService service;
-	
-	@InitBinder 
+
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 
 		binder.addValidators(new ClienteValidator());
@@ -79,8 +78,11 @@ public class ClienteController {
 	@GetMapping("/deletar/{id}")
 	public String deletar(Cliente cliente, ModelMap model) throws ObjectNotFoundException {
 		service.findById(cliente.getId());
-		if (!service.clienteTemReserva(cliente.getId())) {
+		if (service.clienteTemReserva(cliente.getId())) {
+			model.addAttribute("fail", "Cliente não exluido,possui reserva(s) vinculada(s)");
+		} else {
 			service.deleteCliente(cliente);
+			model.addAttribute("success", "Cliente exluido com sucesso");
 		}
 		model.addAttribute("clientes", service.findAll());
 		return "adm/listClientes";
@@ -97,9 +99,8 @@ public class ClienteController {
 		attr.addFlashAttribute("success", "cliente cadastrado com sucesso!");
 		model.addAttribute("cliente", service.findAll());
 		return "redirect:/clientes/listar";
-		
-	}
 
+	}
 
 	@PostMapping("/seve")
 	public String seve(Cliente cliente, BindingResult result, RedirectAttributes attr) {
@@ -111,8 +112,9 @@ public class ClienteController {
 	// ================= UPDATE ==================
 
 	@PostMapping("/editar")
-	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, ModelMap model) throws ObjectNotFoundException {
-		
+	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, ModelMap model)
+			throws ObjectNotFoundException {
+
 		if (result.hasErrors()) {
 			return "adm/editCliente";
 		}
@@ -121,6 +123,5 @@ public class ClienteController {
 		model.addAttribute("cliente", service.findAll());
 		return "redirect:/clientes/listar";
 	}
-
 
 }
