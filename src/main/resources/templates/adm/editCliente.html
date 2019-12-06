@@ -3,6 +3,10 @@
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -10,7 +14,7 @@
 		<br/>
 			<h2>Editar Cadastro</h2>
 			<hr/>
-			<form th:action="@{/clientes/edit}" th:object="${cliente}" method="post">
+			<form th:action="@{/clientes/editar}" th:object="${cliente}" method="post">
 					<div class="form-row col-md-6">
 						<label for="name">Nome</label> <input type="text"
 							class="form-control" id="name" th:field="*{nome}" placeholder="Nome Completo">
@@ -55,6 +59,11 @@
 				<br/>
 			</form>
 			</div>
+		<script type="text/javascript">
+		jQuery(function($){
+		$("#cpf").mask("000.000.000-00");
+		});
+		</script>
 	</section>
 </body>
 </html>

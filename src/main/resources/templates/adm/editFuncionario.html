@@ -1,81 +1,123 @@
+
 <!DOCTYPE html>
 <html layout:decorate="~{layoutAdm}">
 <head>
 <meta charset="UTF-8">
+<script src="script.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
+
 	<section class="layout-content" layout:fragment="corpo">
+		</br>
 		<div class="container" align="center"
-			style="height: 110vh; width: 50rem; background-color: rgb(243, 239, 188)">
+			style="height: 135vh; width: 50rem; background-color: rgb(243, 239, 188)">
 			<br />
-			<h2>Formulário de Funcionário</h2>
-			<hr />
-			<form th:action="@{/funcionario/editar}" th:object="${funcionario}"
-				method="POST">
+			<h2>Editar Funcionario</h2>
+			<p>Bem vindo ao site do Hotel Sunshine</p>
+
+
+			<form
+				th:action="${funcionario.id} == null ? @{/funcionario/create} : @{/funcionario/editar}"
+				th:object="${funcionario}" method="post">
 
 				<div th:replace="fragments/validacao :: validacao"></div>
 				<!-- Aqui traz o fragmento que trará o erro de validação caso haja erros(precisa ficar dentro da tag <form>) -->
-
 				<div class="form-row col-md-6">
-					<label for="name">Nome do funcionário</label> <input type="text"
-						th:field="*{nome}" class="form-control" id="nome"
-						placeholder="Nome Completo"
+					<label for="name">Nome do funcionario</label> <input type="text"
+						class="form-control" id="nomefuncionario"
+						placeholder="Nome do funcionario" th:field="*{nome}"
 						th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
 						required>
 					<div class="invalid-feedback">Por favor, informe um nome
 						válido.</div>
 				</div>
-				<br />
+				</br>
 				<div class="form-row col-md-6">
-					<label for="cpf">CPF</label> <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00" th:field="*{cpf}"
-						class="form-control" id="cpf" placeholder="000.000.000-00"
-						size="14" maxlength="14"
+					<label>CPF </label> <input type="text" class="form-control"
+						id="cpffuncionario" size="14" maxlength="14" th:field="*{cpf}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00"
 						th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
 						required>
-					<div class="invalid-feedback">Por favor, informe um CPF
-						válido.</div>
+					<div class="invalid-feedback"> Número do CPF Incorreto.</div>
 				</div>
-				<br />
+				</br>
 				<div class="form-row col-md-6">
-					<label for="email">Endereço de email</label> <input type="email"
-						th:field="*{email}" class="form-control" id="email"
-						aria-describedby="emailHelp" placeholder="Seu email"
+					<label>Email </label> <input type="text" class="form-control"
+						id="emailfuncionario" th:field="*{email}"
 						th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
 						required>
-					<div class="invalid-feedback">Por favor, informe um email
-						válido.</div>
-					<small id="emailHelp" class="form-text text-muted">Nunca
-						vamos compartilhar seu email, com ninguém.</small>
+					<div class="invalid-feedback">informação inválida.</div>
 				</div>
-				<br />
+				</br>
 				<div class="form-row col-md-6">
-					<label for="senha">Senha</label> <input type="text" id="senha"
-						th:field="*{senha}" class="form-control"
-						aria-describedby="passwordHelpInline" placeholder="Sua senha"
-						maxlength="20" size="20"
+					<label>Senha </label> <input type="text" class="form-control"
+						id="senhafuncionario" th:field="*{senha}"
 						th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'"
 						required>
-					<div class="invalid-feedback">Por favor, informe uma senha
-						válida.</div>
-					<small id="passwordHelpInline" class="text-muted"> Deve ter
-						entre 8 e 20 caracteres. </small>
+					<div class="invalid-feedback">informação inválida.</div>
 				</div>
-				<br />
+				</br>
 				<div class="form-row col-md-6">
-					<label>Telefone </label> <input type="text" th:field="*{telefone}"
-						class="form-control" id="telefone" placeholder="(00)00000.0000"
+					<label>Telefone </label> <input type="text" class="form-control"
+						id="senhafuncionario" th:field="*{telefone}"
 						th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'"
 						required>
 					<div class="invalid-feedback">informação inválida.</div>
 				</div>
+				</br> <input type="hidden" id="Id" th:field="*{Id}">
+				<!-- Input escondido carrega o Id para o método edit -->
+				</br>
+				<button class="btn btn-success" type="submit" href="/funcionario"
+					url="/funcionario">Enviar</button>
+				<button type="reset" class=" btn btn-success" href="/" url="/home">Limpar</button>
+
 				<br />
-				<hr />
-				<input type="hidden" id="id" name="id" value="" />
-				<button class="btn btn-warning" type="submit">Enviar</button>
-				<button type="reset" class="btn btn-warning">Limpar</button>
-				<br />
+
+				<div class="colcol-md-12">
+					<a href="/funcionario/listar" class="btn btn-warning">voltar</a>
+				</div>
 			</form>
 		</div>
+		<br />
+		<script>
+			// Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+			(function() {
+				'use strict';
+				window
+						.addEventListener(
+								'load',
+								function() {
+									// Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+									var forms = document
+											.getElementsByClassName('needs-validation');
+									// Faz um loop neles e evita o envio
+									var validation = Array.prototype.filter
+											.call(
+													forms,
+													function(form) {
+														form
+																.addEventListener(
+																		'submit',
+																		function(
+																				event) {
+																			if (form
+																					.checkValidity() === false) {
+																				event
+																						.preventDefault();
+																				event
+																						.stopPropagation();
+																			}
+																			form.classList
+																					.add('was-validated');
+																		},
+																		false);
+													});
+								}, false);
+			})();
+		</script>
 	</section>
 </body>
 </html>

@@ -68,12 +68,6 @@ public class ClienteController {
 		return "/cliente/dadosCliente";
 	}
 
-	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
-		model.addAttribute("cliente", service.findById(id));
-		return "/cliente/editarCliente";
-	}
-
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") int id, ModelMap model) throws ObjectNotFoundException {
 		model.addAttribute("cliente", service.findById(id));
@@ -111,23 +105,16 @@ public class ClienteController {
 	// ================= UPDATE ==================
 
 	@PostMapping("/editar")
-	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) throws ObjectNotFoundException {
-		
-		service.findById(cliente.getId());
-		service.updateCliente(cliente);
-		
+	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, ModelMap model) throws ObjectNotFoundException {
 		
 		if (result.hasErrors()) {
-			return "/adm/createCliente";
+			return "adm/editCliente";
 		}
-		return "/cliente/listarClientes";
-	}
-
-	@PostMapping("/edit")
-	public String edit(@Valid Cliente cliente,BindingResult result, RedirectAttributes attr) throws ObjectNotFoundException {
 		service.findById(cliente.getId());
 		service.updateCliente(cliente);
+		model.addAttribute("cliente", service.findAll());
 		return "redirect:/clientes/listar";
 	}
+
 
 }

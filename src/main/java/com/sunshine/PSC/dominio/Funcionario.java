@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -25,10 +26,10 @@ public class Funcionario implements Serializable, UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NonNull
-	@Size (min = 3, max = 50)
+	@NotBlank(message = "O nome do Funcionario é obrigatório.")
+	@Size(min = 5, max = 30, message = "O nome do funcionario deve ter entre {min} e {max} caracteres")
 	private String nome;
-	@CPF
+	@CPF(message = "CPF Incorreto")
 	private String cpf ;
 	@Email
 	private String email;

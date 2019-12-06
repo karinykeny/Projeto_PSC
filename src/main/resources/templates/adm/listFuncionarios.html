@@ -7,7 +7,7 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<br />
 		<div class="container" style="height: 100vh;">
-		<h3>Lista de Funcinários</h3>
+		<h3>Lista de Funcionários</h3>
 		<br/>
 			<form>
 				<div class="row" style="margin: 10px;">
@@ -46,8 +46,7 @@
 								<td><span th:text="${f.telefone}"></span></td>
 								<td align="center"><div class="btn-group pull-right">
 										<a class="btn btn-sm btn-warning"
-											th:href="@{preupdate/{Id} (Id=${f.id})}">Editar</a> 
-											
+											th:href="@{edit/{id}(id=${f.id})}">Editar</a> 
 										<button class="delete btn btn-sm btn-danger" type="button" 
 										        data-toggle="modal" data-target="#excluirModal" 
 										        th:id="${ 'btn_funcionario/deletar/' +f.id}"  

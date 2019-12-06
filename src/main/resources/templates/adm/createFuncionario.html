@@ -4,6 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <script src="script.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -15,7 +19,7 @@
 			<form th:action="@{/funcionario/seve}" th:object="${funcionario}"
 				method="POST">
 
-				<div th:replace="fragments/validacao :: validacao"></div>
+				
 				
 				<div class="form-row col-md-6">
 					<label for="name">Nome do funcionário</label> <input type="text"
@@ -28,11 +32,9 @@
 				</div>
 				<br />
 				<div class="form-row col-md-6">
-					<label for="cpf">CPF</label> <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00" th:field="*{cpf}"
-						class="form-control" id="cpf" placeholder="000.000.000-00"
-						size="14" maxlength="14"
-						th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
-						required>
+					<label for="cpf">CPF</label> <input type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: 000.000.000-00"
+					th:field="*{cpf}" class="form-control" id="cpf" placeholder="000.000.000-00"
+						size="14" maxlength="14" th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'" required>
 					<div class="invalid-feedback">Por favor, informe um CPF
 						válido.</div>
 				</div>
@@ -77,6 +79,13 @@
 				<br />
 			</form>
 		</div>
+		<script type="text/javascript">
+		jQuery(function($){
+				$("#cpf").mask("000.000.000-00");
+
+			});
+		</script>
+
 	</section>
 </body>
 </html>
