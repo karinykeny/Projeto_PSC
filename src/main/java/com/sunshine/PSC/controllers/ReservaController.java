@@ -119,8 +119,11 @@ public class ReservaController {
 	@GetMapping("/deletar/{id}")
 	public String deletarReserva(Reserva reserva, ModelMap model) throws ObjectNotFoundException {
 		findById(reserva.getId());
-		if (!service.reservaTemCliente(reserva.getId())) {
+		if (service.reservaTemCliente(reserva.getId())) {
+			model.addAttribute("fail", "Esta reserva não pode ser excluida,possui cliente(s) vinculado(s)");
+		}else {
 			service.deleteReserva(reserva);
+			model.addAttribute("success", "reserva exluida com sucesso");
 		}
 		model.addAttribute("reserva", service.findAll());
 		return "adm/listReservas";

@@ -79,7 +79,7 @@ public class ClienteController {
 	public String deletar(Cliente cliente, ModelMap model) throws ObjectNotFoundException {
 		service.findById(cliente.getId());
 		if (service.clienteTemReserva(cliente.getId())) {
-			model.addAttribute("fail", "Cliente não exluido,possui reserva(s) vinculada(s)");
+			model.addAttribute("fail", "Este cliente não pode ser excluido,possui reserva(s) vinculada(s)");
 		} else {
 			service.deleteCliente(cliente);
 			model.addAttribute("success", "Cliente exluido com sucesso");
