@@ -120,7 +120,8 @@ public class ClienteController {
 		}
 		service.findById(cliente.getId());
 		service.updateCliente(cliente);
-		model.addAttribute("cliente", service.findAll());
+		attr.addFlashAttribute("sucess", "Cliente editado com sucesso");
+		model.addAttribute("success", "Cliente editado com sucesso");
 		return "redirect:/clientes/listar";
 	}
 
